@@ -1,4 +1,4 @@
 # thinkphp_learn
-just for fun
+> JUST FOR FUN !
 
-## define ('APP_PATH', './PloverUAV/');
+##### define ('APP_PATH', './PloverUAV/');

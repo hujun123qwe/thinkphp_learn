@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,8 +15,8 @@
 <div style="padding: 24px 48px;">
     <h1>:)</h1>
     <p>欢迎使用 <b>ThinkPHP</b>！</p>
-    <br/>版本 V{$Think.version}
-    <br/>本文件来自 {$HOME_VIEW_PATH}
+    <br/>版本 V<?php echo (THINK_VERSION); ?>
+    <br/>本文件来自 <?php echo ($HOME_VIEW_PATH); ?>
 </div>
 <script type="text/javascript" src="http://ad.topthink.com/Public/static/client.js"></script>
 <thinkad id="ad_55e75dfae343f5a1"></thinkad>
