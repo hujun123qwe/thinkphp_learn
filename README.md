@@ -12,3 +12,9 @@
 >应用目录/模块/控制器/方法
 >直接用控制器来控制调用，用方法来显示
 >其他的后台处理都在Model上面
+
+##### $model = C('WHERE_IS');
+>应用配置参数，使用C方法获取参数
+>一般此参数在Conf/config.php中设置
+>要在View中用，使用$this->assign('where_is', $model);
+
