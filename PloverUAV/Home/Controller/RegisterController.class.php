@@ -2,8 +2,8 @@
 namespace HOME\Controller;
 use Think\Controller;
 
-class RegisterController extends Controller{
+class RegisterController extends HomeController{
     public function register(){
-        $this->display("./index");
+        $this->display();
     }
 }
