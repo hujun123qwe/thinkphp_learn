@@ -13,5 +13,7 @@
     <b>ThinkPHP</b>！
     </p>
     <br/>版本 V<?php echo (THINK_VERSION); ?>
+    <br/>Think CONST VALUE <?php var_dump($Think); php?>
+    <br/>本网页当前地址 <a href="<?php echo U('index/4@tp.local');?>"><?php echo U('index/4@tp.local');?></a>
 </div>
 </html>

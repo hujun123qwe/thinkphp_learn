@@ -1,4 +1,4 @@
-<html>
+<?php if (!defined('THINK_PATH')) exit();?><html>
 <style type="text/css">
     *{ padding: 0; margin: 0; }
     div{ padding: 4px 48px;}
@@ -12,8 +12,8 @@
     <p>欢迎使用
     <b>ThinkPHP</b>！
     </p>
-    <br/>版本 V{$Think.version}
+    <br/>版本 V<?php echo (THINK_VERSION); ?>
     <br/>Think CONST VALUE <?php var_dump($Think); php?>
-    <br/>本网页当前地址 <a href="{:U('index/4@tp.local')}">{:U('index/4@tp.local')}</a>
+    <br/><?php echo (); ?>
 </div>
 </html>
