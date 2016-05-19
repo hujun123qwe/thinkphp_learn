@@ -5,5 +5,6 @@
     </head>
     <body>
         <h1>Register !</h1>
+        <br/>YOU can come in ? <?php echo($key); php?>
     </body>
 </html>

@@ -4,6 +4,9 @@ use Think\Controller;
 
 class RegisterController extends Controller{
     public function register(){
-        $this->display("./index");
+        $ss = A('Home/CheckAnswer', 'Event');
+        $keys = $ss->checkAnswer();
+        $this->assign('key',$keys);
+        $this->display("register");
     }
 }
