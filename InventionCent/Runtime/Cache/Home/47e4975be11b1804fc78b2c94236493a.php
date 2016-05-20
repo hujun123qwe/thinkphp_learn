@@ -15,5 +15,6 @@
     <br/>版本 V<?php echo (THINK_VERSION); ?>
     <br/>Think CONST VALUE <?php var_dump($Think); php?>
     <br/>本网页当前地址 <a href="<?php echo U('index/4@tp.local');?>"><?php echo U('index/4@tp.local');?></a>
+    <br/>输出一个配置》  <?php echo (C("DB_PWD")); ?>  》 数据库的密码
 </div>
 </html>

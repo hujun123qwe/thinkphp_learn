@@ -18,3 +18,9 @@
 >一般此参数在Conf/config.php中设置
 >要在View中用，使用$this->assign('where_is', $model);
 
+##### 实例化数据库模块M和D方法
+>继承数据库模块的类UserModel，对应User表
+>Model类的方法中可以用$this->直接调用该数据库
+>配置数据库的信息在config.php中
+
+

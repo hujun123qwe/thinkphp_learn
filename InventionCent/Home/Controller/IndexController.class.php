@@ -27,4 +27,8 @@ class IndexController extends Controller {
             $this->error('数据库连接错误');
         }
     }
+    
+    public function bootstrap(){
+        $this->display();
+    }
 }

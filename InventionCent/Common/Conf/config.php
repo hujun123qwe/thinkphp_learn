@@ -7,11 +7,13 @@ return array(
         'index/:id\d'    => 'Index/id',
         'index/:name'    => 'Index/name',
         'new/:year\d/:month\d'  => 'News/archive',
+        'sql/:name'      => 'Index/insert_sql',
     ),
     'URL_MAP_RULES' => array(
         'error' => 'Index/err',
         'ok' => 'Index/ok',
         'sql'=>'Index/insert_sql',
+        'bootstrap'=>'Index/bootstrap',
     ),
 
     'DB_TYPE'               =>  'mysql',     // 数据库类型
@@ -23,4 +25,6 @@ return array(
     'DB_PREFIX'             =>  'ahut_',    // 数据库表前缀
     'DB_CHARSET'            =>  'utf8',
 
+    'css_path' => HOME_VIEW_PATH.'CSS',
+    'js_path' => HOME_VIEW_PATH.'js',
 );
