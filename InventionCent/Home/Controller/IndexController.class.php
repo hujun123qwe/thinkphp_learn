@@ -19,10 +19,9 @@ class IndexController extends Controller {
         $this->success('Hujun2Huangling','Index/id',5);
     }
     
-    public function insert_sql(){
+    public function insert_sql($name){
         $user = D('User');
-        $user->user();
-        if($user->insertUser('hujun')){
+        if($user->insertUser($name)){
             echo 'ok!';
         }else{
             $this->error('数据库连接错误');
