@@ -27,4 +27,7 @@ return array(
 
     'css_path' => HOME_VIEW_PATH.'CSS',
     'js_path' => HOME_VIEW_PATH.'js',
+
+    '__HOME_CSS__' => __ROOT__.'/'.APP_PATH.'/Home/View/css',
+    
 );
