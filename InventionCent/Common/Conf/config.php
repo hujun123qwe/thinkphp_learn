@@ -3,7 +3,6 @@ return array(
 	//'配置项'=>'配置值'
     'DEFAULT_MODULE'        =>  'Home',  // 默认模块
 
-
     'DB_TYPE'               =>  'mysql',     // 数据库类型
     'DB_HOST'               =>  '127.0.0.1', // 服务器地址
     'DB_NAME'               =>  'invention_cent',          // 数据库名

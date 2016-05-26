@@ -10,6 +10,7 @@ namespace Home\Controller;
 use Think\Controller;
 class LoginController extends Controller {
     public function login(){
+        $this->assign('_layout_',C('__HOME_PUBLIC__'));
         $this->display();
     }
 }

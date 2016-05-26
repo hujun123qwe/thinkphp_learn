@@ -12,6 +12,9 @@ return array(
         'login' => 'Login/login',
         'register' => 'Register/register',
         'chooseItem' => 'Register/chooseItem',
+        'item' => 'User/user_item',
+        'info' => 'User/user_info',
+        'add' => 'Item/add_item',
         'error' => 'Index/err',
         'ok' => 'Index/ok',
         'sql'=>'Index/insert_sql',
@@ -19,4 +22,5 @@ return array(
     ),
 
     '__HOME_IMG__' => __ROOT__.'/'.APP_PATH.'/Home/View/img',
+    '__HOME_PUBLIC__'=> APP_PATH.'/Home/View/public/layout.html',
 );

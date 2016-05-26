@@ -3,9 +3,13 @@ namespace Home\Controller;
 use Think\Controller;
 class IndexController extends Controller {
     public function index(){
-        $this->display('index-1');
+        $this->display();
     }
 
+    public function user_item(){
+        $this->display('item');
+    }
+    
     public function name($name='hj2hl'){
         echo "$name";
     }
