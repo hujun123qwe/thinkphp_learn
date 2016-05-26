@@ -53,24 +53,36 @@
 
                     <div class="setup-main ">
                         <div class="setup-form-container">
-                            <noscript>
-                                <p class="error">GitHub does not support browsers with JavaScript disabled.<br>
-                                    We promise we’ll behave.</p>
-                            </noscript>
-
+                            
                             <!-- </textarea> --><!-- '"` -->
-                            <form accept-charset="UTF-8" action="/join" autocomplete="off" class="setup-form js-signup-form" data-form-nonce="59bafeae4d8551f703d1157d77178beff13d75fb" id="signup-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="U9HBBxx5ObS7Yyd2jHN9MBVYhjWNAZNcg7tJDuALi7clnS7KKKkplqW4ft89fR0oae78WiBf2qLhh+xAAHYiHA==" /></div>
-                                <h2 class="setup-form-title mb-3">
-                                    Create your personal account
-                                </h2>
-                                <dl class="form-group"><dt class="input-label"><label autocapitalize="off" autofocus="autofocus" data-autocheck-url="/signup_check/username" for="user_login" name="user[login]">Username</label></dt><dd><input autocapitalize="off" autofocus="autofocus" class="form-control" data-autocheck-url="/signup_check/username" id="user_login" name="user[login]" size="30" type="text" /><p class="note">This will be your username — you can enter your organization’s username next.</p></dd></dl>
-                                <dl class="form-group"><dt class="input-label"><label autocapitalize="off" data-autocheck-url="/signup_check/email" for="user_email" name="user[email]">Email Address</label></dt><dd><input autocapitalize="off" class="form-control" data-autocheck-url="/signup_check/email" id="user_email" name="user[email]" size="30" type="text" /><p class="note">You will occasionally receive account related emails. We promise not to share your email with anyone.</p></dd></dl>
-                                <dl class="form-group"><dt class="input-label"><label data-autocheck-url="/signup_check/password" for="user_password" name="user[password]">Password</label></dt><dd><input class="form-control" data-autocheck-url="/signup_check/password" id="user_password" name="user[password]" size="30" type="password" /><p class="note">Use at least one lowercase letter, one numeral, and seven characters.</p></dd></dl>
-                                <input type="hidden" name="source" class="js-signup-source" value="login">
-                                <p class="tos-info">By clicking on "Create an account" below, you are agreeing to the
-                                    <a href="https://help.github.com/terms" target="_blank">Terms of Service</a> and the
-                                    <a href="https://help.github.com/privacy" target="_blank">Privacy Policy</a>.</p>
-                                <button type="submit" class="btn btn-primary" id="signup_button" data-disable-with="Creating account&hellip;">Create an account</button>
+                            <form accept-charset="UTF-8" action="/register" autocomplete="off" class="setup-form js-signup-form"  method="post">
+                                <div style="margin:0;padding:0;display:inline">
+                                <dl class="form-group">
+                                    <dt class="input-label">
+                                        <label autocapitalize="off" autofocus="autofocus" for="user_name" name="user[name]">Username</label>
+                                    </dt>
+                                    <dd>
+                                        <input autocapitalize="off" autofocus="autofocus" class="form-control" id="user_name" name="user[name]" size="30" type="text" />
+                                    </dd>
+                                </dl>
+                                <dl class="form-group">
+                                    <dt class="input-label">
+                                        <label autocapitalize="off"  for="student_id" name="user[id]">Email Address</label>
+                                    </dt>
+                                    <dd>
+                                        <input class="form-control" id="student_id" name="user[id]" type="number" />
+                                    </dd>
+                                </dl>
+                                <dl class="form-group">
+                                    <dt class="input-label">
+                                        <label  for="user_password" name="user[password]">Password</label>
+                                    </dt>
+                                    <dd>
+                                        <input class="form-control"  id="user_password" name="user[password]" size="30" type="password" />
+                                        <p class="note">Use at least one lowercase letter, one numeral, and seven characters.</p>
+                                    </dd>
+                                </dl>
+                                <button type="submit" class="btn btn-primary" id="signup_button">Create an account</button>
                             </form>
                         </div> <!-- /.setup-form-container -->
                     </div> <!-- /.setup-main -->

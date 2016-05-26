@@ -10,6 +10,13 @@ use Think\Controller;
 class RegisterController extends Controller {
     public function register(){
         $this->assign('_layout_',C('__HOME_PUBLIC__'));
+        if($_POST){
+            $userDB = D('User');
+//            if($userDB->register()){
+//                echo 'OK';
+//            }
+            var_dump($userDB->register());
+        }
         $this->display();
     }
     public function chooseItem(){
