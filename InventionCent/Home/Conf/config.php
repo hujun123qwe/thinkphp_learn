@@ -15,12 +15,16 @@ return array(
         'item' => 'User/user_item',
         'info' => 'User/user_info',
         'add' => 'Item/add_item',
+        'admin' => 'Admin/admin',
         'error' => 'Index/err',
         'ok' => 'Index/ok',
         'sql'=>'Index/insert_sql',
         'bootstrap'=>'Index/bootstrap',
     ),
 
-    '__HOME_IMG__' => __ROOT__.'/'.APP_PATH.'/Home/View/img',
+    '__HOME_IMG__' => APP_PATH.'/Home/View/img',
+    '__HOME_JS__' => APP_PATH.'/Home/View/js',
+    '__HOME_CSS__' => APP_PATH.'/Home/View/css',
     '__HOME_PUBLIC__'=> APP_PATH.'/Home/View/public/layout.html',
+    '__ADMIN_PUBLIC__' => APP_PATH.'/Home/View/public/layout_admin.html',
 );

@@ -78,9 +78,6 @@
                             New organization
                         </a>
 
-
-
-
                     </ul>
                 </div>
             </li>

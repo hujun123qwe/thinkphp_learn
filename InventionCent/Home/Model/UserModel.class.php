@@ -19,7 +19,6 @@
 namespace Home\Model;
 use Think\Model;
 class UserModel extends Model{
-
     protected $_validate = array(
         array('verify','require','验证码必须！'), //默认情况下用正则进行验证
         array('name','','帐号名称已经存在！',0,'unique',1), // 在新增的时候验证name字段是否唯一
@@ -41,15 +40,38 @@ class UserModel extends Model{
         $data['student_id'] = $student_id;
         $data['password'] = md5($password);
         $data['add_time'] = time();
+        $data['last_time'] = time();
+        $data['last_ip'] = get_client_ip();
 
-        //return $this->add($data) ? true : false;
-        return $data;
+        return $this->add($data) ? true : false;
     }
 
     public function login(){
-        $user_name = I('post.name','','htmlspecialchars');
-        $student_id = I('post.student_id','','htmlspecialchars');
-        $password = I('post.password','','htmlspecialchars');
+        $user_name = I('post.login','','htmlspecialchars');
+        $password = I('post.user_password','','htmlspecialchars');
+
+        if (!$user_name) {
+            $this->error('请输入账号！');
+        }
+        if (!$password) {
+            $this->error('请输入密码！');
+        }
+        if(preg_match("/^1\d{10}$/", $user_name)) {
+            $data['student_id'] = $user_name;   // 学号登陆
+        }else{
+            $data['user_name'] = $user_name;  // 用户名登陆
+        }
+        $user_info = $this->where($data)->find(); //查找用户
+        if (!$user_info) {
+            return false;
+        } else {
+            if (md5($password) !== $user_info['password']) {
+                $this->error('密码错误！');
+            } else {
+                return $user_info;
+            }
+        }
+        return false;
     }
 
     /**

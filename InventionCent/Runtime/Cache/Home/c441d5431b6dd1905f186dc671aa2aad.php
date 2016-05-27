@@ -1,6 +1,22 @@
-<extend name="$_layout_"/>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html lang="en" class="is-copy-enabled">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=device-width">
+    <meta content="origin-when-cross-origin" name="referrer" />
 
-<block name="header-content">
+    <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/frameworks.css" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/github.css" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/site.css" type="text/css"/>
+
+    <title>Join GitHub · GitHub</title>
+</head>
+
+<body class="logged-out env-production windows signup">
+
+    
     <div class="header header-logged-in true" role="banner">
         <div class="container clearfix">
 
@@ -137,9 +153,9 @@
 
         </div>
     </div>
-</block>
 
-<block name="main-content">
+
+    
     <div role="main" class="main-content">
 
         <div id="js-pjax-container" data-pjax-container>
@@ -300,7 +316,7 @@
                                 </div>
                             </div>
 
-
+ 
                         </div><!-- /.contributions-tab -->
 
                     </div>
@@ -310,9 +326,9 @@
         </div>
 
     </div>
-</block>
 
-<block name="footer-content">
+
+    
     <div class="container site-footer-container">
         <div class="site-footer" role="contentinfo">
             <ul class="site-footer-links right">
@@ -338,4 +354,7 @@
             </ul>
         </div>
     </div>
-</block>
+
+
+</body>
+</html>

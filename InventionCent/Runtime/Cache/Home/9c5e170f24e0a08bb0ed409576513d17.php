@@ -1,6 +1,144 @@
-<extend name="$_admin_public_"/>
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>安徽工业大学创新学分审核系统后台管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="author" content="安徽工业大学">
+    <meta name="description" content="安徽工业大学创新学分审核系统后台管理">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="apple-touch-icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/logo.png">
+    <link rel="stylesheet" type="text/css" href="<?php echo (C("__HOME_CSS__")); ?>/cui.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo (C("__HOME_CSS__")); ?>/admin.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo (C("__HOMR_CSS__")); ?>/animate.min.css">
+    <script type="text/javascript" src="<?php echo (C("__HOME_JS__")); ?>/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo (C("__HOME_JS__")); ?>/cui.min.js"></script>
+    <script type="text/javascript" src="<?php echo (C("__HOME_JS__")); ?>/admin.js"></script>
+    
+</head>
+<body>
+    <div class="clearfix full-header">
+        
+                <!-- 顶部导航 -->
+            <div class="navbar navbar-inverse navbar-fixed-top main-nav" role="navigation">
+                <div class="collapse navbar-collapse navbar-collapse-top">
+                    <ul class="nav navbar-nav">
+                        <li><a href=""><i class="fa fa-home"></i>
+                            <span style="font-size: large;">安徽工业大学创新学分审核系统后台管理</span></a></li>
+                        <!-- 主导航 -->
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="" class="ajax-get no-refresh"><i class="fa fa-trash"></i>首页</a></li>
+                        <li><a target="_blank" href="/"><i class="fa fa-external-link-square"></i> 打开前台</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-user"></i><?php echo ($user_info["user_name"]); ?>hujun123qwe<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="<?php echo U('Admin/Public/logout');?>" class="ajax-get"><i class="fa fa-sign-out"></i>退出</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        
+    </div>
+    <div class="clearfix full-container">
+        
+                <div class="container-fluid with-top-navbar">
+                    <div class="row">
+                        <!-- 后台左侧导航 -->
+                        <div id="sidebar" class="col-xs-12 col-sm-2 sidebar tab-content">
+                            <!-- 模块菜单 -->
+                            <nav class="navside navside-default" role="navigation">
+                                <ul class="nav navside-nav navside-first">
+                                    <li>
+                                        <a data-toggle="collapse" href="#navside-collapse--1">
+                                            <i class="fa fa-folder-open-o"></i>
+                                            <span class="nav-label">系统功能</span>
+                                            <span class="fa arrow"></span>
+                                        </a>
+                                        <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--1">
+                                            <li >
+                                                <a href="/admin.php?s=/admin/config/group.html" >
+                                                    <i class="fa fa-wrench"></i>
+                                                    <span class="nav-label">系统设置</span>
+                                                </a>
+                                            </li><li >
+                                            <a href="/admin.php?s=/admin/nav/index.html" >
+                                                <i class="fa fa-map-signs"></i>
+                                                <span class="nav-label">导航管理</span>
+                                            </a>
+                                        </li><li >
+                                            <a href="/admin.php?s=/admin/link/index.html" >
+                                                <i class="fa fa-link"></i>
+                                                <span class="nav-label">快捷链接</span>
+                                            </a>
+                                        </li><li >
+                                            <a href="/admin.php?s=/admin/config/index.html" >
+                                                <i class="fa fa-cogs"></i>
+                                                <span class="nav-label">配置管理</span>
+                                            </a>
+                                        </li><li >
+                                            <a href="/admin.php?s=/admin/upload/index.html" >
+                                                <i class="fa fa-upload"></i>
+                                                <span class="nav-label">上传管理</span>
+                                            </a>
+                                        </li>                                            </ul>                                    </li><li>
+                                    <a data-toggle="collapse" href="#navside-collapse--2">
+                                        <i class="fa fa-folder-open-o"></i>
+                                        <span class="nav-label">用户管理</span>
+                                        <span class="fa arrow"></span>
+                                    </a>
+                                    <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--2">
+                                        <li><a href="/admin.php?s=/admin/user/index.html" >
+                                                <i class="fa fa-user"></i>
+                                                <span class="nav-label">添加用户</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="/admin.php?s=/admin/access/index.html" >
+                                            <i class="fa fa-lock"></i>
+                                            <span class="nav-label">查看用户</span>
+                                        </a>
+                                        </li>
+                                        <li><a href="/admin.php?s=/admin/group/index.html" >
+                                            <i class="fa fa-sitemap"></i>
+                                            <span class="nav-label">用户组管理</span>
+                                        </a>
+                                    </li>
+                                    </ul>
+                                </li><li>
+                                    <a data-toggle="collapse" href="#navside-collapse--3">
+                                        <i class="fa fa-folder-open-o"></i>
+                                        <span class="nav-label">扩展中心</span>
+                                        <span class="fa arrow"></span>
+                                    </a>
+                                    <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--3">
+                                        <li >
+                                            <a href="/admin.php?s=/admin/theme/index.html" >
+                                                <i class="fa fa-adjust"></i>
+                                                <span class="nav-label">前台主题</span>
+                                            </a>
+                                        </li><li >
+                                        <a href="/admin.php?s=/admin/module/index.html" >
+                                            <i class="fa fa-th-large"></i>
+                                            <span class="nav-label">功能模块</span>
+                                        </a>
+                                    </li><li >
+                                        <a href="/admin.php?s=/admin/addon/index.html" >
+                                            <i class="fa fa-th"></i>
+                                            <span class="nav-label">插件管理</span>
+                                        </a>
+                                    </li>                                            </ul>                                    </li>                            </ul>
+                            </nav>
+                        </div>
 
-<block name="main-container">
+                        <!-- 右侧内容 -->
+                        <div id="main" class="col-xs-12 col-sm-10 main"  style="overflow-y: scroll;">
+                            
             <!-- 右侧内容 -->
             <div id="main" class="col-xs-12 col-sm-10 main">
                 <!-- 面包屑导航 -->
@@ -151,4 +289,38 @@
             </div>
         </div>
     </div>
-</block>
+
+
+
+                            <div class="clearfix footer">
+                                <div class="navbar navbar-default" role="navigation">
+                                    <div class="container-fluid">
+                                        <div class="navbar-header">
+                                            <a class="navbar-brand" target="_blank" href="/">
+                                                <span>安徽工业大学创新学分审核系统</span>
+                                            </a>
+                                        </div>
+                                        <div class="collapse navbar-collapse navbar-collapse-bottom">
+                                            <ul class="nav navbar-nav">
+                                                <li>
+                                                    <a href="<?php echo C('WEBSITE_DOMAIN');?>" class="text-muted" target="_blank">
+                                                        <span>版权所有 © 2016-2020</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <ul class="nav navbar-nav navbar-right">
+                                                <li><a class="text-muted pull-right">有问题请联系：15551053527，hujun123qwe@163.com</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+        
+    </div>
+
+</body>
+</html>

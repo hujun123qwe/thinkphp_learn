@@ -10,14 +10,18 @@ use Think\Controller;
 class RegisterController extends Controller {
     public function register(){
         $this->assign('_layout_',C('__HOME_PUBLIC__'));
-        if($_POST){
+        if(IS_POST){
             $userDB = D('User');
-//            if($userDB->register()){
-//                echo 'OK';
-//            }
-            var_dump($userDB->register());
+            if($userDB->register()){
+                $this->assign('user_name',I('user_name'));
+                $this->display('chooseItem');
+                //$this->success('注册成功', U('chooseItem'));
+            }else{
+                $this->error('注册失败', U('register'));
+            }
+        }else{
+            $this->display();
         }
-        $this->display();
     }
     public function chooseItem(){
         $this->assign('_layout_',C('__HOME_PUBLIC__'));
