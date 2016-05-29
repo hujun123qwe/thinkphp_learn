@@ -24,28 +24,27 @@
     <div role="main" class="main-content">
     <div id="js-pjax-container" data-pjax-container>
         <div class="auth-form " id="login">
-            <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/session" data-form-nonce="59bafeae4d8551f703d1157d77178beff13d75fb" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="MrB+8rLABY+EXMS1AcuQ4Vs4LAxXhtSI2or6N+/GihTj8R6ufAclXu7P1udZo9ETDpeKsghAGGRuRiW1GoFiAA==" /></div>      <div class="auth-form-header">
-            <h1>Sign in to GitHub</h1>
-        </div>
+            <form accept-charset="UTF-8" action="/login" method="post">
+                <div class="auth-form-header">
+                    <h1>登录审核系统</h1>
+                </div>
             <div id="js-flash-container">
             </div>
             <div class="auth-form-body">
                 <label for="login_field">
-                    Username or email address
+                    用户名或学号
                 </label>
                 <input autocapitalize="off" autocorrect="off" autofocus="autofocus" class="form-control input-block" id="login_field" name="login" tabindex="1" type="text" />
-
                 <label for="password">
-                    Password <a href="/password_reset" class="label-link">Forgot password?</a>
+                    密码 <a href="/password_reset" class="label-link">忘记密码?</a>
                 </label>
-                <input class="form-control form-control input-block" id="password" name="password" tabindex="2" type="password" />
-
-                <input class="btn btn-primary btn-block" data-disable-with="Signing in…" name="commit" tabindex="3" type="submit" value="Sign in" />
+                <input class="form-control form-control input-block" id="password" name="user_password" tabindex="2" type="password" />
+                <input class="btn btn-primary btn-block" data-disable-with="Signing in…" name="commit" tabindex="3" type="submit" value="登 录" />
             </div>
         </form>
             <p class="create-account-callout mt-3">
-                New to GitHub?
-                <a href="/join?source=login" data-ga-click="Sign in, switch to sign up">Create an account</a>.
+                新来的？
+                <a href="/register" data-ga-click="Sign in, switch to sign up">创建一个账户</a>.
             </p>
         </div>
     </div>

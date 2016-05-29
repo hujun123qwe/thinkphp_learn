@@ -15,16 +15,23 @@ return array(
         'item' => 'User/user_item',
         'info' => 'User/user_info',
         'add' => 'Item/add_item',
+<<<<<<< HEAD
         'admin'=>'Admin/index',
         'admin_login'=>'Public/login',
+=======
+        'admin' => 'Admin/admin',
+>>>>>>> some
         'error' => 'Index/err',
         'ok' => 'Index/ok',
         'sql'=>'Index/insert_sql',
         'bootstrap'=>'Index/bootstrap',
     ),
 
-    '__HOME_IMG__' => __ROOT__.'/'.APP_PATH.'/Home/View/img',
+    '__HOME_IMG__' => APP_PATH.'/Home/View/img',
+    '__HOME_JS__' => APP_PATH.'/Home/View/js',
+    '__HOME_CSS__' => APP_PATH.'/Home/View/css',
     '__HOME_PUBLIC__'=> APP_PATH.'/Home/View/public/layout.html',
+<<<<<<< HEAD
 
     // 模板相关配置
     'TMPL_PARSE_STRING'  => array(
@@ -66,4 +73,7 @@ return array(
         'hash'     => true,                      // 是否生成hash编码
         'callback' => false,                     // 检测文件是否存在回调函数，如果存在返回文件信息数组
     ),
+=======
+    '__ADMIN_PUBLIC__' => APP_PATH.'/Home/View/public/layout_admin.html',
+>>>>>>> some
 );

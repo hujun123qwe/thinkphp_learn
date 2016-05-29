@@ -6,8 +6,9 @@
 DROP TABLE IF EXISTS `ahut_user`;
 CREATE TABLE `ahut_user` (
   `user_id` smallint(6) unsigned NOT NULL auto_increment,
-  `student_id` mediumint(9) unsigned NOT NULL default '0',
+  `student_id` int(10) unsigned NOT NULL default '0',
   `user_name` varchar(60) NOT NULL default '',
+  `user_type` tinyint(1) NOT NULL default '0',
   `email` varchar(60) NOT NULL default '',
   `password` varchar(32) NOT NULL default '',
   `address` varchar(128) default '安徽工业大学',
