@@ -377,6 +377,19 @@
     <div class="clearfix full-footer">
         
     </div>
+=======
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+>>>>>>> some
 
     <div class="clearfix full-script">
         <div class="container-fluid">

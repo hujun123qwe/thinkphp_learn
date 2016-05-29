@@ -44,7 +44,6 @@ class AdminController extends Controller {
         $this->assign('_admin_public_layout', C('ADMIN_PUBLIC_LAYOUT'));  // 页面公共继承模版
     }
 
-<<<<<<< HEAD
     /**
      * 默认方法
      * @author jry <598821125@qq.com>
@@ -52,11 +51,6 @@ class AdminController extends Controller {
     public function index(){
         $this->assign('meta_title', "首页");
         //var_dump($menu_list);
-=======
-class AdminController extends Controller{
-    public function admin(){
-        $this->assign('_admin_public_',C('__ADMIN_PUBLIC__'));
->>>>>>> some
         $this->display();
     }
 
