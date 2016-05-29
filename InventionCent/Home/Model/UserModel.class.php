@@ -1,5 +1,4 @@
 <?php
-
 /*CREATE TABLE `ahut_user` (
 `user_id` smallint(6) unsigned NOT NULL auto_increment,
   `student_id` mediumint(9) unsigned NOT NULL default '0',
@@ -14,7 +13,6 @@
   KEY `user_name` (`user_name`),
   KEY `student_id` (`student_id`)
 );*/
-
 
 namespace Home\Model;
 use Think\Model;
@@ -50,6 +48,27 @@ class UserModel extends Model{
         $user_name = I('post.name','','htmlspecialchars');
         $student_id = I('post.student_id','','htmlspecialchars');
         $password = I('post.password','','htmlspecialchars');
+
+        //匹配登录方式
+        if (preg_match("/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/", $username)) {
+            $map['email'] = array('eq', $username);     // 邮箱登陆
+        } elseif (preg_match("/^1\d{10}$/", $username)) {
+            $map['mobile'] = array('eq', $username);    // 手机号登陆
+        } else {
+            $map['username'] = array('eq', $username);  // 用户名登陆
+        }
+
+        $user_info = $this->where($map)->find(); //查找用户
+        if (!$user_info) {
+            $this->error = '用户不存在或被禁用！';
+        } else {
+            if (md5($password) == $user_info['password']) {
+                $this->error = '密码错误！';
+            } else {
+                return $user_info;
+            }
+        }
+        return false;
     }
 
     /**
