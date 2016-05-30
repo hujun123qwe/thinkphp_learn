@@ -1,13 +1,22 @@
 <?php
 return array(
+
+    //'配置项'=>'配置值'
+    'DEFAULT_MODULE'        =>  'Home',  // 默认模块
+
+    'DB_TYPE'               =>  'mysql',     // 数据库类型
+    'DB_HOST'               =>  '127.0.0.1', // 服务器地址
+    'DB_NAME'               =>  'invention_cent',          // 数据库名
+    'DB_USER'               =>  'root',      // 用户名
+    'DB_PWD'                =>  'root',          // 密码
+    'DB_PORT'               =>  '3306',        // 端口
+    'DB_PREFIX'             =>  'ahut_',    // 数据库表前缀
+    'DB_CHARSET'            =>  'utf8',
+
+    'css_path' => HOME_VIEW_PATH.'CSS',
+    'js_path' => HOME_VIEW_PATH.'js',
 	//'配置项'=>'配置值'
     'URL_ROUTER_ON'   => true, //开启路由
-    'URL_ROUTE_RULES' => array( //定义路由规则
-        'index/:id\d'    => 'Index/id',
-        'index/:name'    => 'Index/name',
-        'new/:year\d/:month\d'  => 'News/archive',
-        'sql/:name'      => 'Index/insert_sql',
-    ),
     'URL_MAP_RULES' => array(
         'login' => 'Login/login',
         'register' => 'Register/register',
@@ -16,7 +25,14 @@ return array(
         'info' => 'User/user_info',
         'add' => 'Item/add_item',
         'admin'=>'Admin/index',
+        'admin/user_admin'=>'User/admin',
+        'admin/user_setting'=>'User/setting',
+        'admin/user_list'=>'User/list',
+        'admin/news' => 'Public/news',
+        'admin/link'=> 'Public/link',
+        'admin/upload'=>'Public/upload',
         'admin_login'=>'Public/login',
+        'admin/logs_admin'=>'Logs/admin',
         'error' => 'Index/err',
         'ok' => 'Index/ok',
         'sql'=>'Index/insert_sql',
@@ -26,7 +42,7 @@ return array(
     '__HOME_IMG__' => APP_PATH.'/Home/View/img',
     '__HOME_JS__' => APP_PATH.'/Home/View/js',
     '__HOME_CSS__' => APP_PATH.'/Home/View/css',
-    '__HOME_PUBLIC__'=> APP_PATH.'/Home/View/public/layout.html',
+    '__HOME_PUBLIC__'=> APP_PATH.'/Home/View/public',
 
     // 模板相关配置
     'TMPL_PARSE_STRING'  => array(
@@ -45,6 +61,7 @@ return array(
     'USER_LOGIN_MODAL'    => APP_PATH.'User/View/User/login_modal.html',
     'HOME_PUBLIC_LAYOUT'  => APP_PATH.'Home/View/Public/layout-home.html',
     'ADMIN_PUBLIC_LAYOUT' => APP_PATH.'Home/View/Public/layout.html',
+    'ADMIN_PAGE_ROWS'      => 10,
 
     // 错误页面模板
     'TMPL_ACTION_ERROR'   => APP_PATH.'Home/View/Public/think/error.html',      // 错误跳转对应的模板文件

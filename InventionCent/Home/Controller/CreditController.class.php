@@ -8,7 +8,7 @@
 namespace Home\Controller;
 use Think\Controller;
 
-class CentController extends Controller{
+class CreditController extends Controller{
     public function check(){
         
     }

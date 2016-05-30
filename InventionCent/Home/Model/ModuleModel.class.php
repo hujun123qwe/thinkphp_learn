@@ -58,7 +58,7 @@ class ModuleModel extends Model {
      * 获取模块菜单
      * @author jry <598821125@qq.com>
      */
-    public function getAdminMenu($module_name = 'admin') {
+    public function getAdminMenu($module_name = MODULE_NAME) {
         // 获取模块左侧导航
         $where['name'] = $module_name;
         $module_info = $this->where($where)->find();
@@ -75,16 +75,7 @@ class ModuleModel extends Model {
     public function getCurrentMenu($module_name = MODULE_NAME) {
         $admin_menu = $this->getFieldByName($module_name, 'admin_menu');
         $admin_menu = json_decode($admin_menu, true);
-        foreach ($admin_menu as $key => $val) {
-            if (isset($val['url'])) {
-                $config_url  = U($val['url']);
-                $current_url = U(MODULE_NAME.'/'.CONTROLLER_NAME.'/'.ACTION_NAME);
-                if ($config_url === $current_url) {
-                    $result = $val;
-                }
-            }
-        }
-        return $result;
+        return $admin_menu;
     }
 
     /**
@@ -131,12 +122,6 @@ class ModuleModel extends Model {
      * @author jry <598821125@qq.com>
      */
     public function getParentMenu($current_menu ='', $module_name = MODULE_NAME) {
-        if (!$current_menu) {
-            $current_menu = $this->getCurrentMenu();
-        }
-        if (!$current_menu) {
-            return false;
-        }
         $admin_menu = $this->getFieldByName($module_name, 'admin_menu');
         $admin_menu = json_decode($admin_menu, true);
         $pid   = $current_menu['pid'];

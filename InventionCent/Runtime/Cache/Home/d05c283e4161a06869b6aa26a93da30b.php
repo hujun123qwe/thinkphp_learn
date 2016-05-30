@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta name="author" content="<?php echo C('WEB_SITE_TITLE');?>">
-    <meta name="keywords" content="<?php echo ($meta_keywords); ?>">
-    <meta name="description" content="<?php echo ($meta_description); ?>">
+    <meta name="keywords" content="dfe">
+    <meta name="description" content="fsefe">
     <meta name="generator" content="CoreThink">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="<?php echo C('WEB_SITE_TITLE');?>">
@@ -29,169 +29,95 @@
 <body>
     <div class="clearfix full-header">
         
-    <!-- 顶部导航 -->
-    <div class="navbar navbar-inverse navbar-fixed-top main-nav" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-top">
-                <span class="sr-only">切换导航</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <?php if(C('WEB_SITE_LOGO')): ?>
-                <a class="navbar-brand" target="_blank" href="/">
-                    <img class="logo img-responsive" src="<?php echo (get_cover(C("WEB_SITE_LOGO"))); ?>">
-                </a>
-            <?php else: ?>
-                <a class="navbar-brand" target="_blank" href="/">
-                    <span><?php echo C('PRODUCT_LOGO');?></span>
-                </a>
-            <?php endif; ?>
+            <!-- 顶部导航 -->
+            <div class="navbar navbar-inverse navbar-fixed-top main-nav" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-top">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" target="_blank" href="/"><img class="logo img-responsive" src="<?php echo (C("WEB_SITE_LOGO")); ?>"></a>
+            </div>
+            <div class="collapse navbar-collapse navbar-collapse-top">
+                <ul class="nav navbar-nav">
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="<?php echo U('Admin/Index/removeRuntime');?>" class="ajax-get no-refresh"><i class="fa fa-trash"></i> 清空缓存</a></li>
+                    <li><a target="_blank" href="/"><i class="fa fa-external-link-square"></i> 打开前台</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-user"></i> <?php echo ($_user_auth["username"]); ?> <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="<?php echo U('Admin/Public/logout');?>" class="ajax-get"><i class="fa fa-sign-out"></i> 退出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="collapse navbar-collapse navbar-collapse-top">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="#admin-index" role="tab" data-toggle="tab">
-                        <i class="fa fa-home"></i>
-                        <span>首页</span>
-                    </a>
-                </li>
-                <!-- 主导航 -->
-                <?php if (!C('ADMIN_TABS')): ?>
-                    <?php if (count($_main_menu_list) > 7): ?>
-                        <?php if(is_array($_main_menu_list)): $i = 0; $__LIST__ = array_slice($_main_menu_list,0,7,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li <?php if($_parent_menu_list[0]['title'] == $vo['title']) echo 'class="active"'; ?>>
-                                <a href="<?php echo U($vo['name'].'/Index/index');?>" target="<?php echo C(strtolower($vo['name']).'_config.target'); ?>">
-                                    <i class="fa <?php echo ($vo["icon"]); ?>"></i>
-                                    <span><?php echo ($vo["title"]); ?></span>
-                                </a>
-                            </li><?php endforeach; endif; else: echo "" ;endif; ?>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-th-large"></i> 更多 <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <?php if(is_array($_main_menu_list)): $i = 0; $__LIST__ = array_slice($_main_menu_list,7,null,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li <?php if($_parent_menu_list[0]['title'] == $vo['title']) echo 'class="active"'; ?>>
-                                        <a href="<?php echo U($vo['name'].'/Index/index');?>" target="<?php echo C(strtolower($vo['name']).'_config.target'); ?>">
-                                            <i class="fa <?php echo ($vo["icon"]); ?>"></i>
-                                            <span><?php echo ($vo["title"]); ?></span>
-                                        </a>
-                                    </li><?php endforeach; endif; else: echo "" ;endif; ?>
-                            </ul>
-                        </li>
-                    <?php else: ?>
-                        <?php if(is_array($_main_menu_list)): $i = 0; $__LIST__ = $_main_menu_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li <?php if($_parent_menu_list[0]['title'] == $vo['title']) echo 'class="active"'; ?>>
-                                <a href="<?php echo U($vo['name'].'/Index/index');?>" target="<?php echo C(strtolower($vo['name']).'_config.target'); ?>">
-                                    <i class="fa <?php echo ($vo["icon"]); ?>"></i>
-                                    <span><?php echo ($vo["title"]); ?></span>
-                                </a>
-                            </li><?php endforeach; endif; else: echo "" ;endif; ?>
-                    <?php endif; ?>
-                <?php else: ?>
-                     <?php if (count($_menu_list) > 7): ?>
-                        <?php if(is_array($_menu_list)): $i = 0; $__LIST__ = array_slice($_menu_list,0,7,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
-                                <a href="#module<?php echo ($vo["id"]); ?>" role="tab" data-toggle="tab">
-                                    <i class="fa <?php echo ($vo["icon"]); ?>"></i>
-                                    <span><?php echo ($vo["title"]); ?></span>
-                                </a>
-                            </li><?php endforeach; endif; else: echo "" ;endif; ?>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-th-large"></i> 更多 <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <?php if(is_array($_menu_list)): $i = 0; $__LIST__ = array_slice($_menu_list,7,null,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
-                                        <a href="#module<?php echo ($vo["id"]); ?>" role="tab" data-toggle="tab">
-                                            <i class="fa <?php echo ($vo["icon"]); ?>"></i>
-                                            <span><?php echo ($vo["title"]); ?></span>
-                                        </a>
-                                    </li><?php endforeach; endif; else: echo "" ;endif; ?>
-                            </ul>
-                        </li>
-                    <?php else: ?>
-                        <?php if(is_array($_menu_list)): $i = 0; $__LIST__ = $_menu_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
-                                <a href="#module<?php echo ($vo["id"]); ?>" role="tab" data-toggle="tab">
-                                    <i class="fa <?php echo ($vo["icon"]); ?>"></i>
-                                    <span><?php echo ($vo["title"]); ?></span>
-                                </a>
-                            </li><?php endforeach; endif; else: echo "" ;endif; ?>
-                    <?php endif; ?>
-                <?php endif; ?>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="<?php echo U('Admin/Index/removeRuntime');?>" class="ajax-get no-refresh"><i class="fa fa-trash"></i> 清空缓存</a></li>
-                <li><a target="_blank" href="/"><i class="fa fa-external-link-square"></i> 打开前台</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-user"></i> <?php echo ($_user_auth["username"]); ?> <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="<?php echo U('Admin/Public/logout');?>" class="ajax-get"><i class="fa fa-sign-out"></i> 退出</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-
+        
     </div>
 
     <div class="clearfix full-container">
-        
-    <input type="hidden" name="check_version_url" value="<?php echo U('Admin/Update/checkVersion');?>">
-    <div class="container-fluid with-top-navbar">
-        <div class="row">
-            <!-- 后台左侧导航 -->
-            <div id="sidebar" class="col-xs-12 col-sm-2 sidebar tab-content">
-                <?php if (!C('ADMIN_TABS')): ?>
+        <div class="container-fluid with-top-navbar">
+            <div class="row">
+
+                <!-- 后台左侧导航 -->
+                <div id="sidebar" class="col-xs-12 col-sm-2 sidebar tab-content">
                     <!-- 模块菜单 -->
                     <nav class="navside navside-default" role="navigation">
-                        <?php if($_menu_list['_child']): ?>
-                            <ul class="nav navside-nav navside-first">
-                                <?php if(is_array($_menu_list["_child"])): $fkey = 0; $__LIST__ = $_menu_list["_child"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$_ns_first): $mod = ($fkey % 2 );++$fkey;?><li>
-                                        <a data-toggle="collapse" href="#navside-collapse-<?php echo ($_ns["id"]); ?>-<?php echo ($fkey); ?>">
-                                            <i class="<?php echo ($_ns_first["icon"]); ?>"></i>
-                                            <span class="nav-label"><?php echo ($_ns_first["title"]); ?></span>
-                                            <span class="fa arrow"></span>
-                                        </a>
-                                        <?php if(!empty($_ns_first["_child"])): ?><ul class="nav navside-nav navside-second collapse in" id="navside-collapse-<?php echo ($_ns["id"]); ?>-<?php echo ($fkey); ?>">
-                                                <?php if(is_array($_ns_first["_child"])): $skey = 0; $__LIST__ = $_ns_first["_child"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$_ns_second): $mod = ($skey % 2 );++$skey;?><li <?php if($_parent_menu_list[2]['id'] == $_ns_second['id']) echo 'class="active"'; ?>>
-                                                        <a href="<?php echo U($_ns_second['url']);?>" >
-                                                            <i class="<?php echo ($_ns_second["icon"]); ?>"></i>
-                                                            <span class="nav-label"><?php echo ($_ns_second["title"]); ?></span>
-                                                        </a>
-                                                    </li><?php endforeach; endif; else: echo "" ;endif; ?>
-                                            </ul><?php endif; ?>
-                                    </li><?php endforeach; endif; else: echo "" ;endif; ?>
-                            </ul>
-                        <?php endif; ?>
-                    </nav>
-                <?php else: ?>
-                    <!-- 模块菜单 -->
-                    <?php if(is_array($_menu_list)): $i = 0; $__LIST__ = $_menu_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$_ns): $mod = ($i % 2 );++$i; if($_ns['_child']): ?>
-                            <div role="tabpanel" class="tab-pane fade" id="module<?php echo ($_ns["id"]); ?>">
-                                <nav class="navside navside-default" role="navigation">
-                                    <ul class="nav navside-nav navside-first">
-                                        <?php if(!empty($_ns["_child"])): if(is_array($_ns["_child"])): $fkey = 0; $__LIST__ = $_ns["_child"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$_ns_first): $mod = ($fkey % 2 );++$fkey;?><li>
-                                                    <a data-toggle="collapse" href="#navside-collapse-<?php echo ($_ns["id"]); ?>-<?php echo ($fkey); ?>">
-                                                        <i class="<?php echo ($_ns_first["icon"]); ?>"></i>
-                                                        <span class="nav-label"><?php echo ($_ns_first["title"]); ?></span>
-                                                        <span class="fa arrow"></span>
-                                                    </a>
-                                                    <?php if(!empty($_ns_first["_child"])): ?><ul class="nav navside-nav navside-second collapse in" id="navside-collapse-<?php echo ($_ns["id"]); ?>-<?php echo ($fkey); ?>">
-                                                            <?php if(is_array($_ns_first["_child"])): $skey = 0; $__LIST__ = $_ns_first["_child"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$_ns_second): $mod = ($skey % 2 );++$skey;?><li>
-                                                                    <a href="<?php echo U($_ns_second['url']);?>" class="open-tab" tab-name="navside-collapse-<?php echo ($_ns["id"]); ?>-<?php echo ($fkey); ?>-<?php echo ($skey); ?>">
-                                                                        <i class="<?php echo ($_ns_second["icon"]); ?>"></i>
-                                                                        <span class="nav-label"><?php echo ($_ns_second["title"]); ?></span>
-                                                                    </a>
-                                                                </li><?php endforeach; endif; else: echo "" ;endif; ?>
-                                                        </ul><?php endif; ?>
-                                                </li><?php endforeach; endif; else: echo "" ;endif; endif; ?>
-                                    </ul>
-                                </nav>
-                            </div>
-                        <?php endif; endforeach; endif; else: echo "" ;endif; ?>
-                <?php endif; ?>
-            </div>
+                        <ul class="nav navside-nav navside-first">
+                            <li><a data-toggle="collapse" href="#navside-collapse--1"><i class="fa fa-folder-open-o"></i><span class="nav-label">系统功能</span><span class="fa arrow"></span></a>
+                                <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--1">
+                                    <li><a href="admin/user" ><i class="fa fa-wrench"></i><span class="nav-label">通知公告</span></a></li>
+                                    <li><a href="/index.php/Admin/Nav/index.html" ><i class="fa fa-map-signs"></i><span class="nav-label">友情链接</span></a></li>
+                                    <li><a href="/index.php/Admin/Upload/index.html" ><i class="fa fa-upload"></i><span class="nav-label">上传管理</span></a></li>
+                                </ul>
+                            </li>
 
+                            <li><a data-toggle="collapse" href="#navside-collapse--2"><i class="fa fa-folder-open-o"></i><span class="nav-label">用户管理</span><span class="fa arrow"></span></a>
+                                <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--2">
+                                    <li><a href="user" ><i class="fa fa-wrench"></i><span class="nav-label">管理员管理</span></a></li>
+                                    <li><a href="/index.php/Admin/Nav/index.html" ><i class="fa fa-map-signs"></i><span class="nav-label">用户设置</span></a></li>
+                                    <li><a href="/index.php/Admin/Upload/index.html" ><i class="fa fa-upload"></i><span class="nav-label">用户统计</span></a></li>
+                                    <li><a href="/index.php/Admin/Upload/index.html" ><i class="fa fa-upload"></i><span class="nav-label">用户列表</span></a></li>
+                                </ul>
+                            </li>
+
+                            <li><a data-toggle="collapse" href="#navside-collapse--3"><i class="fa fa-folder-open-o"></i><span class="nav-label">审核管理</span><span class="fa arrow"></span></a>
+                                <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--3">
+                                    <li><a href="/index.php/Admin/Config/group.html" ><i class="fa fa-wrench"></i><span class="nav-label">审核查看</span></a></li>
+                                    <li><a href="/index.php/Admin/Nav/index.html" ><i class="fa fa-map-signs"></i><span class="nav-label">已通过申请</span></a></li>
+                                    <li><a href="/index.php/Admin/Upload/index.html" ><i class="fa fa-upload"></i><span class="nav-label">未通过申请</span></a></li>
+                                    <li><a href="/index.php/Admin/Upload/index.html" ><i class="fa fa-upload"></i><span class="nav-label">无效申请</span></a></li>
+                                </ul>
+                            </li>
+
+                            <li><a data-toggle="collapse" href="#navside-collapse--4"><i class="fa fa-folder-open-o"></i><span class="nav-label">学分管理</span><span class="fa arrow"></span></a>
+                                <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--4">
+                                    <li><a href="/index.php/Admin/Config/group.html" ><i class="fa fa-wrench"></i><span class="nav-label">已获得学分</span></a></li>
+                                    <li><a href="/index.php/Admin/Nav/index.html" ><i class="fa fa-map-signs"></i><span class="nav-label">未获得学分</span></a></li>
+                                    <li><a href="/index.php/Admin/Upload/index.html" ><i class="fa fa-upload"></i><span class="nav-label">学分分类</span></a></li>
+                                    <li><a href="/index.php/Admin/Upload/index.html" ><i class="fa fa-upload"></i><span class="nav-label">学分配置</span></a></li>
+                                </ul>
+                            </li>
+
+                            <li><a data-toggle="collapse" href="#navside-collapse--5"><i class="fa fa-folder-open-o"></i><span class="nav-label">操作记录</span><span class="fa arrow"></span></a>
+                                <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--5">
+                                    <li><a href="/index.php/Admin/Config/group.html" ><i class="fa fa-wrench"></i><span class="nav-label">管理员记录</span></a></li>
+                                    <li><a href="/index.php/Admin/Nav/index.html" ><i class="fa fa-map-signs"></i><span class="nav-label">用户记录</span></a></li>
+                                    <li><a href="/index.php/Admin/Upload/index.html" ><i class="fa fa-upload"></i><span class="nav-label">审核记录</span></a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- 右侧内容 -->
+                
             <!-- 右侧内容 -->
             <div id="main" class="col-xs-12 col-sm-10 main">
                 <?php if (C('ADMIN_TABS')): ?>
@@ -241,25 +167,6 @@
                                     <div class="panel-body">
                                         <table class="table table-condensed text-overflow">
                                             <tbody>
-                                                <tr>
-                                                    <td><?php echo C('PRODUCT_NAME');?>版本</td>
-                                                    <td>
-                                                        <span class="version">
-                                                            v<?php echo C('CURRENT_VERSION');?>
-                                                            <?php echo C('DEVELOP_VERSION'); ?>
-                                                        </span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>产品型号</td>
-                                                    <td><?php echo C('PRODUCT_TITLE');?>（ <?php echo C('PRODUCT_MODEL');?> ）</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>官方正版授权</td>
-                                                    <td class="sn_info">
-                                                        <a href="<?php echo C('WEBSITE_DOMAIN');?>" target="_blank" class="btn-danger" style="padding:2px 5px;"><i class="fa fa-lock"></i> 未授权！</a>
-                                                    </td>
-                                                </tr>
                                                 <tr>
                                                     <td>ThinkPHP版本</td>
                                                     <td><?php echo (THINK_VERSION); ?></td>
@@ -369,27 +276,14 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
+            </div>
+        </div>
     </div>
 
     <div class="clearfix full-footer">
         
     </div>
-=======
-    
-
-    
-
-    
-
-    
-
-    
-
-    
->>>>>>> some
 
     <div class="clearfix full-script">
         <div class="container-fluid">
@@ -399,7 +293,7 @@
             <script type="text/javascript">
                 var admin_tabs = '<?php echo ($_admin_tabs); ?>';
                 if(admin_tabs == '1' && !(self.frameElement != null && (self.frameElement.tagName == "IFRAME" || self.frameElement.tagName == "iframe"))){
-                    parent.parent.location = "<?php echo U('Admin/Index/index');?>";
+                    parent.parent.location = "<?php echo U('Home/Admin/index');?>";
                 }
             </script>
             
