@@ -11,11 +11,12 @@ class UserController extends Controller{
         // 获取所有用户
         $userDB = D('User');
         $userCount = $userDB->count();// 查询满足要求的总记录数
-        //$Page       = new \Think\Page($count,25);// 实例化分页类 传入总记录数和每页显示的记录数(25)
-        //$show       = $Page->show();// 分页显示输出// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
-        $list = $userDB->where('1')->order('user_id')->select();
-        $this->assign('list',$list);// 赋值数据集
-       // $this->assign('page',$show);// 赋值分页输出
+        $Page       = new \Think\Page($userCount,25);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+        $show       = $Page->show();// 分页显示输出
+        $limit = $Page->firstRow.','.$Page->listRows;// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+        $list = $userDB->where('1')->order('user_id')->limit($limit)->select();
+        $this->assign('lists',$list);// 赋值数据集
+        $this->assign('page',$show);// 赋值分页输出
         $this->assign('_admin_public_layout', C('ADMIN_PUBLIC_LAYOUT'));  // 页面公共继承模版
         $this->display(); // 输出模板
     }
@@ -76,5 +77,29 @@ class UserController extends Controller{
                 ->setFormData(D('Access')->find($id))
                 ->display();
         }
+    }
+    
+    public function admin(){
+        $lists=D('user')->where('1')->paginate(1);
+        $page = $lists->render();
+        $this->assign('lists', $lists);
+        $this->assign('page', $page);
+        return $this->fetch();
+        $this->assign('_admin_public_layout', C('ADMIN_PUBLIC_LAYOUT'));  // 页面公共继承模版
+        $this->display(); // 输出模板
+    }
+    
+    public function lists(){
+        // 获取所有用户
+        $userDB = D('User');
+        $userCount = $userDB->count();// 查询满足要求的总记录数
+        $Page       = new \Think\Page($userCount,5);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+        $show       = $Page->show();// 分页显示输出
+        $limit = $Page->firstRow.','.$Page->listRows;// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+        $list = $userDB->where('1')->order('user_id')->limit($limit)->select();
+        $this->assign('lists',$list);// 赋值数据集
+        $this->assign('page',$show);// 赋值分页输出
+        $this->assign('_admin_public_layout', C('ADMIN_PUBLIC_LAYOUT'));  // 页面公共继承模版
+        $this->display(); // 输出模板
     }
 }

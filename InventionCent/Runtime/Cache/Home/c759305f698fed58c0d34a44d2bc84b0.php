@@ -1,4 +1,4 @@
-<!doctype html>
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
 <html lang="zh">
 <head>
     <meta charset="utf-8">
@@ -12,22 +12,22 @@
     <meta name="apple-mobile-web-app-title" content="大学生创新学分审核系统">
     <meta name="format-detection" content="telephone=no,email=no">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <link rel="apple-touch-icon" type="image/x-icon" href="__ROOT__/favicon.ico">
-    <link rel="shortcut icon" type="image/x-icon" href="__ROOT__/logo.png">
-    <link rel="stylesheet" type="text/css" href="__CUI__/css/cui.min.css">
-    <link rel="stylesheet" type="text/css" href="__ADMIN_CSS__/admin.css">
-    <link rel="stylesheet" type="text/css" href="__ADMIN_CSS__/theme/{:C('ADMIN_THEME')}.css">
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/libs/animate/animate.min.css">
-    <block name="style"></block>
+    <link rel="apple-touch-icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/logo.png">
+    <link rel="stylesheet" type="text/css" href="/Public/libs/cui/css/cui.min.css">
+    <link rel="stylesheet" type="text/css" href="/./InventionCent/Home/View/Public/css/admin.css">
+    <link rel="stylesheet" type="text/css" href="/./InventionCent/Home/View/Public/css/theme/<?php echo C('ADMIN_THEME');?>.css">
+    <link rel="stylesheet" type="text/css" href="/Public/libs/animate/animate.min.css">
+    
     <!--[if lt IE 9]>
         <script src="http://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
         <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript" src="__PUBLIC__/libs/jquery/1.x/jquery.min.js"></script>
+    <script type="text/javascript" src="/Public/libs/jquery/1.x/jquery.min.js"></script>
 </head>
 <body>
     <div class="clearfix full-header">
-        <block name="full-header">
+        
             <!-- 顶部导航 -->
             <div class="navbar navbar-inverse navbar-fixed-top main-nav" role="navigation">
             <div class="navbar-header">
@@ -37,7 +37,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" target="_blank" href="__ROOT__/"><img class="logo img-responsive" src="{$Think.config.WEB_SITE_LOGO}"></a>
+                <a class="navbar-brand" target="_blank" href="/"><img class="logo img-responsive" src="<?php echo (C("WEB_SITE_LOGO")); ?>"></a>
             </div>
             <div class="collapse navbar-collapse navbar-collapse-top">
                 <ul class="nav navbar-nav">
@@ -45,16 +45,16 @@
                 <ul class="nav navbar-nav navbar-right" style="margin-right:200px;">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-user"></i> {$_user_auth.username} <b class="caret"></b>
+                            <i class="fa fa-user"></i> <?php echo ($_user_auth["username"]); ?> <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{:U('Admin/Public/logout')}" class="ajax-get"><i class="fa fa-sign-out"></i> 退出</a></li>
+                            <li><a href="<?php echo U('Admin/Public/logout');?>" class="ajax-get"><i class="fa fa-sign-out"></i> 退出</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </div>
-        </block>
+        
     </div>
 
     <div class="clearfix full-container">
@@ -111,28 +111,42 @@
             </div>
 
             <!-- 右侧内容 -->
-            <block name="right-container">
-            </block>
+            
+        <!-- 右侧内容 -->
+        <div id="main" class="col-xs-12 col-sm-10 main">
+            <ul class="breadcrumb">
+                <li><i class="fa fa-map-marker"></i></li>
+                <li class="text-muted"><a href="index">首页</a></li>
+                <li>管理员管理</li>
+            </ul>
+
+            <div>
+                <?php if(is_array($lists)): $i = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li> <?php echo ($vo["user_name"]); ?></li><?php endforeach; endif; else: echo "" ;endif; ?>
+            </div>
+            <?php if(!empty($page)): ?><ul class="pagination"><?php echo ($page); ?></ul><?php endif; ?>
+
+        </div>
+    
             </div>
         </div>
     </div>
 
     <div class="clearfix full-footer">
-        <block name="full-footer"></block>
+        
     </div>
 
     <div class="clearfix full-script">
         <div class="container-fluid">
             <input type="hidden" id="corethink_home_img" value="__HOME_IMG__">
-            <script type="text/javascript" src="__CUI__/js/cui.min.js"></script>
-            <script type="text/javascript" src="__ADMIN_JS__/admin.js"></script>
+            <script type="text/javascript" src="/Public/libs/cui/js/cui.min.js"></script>
+            <script type="text/javascript" src="/./InventionCent/Home/View/Public/js/admin.js"></script>
             <script type="text/javascript">
-                var admin_tabs = '{$_admin_tabs}';
+                var admin_tabs = '<?php echo ($_admin_tabs); ?>';
                 if(admin_tabs == '1' && !(self.frameElement != null && (self.frameElement.tagName == "IFRAME" || self.frameElement.tagName == "iframe"))){
-                    parent.parent.location = "{:U('Home/Admin/index')}";
+                    parent.parent.location = "<?php echo U('Home/Admin/index');?>";
                 }
             </script>
-            <block name="script"></block>
+            
         </div>
     </div>
 </body>

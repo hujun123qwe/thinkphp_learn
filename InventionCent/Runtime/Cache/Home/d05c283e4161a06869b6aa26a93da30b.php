@@ -2,15 +2,14 @@
 <html lang="zh">
 <head>
     <meta charset="utf-8">
-    <title><?php echo ($meta_title); ?>｜<?php echo C('WEB_SITE_TITLE');?>后台管理</title>
+    <title>安徽工业大学｜大学生创新学分审核系统后台管理</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="author" content="<?php echo C('WEB_SITE_TITLE');?>">
-    <meta name="keywords" content="dfe">
-    <meta name="description" content="fsefe">
-    <meta name="generator" content="CoreThink">
+    <meta name="author" content="大学生创新学分审核系统">
+    <meta name="keywords" content="大学生，创新，学分审核，系统">
+    <meta name="description" content="大学生创新学分审核系统">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="<?php echo C('WEB_SITE_TITLE');?>">
+    <meta name="apple-mobile-web-app-title" content="大学生创新学分审核系统">
     <meta name="format-detection" content="telephone=no,email=no">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <link rel="apple-touch-icon" type="image/x-icon" href="/favicon.ico">
@@ -43,9 +42,7 @@
             <div class="collapse navbar-collapse navbar-collapse-top">
                 <ul class="nav navbar-nav">
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="<?php echo U('Admin/Index/removeRuntime');?>" class="ajax-get no-refresh"><i class="fa fa-trash"></i> 清空缓存</a></li>
-                    <li><a target="_blank" href="/"><i class="fa fa-external-link-square"></i> 打开前台</a></li>
+                <ul class="nav navbar-nav navbar-right" style="margin-right:200px;">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-user"></i> <?php echo ($_user_auth["username"]); ?> <b class="caret"></b>
@@ -64,60 +61,57 @@
         <div class="container-fluid with-top-navbar">
             <div class="row">
 
-                <!-- 后台左侧导航 -->
-                <div id="sidebar" class="col-xs-12 col-sm-2 sidebar tab-content">
-                    <!-- 模块菜单 -->
-                    <nav class="navside navside-default" role="navigation">
-                        <ul class="nav navside-nav navside-first">
-                            <li><a data-toggle="collapse" href="#navside-collapse--1"><i class="fa fa-folder-open-o"></i><span class="nav-label">系统功能</span><span class="fa arrow"></span></a>
-                                <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--1">
-                                    <li><a href="admin/user" ><i class="fa fa-wrench"></i><span class="nav-label">通知公告</span></a></li>
-                                    <li><a href="/index.php/Admin/Nav/index.html" ><i class="fa fa-map-signs"></i><span class="nav-label">友情链接</span></a></li>
-                                    <li><a href="/index.php/Admin/Upload/index.html" ><i class="fa fa-upload"></i><span class="nav-label">上传管理</span></a></li>
-                                </ul>
-                            </li>
+            <!-- 后台左侧导航 -->
+            <div id="sidebar" class="col-xs-12 col-sm-2 sidebar tab-content">
+                <!-- 模块菜单 -->
+                <nav class="navside navside-default" role="navigation">
+                    <ul class="nav navside-nav navside-first">
+                        <li><a data-toggle="collapse" href="#navside-collapse--1"><i class="fa fa-folder-open-o"></i><span class="nav-label">系统功能</span><span class="fa arrow"></span></a>
+                            <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--1">
+                                <li><a href="news" ><i class="fa fa-wrench"></i><span class="nav-label">通知公告</span></a></li>
+                                <li><a href="link" ><i class="fa fa-map-signs"></i><span class="nav-label">友情链接</span></a></li>
+                                <li><a href="upload" ><i class="fa fa-upload"></i><span class="nav-label">上传管理</span></a></li>
+                            </ul>
+                        </li>
 
-                            <li><a data-toggle="collapse" href="#navside-collapse--2"><i class="fa fa-folder-open-o"></i><span class="nav-label">用户管理</span><span class="fa arrow"></span></a>
-                                <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--2">
-                                    <li><a href="user" ><i class="fa fa-wrench"></i><span class="nav-label">管理员管理</span></a></li>
-                                    <li><a href="/index.php/Admin/Nav/index.html" ><i class="fa fa-map-signs"></i><span class="nav-label">用户设置</span></a></li>
-                                    <li><a href="/index.php/Admin/Upload/index.html" ><i class="fa fa-upload"></i><span class="nav-label">用户统计</span></a></li>
-                                    <li><a href="/index.php/Admin/Upload/index.html" ><i class="fa fa-upload"></i><span class="nav-label">用户列表</span></a></li>
-                                </ul>
-                            </li>
+                        <li><a data-toggle="collapse" href="#navside-collapse--2"><i class="fa fa-folder-open-o"></i><span class="nav-label">用户管理</span><span class="fa arrow"></span></a>
+                            <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--2">
+                                <li><a href="user_admin" ><i class="fa fa-wrench"></i><span class="nav-label">管理员管理</span></a></li>
+                                <li><a href="user_setting" ><i class="fa fa-map-signs"></i><span class="nav-label">用户设置</span></a></li>
+                                <li><a href="user_list" ><i class="fa fa-upload"></i><span class="nav-label">用户列表</span></a></li>
+                            </ul>
+                        </li>
 
-                            <li><a data-toggle="collapse" href="#navside-collapse--3"><i class="fa fa-folder-open-o"></i><span class="nav-label">审核管理</span><span class="fa arrow"></span></a>
-                                <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--3">
-                                    <li><a href="/index.php/Admin/Config/group.html" ><i class="fa fa-wrench"></i><span class="nav-label">审核查看</span></a></li>
-                                    <li><a href="/index.php/Admin/Nav/index.html" ><i class="fa fa-map-signs"></i><span class="nav-label">已通过申请</span></a></li>
-                                    <li><a href="/index.php/Admin/Upload/index.html" ><i class="fa fa-upload"></i><span class="nav-label">未通过申请</span></a></li>
-                                    <li><a href="/index.php/Admin/Upload/index.html" ><i class="fa fa-upload"></i><span class="nav-label">无效申请</span></a></li>
-                                </ul>
-                            </li>
+                        <li><a data-toggle="collapse" href="#navside-collapse--3"><i class="fa fa-folder-open-o"></i><span class="nav-label">申请管理</span><span class="fa arrow"></span></a>
+                            <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--3">
+                                <li><a href="application_list" ><i class="fa fa-wrench"></i><span class="nav-label">申请列表</span></a></li>
+                                <li><a href="/index.php/Admin/Nav/index.html" ><i class="fa fa-map-signs"></i><span class="nav-label">已通过申请</span></a></li>
+                                <li><a href="/index.php/Admin/Upload/index.html" ><i class="fa fa-upload"></i><span class="nav-label">未通过申请</span></a></li>
+                                <li><a href="/index.php/Admin/Upload/index.html" ><i class="fa fa-upload"></i><span class="nav-label">无效申请</span></a></li>
+                            </ul>
+                        </li>
 
-                            <li><a data-toggle="collapse" href="#navside-collapse--4"><i class="fa fa-folder-open-o"></i><span class="nav-label">学分管理</span><span class="fa arrow"></span></a>
-                                <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--4">
-                                    <li><a href="/index.php/Admin/Config/group.html" ><i class="fa fa-wrench"></i><span class="nav-label">已获得学分</span></a></li>
-                                    <li><a href="/index.php/Admin/Nav/index.html" ><i class="fa fa-map-signs"></i><span class="nav-label">未获得学分</span></a></li>
-                                    <li><a href="/index.php/Admin/Upload/index.html" ><i class="fa fa-upload"></i><span class="nav-label">学分分类</span></a></li>
-                                    <li><a href="/index.php/Admin/Upload/index.html" ><i class="fa fa-upload"></i><span class="nav-label">学分配置</span></a></li>
-                                </ul>
-                            </li>
+                        <li><a data-toggle="collapse" href="#navside-collapse--4"><i class="fa fa-folder-open-o"></i><span class="nav-label">学分管理</span><span class="fa arrow"></span></a>
+                            <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--4">
+                                <li><a href="credits_lists" ><i class="fa fa-wrench"></i><span class="nav-label">学分列表</span></a></li>
+                                <li><a href="/index.php/Admin/Nav/index.html" ><i class="fa fa-map-signs"></i><span class="nav-label">未获得学分</span></a></li>
+                                <li><a href="/index.php/Admin/Upload/index.html" ><i class="fa fa-upload"></i><span class="nav-label">学分分类</span></a></li>
+                                <li><a href="/index.php/Admin/Upload/index.html" ><i class="fa fa-upload"></i><span class="nav-label">学分配置</span></a></li>
+                            </ul>
+                        </li>
 
-                            <li><a data-toggle="collapse" href="#navside-collapse--5"><i class="fa fa-folder-open-o"></i><span class="nav-label">操作记录</span><span class="fa arrow"></span></a>
-                                <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--5">
-                                    <li><a href="/index.php/Admin/Config/group.html" ><i class="fa fa-wrench"></i><span class="nav-label">管理员记录</span></a></li>
-                                    <li><a href="/index.php/Admin/Nav/index.html" ><i class="fa fa-map-signs"></i><span class="nav-label">用户记录</span></a></li>
-                                    <li><a href="/index.php/Admin/Upload/index.html" ><i class="fa fa-upload"></i><span class="nav-label">审核记录</span></a></li>
-                                </ul>
-                            </li>
+                        <li><a data-toggle="collapse" href="#navside-collapse--5"><i class="fa fa-folder-open-o"></i><span class="nav-label">操作记录</span><span class="fa arrow"></span></a>
+                            <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--5">
+                                <li><a href="logs_admin" ><i class="fa fa-wrench"></i><span class="nav-label">管理员记录</span></a></li>
+                                <li><a href="logs_students" ><i class="fa fa-map-signs"></i><span class="nav-label">用户记录</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
 
-                        </ul>
-                    </nav>
-                </div>
-
-                <!-- 右侧内容 -->
-                
+            <!-- 右侧内容 -->
+            
             <!-- 右侧内容 -->
             <div id="main" class="col-xs-12 col-sm-10 main">
                 <?php if (C('ADMIN_TABS')): ?>
