@@ -22,7 +22,6 @@ class PublicController extends Controller {
         if (IS_POST) {
             $username = I('username');
             $password = I('password');
-
             // 图片验证码校验
             if (!$this->check_verify(I('post.verify'))) {
                 $this->error('验证码输入错误！');
@@ -39,13 +38,17 @@ class PublicController extends Controller {
             $uid = $user_object->auto_login($user_info);
 
             // 跳转
-            if (0 < $account_info['uid'] && $account_info['uid'] === $uid) {
-                $this->success('登录成功！', U('Admin/index'));
+            if (0 < $user_info['user_id'] && $user_info['user_id'] === $uid) {
+                if($user_info['is_admin'] == 1){
+                    $this->success('登录成功！', U('Admin/index'));    
+                }else if($user_info['is_admin'] == 0){
+                    $this->success('登录成功！', U('Index/index'));
+                }
             } else {
                 $this->logout();
             }
         } else {
-            $this->assign('meta_title', '管理员登录');
+            $this->assign('meta_title', '登录 | 大学生创新学分审核系统');
             $this->display();
         }
     }
@@ -70,6 +73,23 @@ class PublicController extends Controller {
         $verify->entry($vid);
     }
 
+        /**
+     * 数据签名认证
+     * @param  array  $data 被认证的数据
+     * @return string       签名
+     * @author jry <598821125@qq.com>
+     */
+    public function data_auth_sign($data) {
+        // 数据类型检测
+        if (!is_array($data)) {
+            $data = (array)$data;
+        }
+        ksort($data); //排序
+        $code = http_build_query($data); // url编码并生成query字符串
+        $sign = sha1($code);  // 生成签名
+        return $sign;
+    }
+
     /**
      * 检测验证码
      * @param  integer $id 验证码ID
@@ -78,5 +98,52 @@ class PublicController extends Controller {
     function check_verify($code, $vid = 1) {
         $verify = new Verify();
         return $verify->check($code, $vid);
+    }
+
+    /*
+     *用户注册
+     *跳转页面
+    */
+    public function register(){
+        if(IS_POST){
+            if(!$this->check_verify(I('post.verify'))) {
+                $this->error('验证码输入错误！');
+            }
+            if(I('post.student_id')) {
+                $reg_data['student_id'] = I('post.student_id');
+            }else{
+                $this->error('注册失败'，'必须输入学号');
+            }
+            if(I('post.user_name')) {
+                $reg_data['user_name'] = I('post.user_name');
+            }else{
+                $this->error('注册失败'，'必须输入姓名');
+            }
+            $reg_data['password']  = md5(I('post.password'));
+            $reg_data['add_time'] = time();
+            $reg_data['last_time'] = time();
+            $reg_data['ip'] = get_client_ip();
+            $userDB = D('User');
+            $data = $userDB->create($reg_data);
+            if($data){
+                $id = $userDB->add($data);
+                if ($id) {
+                    session('reg_verify', null);
+                    $user_info = $userDB->login($data['user_name'], I('post.password'));
+                    $this->success('注册成功', U('index'));
+                } else {
+                    $this->error('注册失败'.$user_object->getError());
+                }
+            } else {
+                $this->error('注册失败'.$user_object->getError());
+            }
+        }else{
+            $this->display();
+        }
+    }
+
+    public function chooseItem(){
+        $this->assign('_layout_',C('__HOME_PUBLIC__'));
+        $this->display();
     }
 }

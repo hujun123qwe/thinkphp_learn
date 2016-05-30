@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html lang="zh-cn" class="is-copy-enabled">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html lang="en" class=" is-copy-enabled">
 <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="{$Think.config.__HOME_CSS__}/frameworks.css" type="text/css"/>
-    <link rel="stylesheet" href="{$Think.config.__HOME_CSS__}/github.css" type="text/css"/>
-    <link rel="stylesheet" href="{$Think.config.__HOME_CSS__}/site.css" type="text/css"/>
-    <link rel="stylesheet" href="__HOME_CSS__/login.css" type="text/css">
-    <script type="text/javascript" src="__PUBLIC__/libs/jquery/1.x/jquery.min.js"></script>
+    <meta content="origin" name="referrer" />
+    <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/frameworks.css" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/github.css" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/site.css" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/login.css" type="text/css">
+    <script type="text/javascript" src="/Public/libs/jquery/1.x/jquery.min.js"></script>
+    <title>Sign in to GitHub · GitHub</title>
 </head>
 <body>
     <!-- 背景 -->
@@ -17,12 +19,18 @@
         <!-- 登陆框 -->
     <div class="panel-lite">
         <div class="brand">
-            <a href="{:C('HOME_PAGE')}" target="_blank">
-                <img alt="logo" class="logo img-responsive" src="{$Think.config.WEB_SITE_LOGO}">
-            </a>
+            <?php if(C('WEB_SITE_LOGO')): ?>
+                <a href="<?php echo C('HOME_PAGE');?>" target="_blank">
+                    <img alt="logo" class="logo img-responsive" src="<?php echo (get_cover(C("WEB_SITE_LOGO"))); ?>">
+                </a>
+            <?php else: ?>
+                <a href="<?php echo C('HOME_PAGE');?>" target="_blank">
+                    <?php echo C('PRODUCT_LOGO');?>
+                </a>
+            <?php endif; ?>
         </div>
         <h4>后台管理登录</h4>
-        <form class="login-form" action="{:U('Public/login')}" method="post">
+        <form class="login-form" action="<?php echo U('Admin/Public/login');?>" method="post">
             <div class="form-group">
                 <input type="text" required="required" class="form-control" name="username" autocomplete="off">
                 <label class="form-label">账　号</label>
@@ -36,26 +44,22 @@
                     <input type="text" required="required" class="form-control" name="verify">
                     <label class="form-label">验证码</label>
                     <span class="input-group-addon verifyimg-box">
-                        <img class="verifyimg reload-verify" alt="CoreThink验证码" src="{:U('Public/verify')}" title="点击刷新">
+                        <img class="verifyimg reload-verify" alt="CoreThink验证码" src="<?php echo U('Admin/Public/verify');?>" title="点击刷新">
                     </span>
                 </div>
             </div>
             <div class="form-group">
                 <a type="submit" class="visible-xs btn btn-primary-outline btn-block btn-pill btn-lg ajax-post" target-form="login-form">登录</a>
             </div>
-            <a class="link" target="_blank" href="{:C('HOME_PAGE')}">忘记密码 ? </a>
+            <a class="link" target="_blank" href="<?php echo C('HOME_PAGE');?>">忘记密码 ? </a>
             <button type="submit" class="floating-btn ajax-post hidden-xs" target-form="login-form">
                 <i class="icon-arrow"></i>
             </button>
         </form>
-        <p class="create-account-callout mt-3">
-                新来的？
-        <a href="register" data-ga-click="Sign in, switch to sign up">创建一个账户</a>.
-        </p>
     </div>
 </body>
 
-    <script src="__PUBLIC__/libs/particles/particles.min.js"></script>
+    <script src="/Public/libs/particles/particles.min.js"></script>
     <script type="text/javascript">
         $(function(){
             // 刷新验证码

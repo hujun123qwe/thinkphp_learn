@@ -197,7 +197,7 @@ function user_md5($str, $auth_key) {
  * @author jry <598821125@qq.com>
  */
 function is_login() {
-    return D('Admin/User')->is_login();
+    return D('Home/User')->is_login();
 }
 
 /**

@@ -44,7 +44,34 @@ class UserModel extends Model{
         return $this->add($data) ? true : false;
     }
 
-    public function login(){
+     /**
+     * 用户登录
+     * @author jry <598821125@qq.com>
+     */
+    public function login($username, $password, $map) {
+        //去除前后空格
+        $username = trim($username);
+
+        if (preg_match("/^1\d{10}$/", $username)) {
+            $map['student_id'] = array('eq', $username);    // 手机号登陆
+        } else {
+            $map['user_name'] = array('eq', $username);  // 用户名登陆
+        }
+
+        $user_info = $this->where($map)->find(); //查找用户
+        if (!$user_info) {
+            $this->error = '用户不存在或被禁用！';
+        } else {
+            if (user_md5($password) == $user_info['password']) {
+                $this->error = '密码错误！';
+            } else {
+                return $user_info;
+            }
+        }
+        return false;
+    }
+
+    public function login_old(){
         $user_name = I('post.login','','htmlspecialchars');
         $password = I('post.user_password','','htmlspecialchars');
 
@@ -54,6 +81,7 @@ class UserModel extends Model{
         if (!$password) {
             $this->error('请输入密码！');
         }
+
         if(preg_match("/^1\d{10}$/", $user_name)) {
             $data['student_id'] = $user_name;   // 学号登陆
         }else{
@@ -72,6 +100,56 @@ class UserModel extends Model{
         return false;
     }
 
+        /**
+     * 设置登录状态
+     * @author jry <598821125@qq.com>
+     */
+    public function auto_login($user) {
+        // 记录登录SESSION和COOKIES
+        $auth = array(
+            'uid'      => $user['user_id'],
+            'username' => $user['user_name'],
+        );
+        session('user_auth', $auth);
+        session('user_auth_sign', $this->data_auth_sign($auth));
+        return $this->is_login();
+    }
+
+        /**
+     * 检测用户是否登录
+     * @return integer 0-未登录，大于0-当前登录用户ID
+     * @author jry <598821125@qq.com>
+     */
+    public function is_login() {
+        $user = session('user_auth');
+        if (empty($user)) {
+            return 0;
+        } else {
+            if (session('user_auth_sign') == $this->data_auth_sign($user)) {
+                return $user['user_id'];
+            } else {
+                return 0;
+            }
+        }
+    }
+
+    /**
+     * 数据签名认证
+     * @param  array  $data 被认证的数据
+     * @return string       签名
+     * @author jry <598821125@qq.com>
+     */
+    public function data_auth_sign($data) {
+        // 数据类型检测
+        if (!is_array($data)) {
+            $data = (array)$data;
+        }
+        ksort($data); //排序
+        $code = http_build_query($data); // url编码并生成query字符串
+        $sign = sha1($code);  // 生成签名
+        return $sign;
+    }
+    
     /**
      * @param $db
      * @param string $name
