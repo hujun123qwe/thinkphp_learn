@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.15
+-- version 4.3.9
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: 2016-05-31 16:21:39
--- 服务器版本： 10.1.8-MariaDB
--- PHP Version: 5.3.29-upupw
+-- Host: localhost
+-- Generation Time: 2016-05-31 21:48:11
+-- 服务器版本： 10.0.16-MariaDB
+-- PHP Version: 5.6.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `invention_cent`
@@ -67,8 +67,8 @@ CREATE TABLE IF NOT EXISTS `ahut_application` (
   `item_type` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `user_name` varchar(128) NOT NULL DEFAULT '',
   `student_id` int(10) unsigned NOT NULL DEFAULT '0',
-  `academy` varchar(128) NOT NULL DEFAULT ' ',
-  `class` varchar(128) NOT NULL DEFAULT ' ',
+  `academy` varchar(128) NOT NULL DEFAULT '哪学院？ ',
+  `iclass` varchar(128) NOT NULL DEFAULT ' 几班的？',
   `phone` int(12) unsigned NOT NULL DEFAULT '0',
   `group` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `grade` tinyint(1) unsigned NOT NULL DEFAULT '1'
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `ahut_application` (
 -- 转存表中的数据 `ahut_application`
 --
 
-INSERT INTO `ahut_application` (`item_id`, `item_name`, `item_type`, `user_name`, `student_id`, `academy`, `class`, `phone`, `group`, `grade`) VALUES
+INSERT INTO `ahut_application` (`item_id`, `item_name`, `item_type`, `user_name`, `student_id`, `academy`, `iclass`, `phone`, `group`, `grade`) VALUES
 (1, '1', 1, '23', 123, '123', '12312', 312312, 3, 1);
 
 -- --------------------------------------------------------
@@ -150,7 +150,10 @@ CREATE TABLE IF NOT EXISTS `ahut_user` (
   `student_id` int(10) unsigned NOT NULL DEFAULT '0',
   `user_name` varchar(60) NOT NULL DEFAULT '',
   `user_type` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `academy` varchar(128) NOT NULL DEFAULT '未定义',
+  `iclass` varchar(128) NOT NULL DEFAULT '未定义',
   `email` varchar(60) NOT NULL DEFAULT '',
+  `phone` int(12) NOT NULL DEFAULT '0',
   `password` varchar(32) NOT NULL DEFAULT '',
   `address` varchar(128) DEFAULT '安徽工业大学',
   `add_time` int(11) NOT NULL DEFAULT '0',
@@ -162,25 +165,25 @@ CREATE TABLE IF NOT EXISTS `ahut_user` (
 -- 转存表中的数据 `ahut_user`
 --
 
-INSERT INTO `ahut_user` (`user_id`, `student_id`, `user_name`, `user_type`, `email`, `password`, `address`, `add_time`, `last_login`, `last_ip`) VALUES
-(1, 16777215, 'hujun123qwe', 1, '', 'df9b1a57ec59bc2cfcd6c977815069b9', '安徽工业大学', 1464312287, 0, '127.0.0.1'),
-(2, 0, '', 0, '', 'd41d8cd98f00b204e9800998ecf8427e', '安徽工业大学', 1464312296, 0, '127.0.0.1'),
-(3, 0, '', 0, '', 'd41d8cd98f00b204e9800998ecf8427e', '安徽工业大学', 1464312296, 0, '127.0.0.1'),
-(4, 0, '', 0, '', 'd41d8cd98f00b204e9800998ecf8427e', '安徽工业大学', 1464312297, 0, '127.0.0.1'),
-(5, 129084213, 'hujun12312', 1, '', '555b71983a443aba1cad59f3358bc2bf', '安徽工业大学', 1464312564, 0, '127.0.0.1'),
-(6, 123123123, 'hl', 0, '', '2b4c3f7824a4de1216a63be9add078ff', '安徽工业大学', 1464312749, 0, '127.0.0.1'),
-(7, 123, '123', 0, '', '202cb962ac59075b964b07152d234b70', '安徽工业大学', 1464312857, 0, '127.0.0.1'),
-(8, 1234, '1234', 0, '', '81dc9bdb52d04dc20036dbd8313ed055', '安徽工业大学', 1464312980, 0, '127.0.0.1'),
-(9, 1234, '1234', 0, '', '81dc9bdb52d04dc20036dbd8313ed055', '安徽工业大学', 1464313029, 0, '127.0.0.1'),
-(10, 123412, '123412', 0, '', '244ffbcf4483ae7fc354e3f00db6b454', '安徽工业大学', 1464313060, 0, '127.0.0.1'),
-(11, 123412, '123412', 0, '', '244ffbcf4483ae7fc354e3f00db6b454', '安徽工业大学', 1464313231, 0, '127.0.0.1'),
-(12, 123412, '123412', 0, '', '244ffbcf4483ae7fc354e3f00db6b454', '安徽工业大学', 1464313520, 0, '127.0.0.1'),
-(13, 123412, '123412', 0, '', '244ffbcf4483ae7fc354e3f00db6b454', '安徽工业大学', 1464313595, 0, '127.0.0.1'),
-(14, 123412, '123412', 0, '', '244ffbcf4483ae7fc354e3f00db6b454', '安徽工业大学', 1464313966, 0, '127.0.0.1'),
-(15, 123456789, 'hujun123', 0, '', '2d1c83603ff77250d17cbba5213bf0f8', '安徽工业大学', 1464667319, 0, ''),
-(16, 123123, '123123', 0, '', '4297f44b13955235245b2497399d7a93', '安徽工业大学', 1464667524, 1464667524, '127.0.0.1'),
-(17, 123, '123qwe', 0, '', '46f94c8de14fb36680850768ff1b7f2a', '安徽工业大学', 1464668237, 1464668237, '127.0.0.1'),
-(18, 1234, '1234', 0, '', '81dc9bdb52d04dc20036dbd8313ed055', '安徽工业大学', 1464669137, 1464669137, '127.0.0.1');
+INSERT INTO `ahut_user` (`user_id`, `student_id`, `user_name`, `user_type`, `academy`, `iclass`, `email`, `phone`, `password`, `address`, `add_time`, `last_login`, `last_ip`) VALUES
+(1, 16777215, 'hujun123qwe', 1, '未定义', '未定义', '', 0, 'df9b1a57ec59bc2cfcd6c977815069b9', '安徽工业大学', 1464312287, 0, '127.0.0.1'),
+(2, 0, '', 0, '未定义', '未定义', '', 0, 'd41d8cd98f00b204e9800998ecf8427e', '安徽工业大学', 1464312296, 0, '127.0.0.1'),
+(3, 0, '', 0, '未定义', '未定义', '', 0, 'd41d8cd98f00b204e9800998ecf8427e', '安徽工业大学', 1464312296, 0, '127.0.0.1'),
+(4, 0, '', 0, '未定义', '未定义', '', 0, 'd41d8cd98f00b204e9800998ecf8427e', '安徽工业大学', 1464312297, 0, '127.0.0.1'),
+(5, 129084213, 'hujun12312', 1, '未定义', '未定义', '', 0, '555b71983a443aba1cad59f3358bc2bf', '安徽工业大学', 1464312564, 0, '127.0.0.1'),
+(6, 123123123, 'hl', 0, '未定义', '未定义', '', 0, '2b4c3f7824a4de1216a63be9add078ff', '安徽工业大学', 1464312749, 0, '127.0.0.1'),
+(7, 123, '123', 0, '未定义', '未定义', '', 0, '202cb962ac59075b964b07152d234b70', '安徽工业大学', 1464312857, 0, '127.0.0.1'),
+(8, 1234, '1234', 0, '未定义', '未定义', '', 0, '81dc9bdb52d04dc20036dbd8313ed055', '安徽工业大学', 1464312980, 0, '127.0.0.1'),
+(9, 1234, '1234', 0, '未定义', '未定义', '', 0, '81dc9bdb52d04dc20036dbd8313ed055', '安徽工业大学', 1464313029, 0, '127.0.0.1'),
+(10, 123412, '123412', 0, '未定义', '未定义', '', 0, '244ffbcf4483ae7fc354e3f00db6b454', '安徽工业大学', 1464313060, 0, '127.0.0.1'),
+(11, 123412, '123412', 0, '未定义', '未定义', '', 0, '244ffbcf4483ae7fc354e3f00db6b454', '安徽工业大学', 1464313231, 0, '127.0.0.1'),
+(12, 123412, '123412', 0, '未定义', '未定义', '', 0, '244ffbcf4483ae7fc354e3f00db6b454', '安徽工业大学', 1464313520, 0, '127.0.0.1'),
+(13, 123412, '123412', 0, '未定义', '未定义', '', 0, '244ffbcf4483ae7fc354e3f00db6b454', '安徽工业大学', 1464313595, 0, '127.0.0.1'),
+(14, 123412, '123412', 0, '未定义', '未定义', '', 0, '244ffbcf4483ae7fc354e3f00db6b454', '安徽工业大学', 1464313966, 0, '127.0.0.1'),
+(15, 123456789, 'hujun123', 0, '未定义', '未定义', '', 0, '2d1c83603ff77250d17cbba5213bf0f8', '安徽工业大学', 1464667319, 0, ''),
+(16, 123123, '123123', 0, '未定义', '未定义', '', 0, '4297f44b13955235245b2497399d7a93', '安徽工业大学', 1464667524, 1464667524, '127.0.0.1'),
+(17, 123, '123qwe', 0, '未定义', '未定义', '', 0, '46f94c8de14fb36680850768ff1b7f2a', '安徽工业大学', 1464668237, 1464668237, '127.0.0.1'),
+(18, 1234, '1234', 0, '未定义', '未定义', '', 0, '81dc9bdb52d04dc20036dbd8313ed055', '安徽工业大学', 1464669137, 1464669137, '127.0.0.1');
 
 --
 -- Indexes for dumped tables
@@ -202,37 +205,31 @@ ALTER TABLE `ahut_application`
 -- Indexes for table `ahut_credit`
 --
 ALTER TABLE `ahut_credit`
-  ADD PRIMARY KEY (`credit_id`),
-  ADD KEY `cat_id` (`cat_id`);
+  ADD PRIMARY KEY (`credit_id`), ADD KEY `cat_id` (`cat_id`);
 
 --
 -- Indexes for table `ahut_credit_cat`
 --
 ALTER TABLE `ahut_credit_cat`
-  ADD PRIMARY KEY (`credit_cat_id`),
-  ADD KEY `credit_type` (`credit_type`);
+  ADD PRIMARY KEY (`credit_cat_id`), ADD KEY `credit_type` (`credit_type`);
 
 --
 -- Indexes for table `ahut_credit_record`
 --
 ALTER TABLE `ahut_credit_record`
-  ADD PRIMARY KEY (`record_id`),
-  ADD KEY `credit_id` (`credit_id`);
+  ADD PRIMARY KEY (`record_id`), ADD KEY `credit_id` (`credit_id`);
 
 --
 -- Indexes for table `ahut_logs`
 --
 ALTER TABLE `ahut_logs`
-  ADD PRIMARY KEY (`log_id`),
-  ADD KEY `credit_id` (`credit_id`);
+  ADD PRIMARY KEY (`log_id`), ADD KEY `credit_id` (`credit_id`);
 
 --
 -- Indexes for table `ahut_user`
 --
 ALTER TABLE `ahut_user`
-  ADD PRIMARY KEY (`user_id`),
-  ADD KEY `user_name` (`user_name`),
-  ADD KEY `student_id` (`student_id`);
+  ADD PRIMARY KEY (`user_id`), ADD KEY `user_name` (`user_name`), ADD KEY `student_id` (`student_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables

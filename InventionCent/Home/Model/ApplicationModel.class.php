@@ -11,4 +11,9 @@ class ApplicationModel extends Model{
             return $this->add($map);
         }
     }
+
+    public function getItemInfo($item_id){
+    	$map['item_id'] = array(eq, $item_id);
+    	return $this->where($map)->select();
+    }
 }

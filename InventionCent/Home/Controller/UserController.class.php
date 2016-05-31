@@ -115,7 +115,49 @@ class UserController extends Controller{
     }
 
     public function edit_student(){
-        $this->assign('layout_home', C('__LAYOUT_HOME__'));  // 页面公共继承模版
-        $this->display();
+        if(IS_POST){
+            $map = array();
+            if(!empty(I(post.email))){
+                $map['email'] = I(post.email);
+            }
+            if(!empty(I(post.phone))){
+                $map['phone'] = I(post.phone);
+            }
+            if(!empty(I(post.academy))){
+                $map['academy'] = I(post.academy);
+            }
+            if(!empty(I(post.iclass))){
+                $map['iclass'] = I(post.iclass);
+            }
+            if(!empty(I(post.address))){
+                $map['address'] = I(post.address);
+            }
+            if(!empty(I(post.password))){
+                $map['password'] = I(post.password);
+            }
+            var_dump($map);
+            exit;
+            $userDB = D('User');            
+            if($userDB->edit_student($map)){
+                $this->display();
+            }else{
+                $this->error('数据传递错误:(');
+            }
+        }else{
+            // $user_id = is_login();
+            // if($user_id){
+            //     $userDB = D('user');
+            //     $user_info = $userDB->getUserInfo($user_id);
+            // }else{
+            //     $this->error('你已经掉线了',U('Public/login'));
+            // }
+//测试用            
+            $userDB = D('user');
+            $user_info = $userDB->getUserInfo(6);
+            $this->assign('meta_title','编辑个人信息 | 大学生创新学分审核系统');
+            $this->assign('user_info', $user_info[0]);
+            $this->assign('layout_home', C('__LAYOUT_HOME__'));  // 页面公共继承模版
+            $this->display();
+        }
     }
 }

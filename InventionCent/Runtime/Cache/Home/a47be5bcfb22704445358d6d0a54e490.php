@@ -16,6 +16,7 @@
 <body>
 <div id="particles-js" class="background"></div>
 
+
     <!-- 登陆框 -->
     <div class="panel-lite" style="width: 400px;">
         <div class="brand"><a href="<?php echo C('HOME_PAGE');?>"><h2>大学生创新学分审核系统</h2></a></div>

@@ -17,6 +17,7 @@
 namespace Home\Model;
 use Think\Model;
 class UserModel extends Model{
+
     protected $_validate = array(
         array('verify','require','验证码必须！'), //默认情况下用正则进行验证
         array('name','','帐号名称已经存在！',0,'unique',1), // 在新增的时候验证name字段是否唯一
@@ -156,5 +157,24 @@ class UserModel extends Model{
     public function insertUser($name=''){
         $data['name'] = $name;
         return $this->add($data) ? true : false;
+    }
+
+    /*
+    edit student info 
+    */
+    public function edit_student($map){
+        if(empty($map)){
+            return 0;
+        }else{
+            return $this->add($map);
+        }
+    }
+
+    /*
+    得到当前登录用户信息
+    */
+    public function getUserInfo($user_id){
+        $map['user_id'] = array(eq, $user_id);
+        return $this->where($map)->select();
     }
 }

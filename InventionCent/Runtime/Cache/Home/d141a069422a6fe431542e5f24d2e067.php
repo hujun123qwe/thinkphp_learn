@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html lang="zh-cn">
 <head>
     <meta charset='utf-8'>
@@ -6,16 +6,16 @@
     <meta http-equiv="Content-Language" content="en">
     <meta name="viewport" content="width=device-width">
     <meta content="origin-when-cross-origin" name="referrer" />
-    <link rel="stylesheet" href="{$Think.config.__HOME_CSS__}/frameworks.css" type="text/css"/>
-    <link rel="stylesheet" href="{$Think.config.__HOME_CSS__}/github.css" type="text/css"/>
-    <link rel="stylesheet" href="{$Think.config.__HOME_CSS__}/site.css" type="text/css"/>
-    <title>{$meta_title}</title>
+    <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/frameworks.css" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/github.css" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/site.css" type="text/css"/>
+    <title><?php echo ($meta_title); ?></title>
 </head>
 
 <body>
 <div class="header header-logged-in true" role="banner">
     <div class="container clearfix">
-        <a class="header-logo-invertocat" href="{:C('HOME_PAGE')}"><h2>大学生创新学分审核系统</h2></a>
+        <a class="header-logo-invertocat" href="<?php echo C('HOME_PAGE');?>"><h2>大学生创新学分审核系统</h2></a>
         <div class="header-search   js-site-search" role="search"></div>
         <ul class="header-nav left" role="navigation"></ul>
         <ul class="header-nav user-nav right" id="user-links">
@@ -93,8 +93,8 @@
                     </a>
 
                     <h1 class="vcard-names my-3">
-                        <div class="vcard-fullname" itemprop="name">胡军{$user.user_name}</div>
-                        <div class="vcard-username" itemprop="additionalName">129084213{$user.student_id}</div>
+                        <div class="vcard-fullname" itemprop="name">胡军<?php echo ($user["user_name"]); ?></div>
+                        <div class="vcard-username" itemprop="additionalName">129084213<?php echo ($user["student_id"]); ?></div>
                     </h1>
                     <ul class="vcard-details border-top border-gray-light py-3">
                         <li aria-label="Organization" class="vcard-detail py-1 css-truncate css-truncate-target" itemprop="worksFor" title="ploverUAV">
@@ -132,8 +132,93 @@
                     </div>
                 </div>
 
-                <block name="main-content">
-                </block>
+                
+	<div class="column three-fourths">
+        <div class="boxed-group">
+            <h3>编辑个人信息</h3>
+	            <div class="boxed-group-inner clearfix">
+	                <form accept-charset="UTF-8" action="<?php echo U('User/edit_student');?>" class="columns js-uploadable-container js-upload-avatar-image is-default" method="post">
+	                <div class="column two-thirds">
+	                    <dl class="form-group edit-profile-avatar">
+	                        <dt><label for="upload-profile-picture">上传头像 不要太污</label></dt>
+	                        <dd class="avatar-upload-container clearfix">
+	                            <img alt="@hujun123qwe" class="avatar left" height="70" src="https://avatars0.githubusercontent.com/u/8892333?v=3&amp;s=140" width="70" />
+	                            <div class="avatar-upload">
+	                                <a href="#" class="btn button-change-profile-picture">
+	                                    <label for="upload-profile-picture">
+	                                        选择本地照片
+	                                        <input id="upload-profile-picture" type="file" class="manual-file-chooser js-manual-file-chooser js-avatar-field">
+	                                    </label>
+	                                </a>
+
+	                                <div class="upload-state default">
+	                                    <p>You can also drag and drop a picture from your computer.</p>
+	                                </div>
+	                                <div class="upload-state loading">
+	                                    <button class="btn" disabled>
+	                                        <img alt="" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" /> Uploading...
+	                                    </button>
+	                                </div>
+	                                <div class="upload-state text-danger file-empty">
+	                                    This file is empty.
+	                                </div>
+	                                <div class="upload-state text-danger too-big">
+	                                    Please upload a picture smaller than 1 MB.
+	                                </div>
+
+	                                <div class="upload-state text-danger bad-dimensions">
+	                                    Please upload a picture smaller than 10,000x10,000.
+	                                </div>
+
+	                                <div class="upload-state text-danger bad-file">
+	                                    Unfortunately, we only support PNG, GIF, or JPG pictures.
+	                                </div>
+
+	                                <div class="upload-state text-danger failed-request">
+	                                    Something went really wrong and we can’t process that picture.
+	                                </div>
+	                            </div> <!-- /.avatar-upload -->
+	                        </dd>
+	                    </dl>
+
+	                    <dl class="form-group">
+	                        <dt><label for="user_profile_name">姓名</label></dt>
+	                        <dd><input class="form-control" id="user_profile_name" name="user_name" size="30" type="text" value="<?php echo ($user_info["user_name"]); ?>" /></dd>
+	                    </dl>
+	                    <dl class="form-group">
+	                        <dt><label for="h1">学号</label></dt>
+	                        <dd><input class="form-control" id="h1" name="student_id" size="30" type="text" value="<?php echo ($user_info["student_id"]); ?>" /></dd>
+	                    </dl>
+	                    <dl class="form-group">
+	                        <dt><label for="h2">学院</label></dt>
+	                        <dd><input class="form-control" id="h2" name="academy" size="30" type="text" value="<?php echo ($user_info["academy"]); ?>" /></dd>
+	                    </dl>
+	                    <dl class="form-group">
+	                        <dt><label for="h3">班级</label></dt>
+	                        <dd><input class="form-control" id="h3" name="iclass" size="30" type="text" value="<?php echo ($user_info["iclass"]); ?>" /></dd>
+	                    </dl>
+	                    <dl class="form-group">
+	                        <dt><label for="h4">邮箱</label></dt>
+	                        <dd><input class="form-control" id="h4" name="email" size="30" type="text" value="<?php echo ($user_info["email"]); ?>" /></dd>
+	                    </dl>
+	                    <dl class="form-group">
+	                        <dt><label for="h5">联系手机</label></dt>
+	                        <dd><input class="form-control" id="h5" name="phone" size="30" type="text" value="<?php echo ($user_info["phone"]); ?>" /></dd>
+	                    </dl>	                   
+	                    <dl class="form-group">
+	                        <dt><label for="user_profile_location">住址</label></dt>
+	                        <dd><input class="form-control" id="user_profile_location" name="address" size="30" type="text" value="<?php echo ($user_info["address"]); ?>" /></dd>
+	                    </dl>
+	                    <p><button type="submit" class="btn btn-primary">确认 更改</button></p>
+	                </div>
+	            </form>        
+	            <p class="note">
+	                We store your personal data in the Anhui University of Technology only. 
+	            </p>
+	            </div>
+        </div>
+	</div>
+
                 
             </div>
         </div>
@@ -164,10 +249,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-

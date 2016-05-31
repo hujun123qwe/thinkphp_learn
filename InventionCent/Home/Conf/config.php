@@ -39,6 +39,7 @@ return array(
         'sql'=>'Index/insert_sql',
         'bootstrap'=>'Index/bootstrap',
         'indexs'=>'User/index_student',
+        'edits' => 'User/edit_student',
     ),
 
     '__HOME_IMG__' => APP_PATH.'/Home/View/img',

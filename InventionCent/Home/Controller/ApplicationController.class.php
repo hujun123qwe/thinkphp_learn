@@ -18,8 +18,16 @@ class ApplicationController extends Controller{
 //    }
     
     public function edit(){
-        $this->assign('layout_home', C('__LAYOUT_HOME__'));  // 页面公共继承模版
-        $this->display();
+        if(IS_POST){
+
+        }else{
+            $itemDB = D('Application');
+            $item_info = $itemDB->getItemInfo(0);
+            $this->assign('item_info', $item_info[0]);
+            $this->assign('meta_title', "编辑项目 | 大学生创新学分审核系统");
+            $this->assign('layout_home', C('__LAYOUT_HOME__'));  // 页面公共继承模版
+            $this->display();
+        }
     }
     
     public function chooseItem(){
