@@ -2,12 +2,12 @@
 namespace Home\Controller;
 use Think\Controller;
 class UserController extends Controller{
-    protected function _initialize() {
-        // 登录检测
-        if (!is_login()) { //还没登录跳转到登录页面
-            $this->redirect('Home/Public/login');
-        }
-    }
+//    protected function _initialize() {
+//        // 登录检测
+//        if (!is_login()) { //还没登录跳转到登录页面
+//            $this->redirect('Home/Public/login');
+//        }
+//    }
     /**
      * 管理员列表
      * @param $tab 配置分组ID
@@ -24,6 +24,11 @@ class UserController extends Controller{
         $this->assign('lists',$list);// 赋值数据集
         $this->assign('page',$show);// 赋值分页输出
         $this->assign('_admin_public_layout', C('ADMIN_PUBLIC_LAYOUT'));  // 页面公共继承模版
+        $this->display(); // 输出模板
+    }
+
+    public function index_student(){
+        $this->assign('layout_home', C('__LAYOUT_HOME__'));  // 页面公共继承模版
         $this->display(); // 输出模板
     }
 
@@ -107,5 +112,10 @@ class UserController extends Controller{
         $this->assign('page',$show);// 赋值分页输出
         $this->assign('_admin_public_layout', C('ADMIN_PUBLIC_LAYOUT'));  // 页面公共继承模版
         $this->display(); // 输出模板
+    }
+
+    public function edit_student(){
+        $this->assign('layout_home', C('__LAYOUT_HOME__'));  // 页面公共继承模版
+        $this->display();
     }
 }

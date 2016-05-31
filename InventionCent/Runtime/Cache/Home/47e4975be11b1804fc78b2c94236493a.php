@@ -1,7 +1,6 @@
-<?php if (!defined('THINK_PATH')) exit();?>
-<!DOCTYPE html>
-<html lang="en" class=" is-copy-enabled is-u2f-enabled">
-<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html lang="zh-cn">
+<head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
@@ -10,7 +9,7 @@
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/frameworks.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/github.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/site.css" type="text/css"/>
-    <title>GitHub</title>
+    <title><?php echo ($meta_title); ?></title>
 </head>
 
 <body class="logged-in   env-production windows  page-dashboard">

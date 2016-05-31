@@ -3,7 +3,6 @@ return array(
 
     //'配置项'=>'配置值'
     'DEFAULT_MODULE'        =>  'Home',  // 默认模块
-
     'DB_TYPE'               =>  'mysql',     // 数据库类型
     'DB_HOST'               =>  '127.0.0.1', // 服务器地址
     'DB_NAME'               =>  'invention_cent',          // 数据库名
@@ -39,6 +38,7 @@ return array(
         'ok' => 'Index/ok',
         'sql'=>'Index/insert_sql',
         'bootstrap'=>'Index/bootstrap',
+        'indexs'=>'User/index_student',
     ),
 
     '__HOME_IMG__' => APP_PATH.'/Home/View/img',
@@ -88,6 +88,7 @@ return array(
         'callback' => false,                     // 检测文件是否存在回调函数，如果存在返回文件信息数组
     ),
     '__ADMIN_PUBLIC__' => APP_PATH.'/Home/View/public/layout_admin.html',
+    '__LAYOUT_HOME__' => APP_PATH.'/Home/View/public/layout_home.html',
     '__LAYOUT_LOGIN__' => APP_PATH.'/Home/View/Public/layout_login.html',
     'HOME_PAGE' => (is_ssl()?'https://':'http://').$_SERVER['HTTP_HOST'].__ROOT__,
 );
