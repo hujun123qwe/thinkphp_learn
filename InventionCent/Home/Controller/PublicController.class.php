@@ -50,6 +50,7 @@ class PublicController extends Controller {
             }
         } else {
             $this->assign('meta_title', '登录 | 大学生创新学分审核系统');
+            $this->assign('layout_login',C('__LAYOUT_LOGIN__'));
             $this->display();
         }
     }
@@ -132,20 +133,18 @@ class PublicController extends Controller {
                 if ($id) {
                     session('reg_verify', null);
                     $user_info = $userDB->login($data['user_name'], I('post.password'));
-                    $this->success('注册成功', U('Index/index'));
+                    $uid = $userDB->auto_login($user_info);
+                    $this->success('注册成功', U('Index/first_login'));
                 } else {
-                    $this->error('注册失败'.$userDB->getError());
+                    $this->error('注册失败，请重新注册');
                 }
             } else {
-                $this->error('注册失败'.$userDB->getError());
+                $this->error('注册失败，请重新注册');
             }
         }else{
+            $this->assign('meta_title', '注册 | 大学生创新学分审核系统');
+            $this->assign('layout_login',C('__LAYOUT_LOGIN__'));
             $this->display();
         }
-    }
-
-    public function chooseItem(){
-        $this->assign('_layout_',C('__HOME_PUBLIC__'));
-        $this->display();
     }
 }

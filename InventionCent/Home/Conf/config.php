@@ -22,6 +22,7 @@ return array(
         'item' => 'User/user_item',
         'info' => 'User/user_info',
         'add' => 'Item/add_item',
+        'first_login'=>'Index/first_login',
         'admin'=>'Admin/index',
         'admin/user_admin'=>'User/admin',
         'admin/user_setting'=>'User/setting',
@@ -87,4 +88,6 @@ return array(
         'callback' => false,                     // 检测文件是否存在回调函数，如果存在返回文件信息数组
     ),
     '__ADMIN_PUBLIC__' => APP_PATH.'/Home/View/public/layout_admin.html',
+    '__LAYOUT_LOGIN__' => APP_PATH.'/Home/View/Public/layout_login.html',
+    'HOME_PAGE' => (is_ssl()?'https://':'http://').$_SERVER['HTTP_HOST'].__ROOT__,
 );

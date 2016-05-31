@@ -102,7 +102,7 @@ class UserModel extends Model{
      * 设置登录状态
      * @author jry <598821125@qq.com>
      */
-    public function auto_login($user) {
+    public function auto_login($user){
         // 记录登录SESSION和COOKIES
         $auth = array(
             'user_id'      => $user['user_id'],
@@ -118,7 +118,7 @@ class UserModel extends Model{
      * @return integer 0-未登录，大于0-当前登录用户ID
      * @author jry <598821125@qq.com>
      */
-    public function is_login() {
+    public function is_login(){
         $user = session('user_auth');
         if (empty($user)) {
             return 0;
@@ -137,7 +137,7 @@ class UserModel extends Model{
      * @return string       签名
      * @author jry <598821125@qq.com>
      */
-    public function data_auth_sign($data) {
+    public function data_auth_sign($data){
         // 数据类型检测
         if (!is_array($data)) {
             $data = (array)$data;

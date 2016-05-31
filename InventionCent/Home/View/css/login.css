@@ -27,7 +27,7 @@
         }
         .panel-lite {
             margin: 5% auto;
-            max-width: 400px;
+            max-width: 500px;
             background: #fff;
             padding: 45px 30px;
             border-radius: 4px;
@@ -64,36 +64,7 @@
             -webkit-transition: 0.3s;
             transition: 0.3s;
         }
-        .form-group .form-control {
-            width: 100%;
-            position: relative;
-            z-index: 3;
-            height: 35px;
-            background: none;
-            border: none;
-            padding: 5px 0;
-            -webkit-transition: 0.3s;
-            transition: 0.3s;
-            border-bottom: 1px solid #777;
-            box-shadow: none;
-            border-radius: 0;
-        }
-        .form-group .form-control:invalid {
-            outline: none;
-        }
-        .form-group .form-control:focus, .form-group .form-control:valid {
-            outline: none;
-            color: #1685d0;
-            box-shadow: 0 1px #1685d0;
-            border-color: #1685d0;
-        }
-        .form-group .form-control:focus + .form-label,
-        .form-group .form-control:valid + .form-label {
-            font-size: 12px;
-            -ms-transform: translateY(-15px);
-            -webkit-transform: translateY(-15px);
-            transform: translateY(-15px);
-        }
+
         .floating-btn {
             background: #1685d0;
             width: 60px;

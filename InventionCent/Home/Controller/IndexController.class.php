@@ -14,15 +14,9 @@ class IndexController extends Controller {
         $this->display();
     }
     
-    public function bootstrap(){
-        $this->display();
-    }
-    
-    public function login(){
-        $this->display();
-    }
-    
-    public function register(){
+    public function first_login(){
+        $this->assign('meta_title', '选择项目 | 大学生创新学分审核系统');
+        $this->assign('layout_login',C('__LAYOUT_LOGIN__'));
         $this->display();
     }
 }

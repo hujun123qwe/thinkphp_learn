@@ -1237,7 +1237,7 @@
 .session-authentication .auth-form-body.u2f-auth-form-body {
 	padding: 20px;
 }
-.session-authentication .create-account-callout {
+.create-account-callout {
 	padding: 15px 20px; border-radius: 5px; border: 1px solid rgb(216, 222, 226); border-image: none; text-align: center;
 }
 .session-authentication .two-factor-help {
@@ -10064,7 +10064,7 @@ table.files tbody tr:first-child td {
 	padding-right: 8px;
 }
 .file-navigation-option .input-group {
-	width: 290px;
+	width: 490px;
 }
 .file-navigation-option .input-group .form-control {
 	border-radius: 0px; width: calc(100% + 2px); height: 26px; margin-right: -1px; margin-left: -1px; min-height: 0px;
@@ -11126,7 +11126,7 @@ dl.form-group > dd textarea.compact {
 	display: none;
 }
 .setup-wrapper {
-	margin: 0px auto; width: 750px; padding-top: 30px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	margin: 0px auto; padding-top: 30px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .setup-wrapper::before {
 	display: table; content: "";

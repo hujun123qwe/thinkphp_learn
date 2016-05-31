@@ -2,6 +2,12 @@
 namespace Home\Controller;
 use Think\Controller;
 class UserController extends Controller{
+    protected function _initialize() {
+        // 登录检测
+        if (!is_login()) { //还没登录跳转到登录页面
+            $this->redirect('Home/Public/login');
+        }
+    }
     /**
      * 管理员列表
      * @param $tab 配置分组ID

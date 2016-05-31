@@ -17,32 +17,45 @@
 <div id="particles-js" class="background"></div>
 
     <!-- 登陆框 -->
-    <div class="panel-lite" style="width: 400px;">
-        <div class="brand"><a href="<?php echo C('HOME_PAGE');?>"><h2>大学生创新学分审核系统</h2></a></div>
-        <form class="login-form" action="<?php echo U('Public/login');?>" method="post">
-            <div class="form-group">
-                <input type="text" required="required" class="form-control" name="username" placeholder="学号">
-            </div>
-            <div class="form-group">
-                <input type="password" required="required" class="form-control" name="password" placeholder="密码">
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" required="required" class="col-sm-4 form-control" name="verify" placeholder="验证码">
-                    <span class="input-group-addon verifyimg-box" style="display: table-cell;">
-                        <img class="verifyimg reload-verify" alt="CoreThink验证码" src="<?php echo U('Public/verify');?>" title="点击刷新">
-                    </span>
-                </div>
-            </div>
-            <div class="form-group">
-                <input class="btn btn-primary btn-block" tabindex="3" type="submit" value="登 录" />
-            </div>
-        </form>
-        <a class="label-link" href="<?php echo C('HOME_PAGE');?>">忘记密码 ? </a>
-        <p class="create-account-callout mt-3">
-            新来的？
-            <a href="register">创建一个账户</a>.
-        </p>
+    <div class="panel-lite">
+        <div class="setup-wrapper">
+            <div class="setup-main">
+                <div class="setup-form-container">
+                    <form action="<?php echo U('Application/srtp');?>" class="setup-form js-braintree-encrypt" method="post">
+                        <h2 class="setup-form-title mb-3">大学生科研训练计划（SRTP）</h2>
+                        <div class="form-group">
+                            <input type="text" name="item_name" required="required" class="form-control"  placeholder="项目名称">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="user_name" required="required" class="form-control" placeholder="姓名">
+                            <input type="text" name="student_id" required="required" class="form-control" placeholder="学号">
+                            <input type="text" name="academy" required="required" class="form-control" placeholder="学院">
+                            <input type="text" name="class" required="required" class="form-control" placeholder="班级">
+                            <input type="text" name="phone" required="required" class="form-control" placeholder="联系手机">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="teacher" required="required" class="form-control" placeholder="指导老师">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputFile">《安徽工业大学SRTP项目结题验收表》</label>
+                            <br><input type="file" name="srtp_file" id="InputFile">
+                        </div>
+                        <label for="multiple">请选择小组人数</label>
+                        <select class="form-control" id="multiple" name="group">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="is_important_item"> 重点课题项目</label>
+                        </div>
+                        <button type="submit" class="btn btn-default">提交申请</button>
+                    </form>
+                </div> <!-- /.setup-form-container -->
+            </div> <!-- /.setup-main -->
+        </div> <!-- /.setup-wrapper -->
     </div>
 
 </body>

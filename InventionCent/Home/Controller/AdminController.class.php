@@ -26,9 +26,9 @@ class AdminController extends Controller {
      */
     protected function _initialize() {
         // 登录检测
-//        if (!is_login()) { //还没登录跳转到登录页面
-//            $this->redirect('Home/Public/login');
-//        }
+        if (!is_login()) { //还没登录跳转到登录页面
+            $this->redirect('Home/Public/login');
+        }
         $this->assign('_user_auth', session('user_auth'));                // 用户登录信息
         $this->assign('_admin_public_layout', C('ADMIN_PUBLIC_LAYOUT'));  // 页面公共继承模版
     }
