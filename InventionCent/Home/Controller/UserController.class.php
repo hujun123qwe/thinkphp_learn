@@ -7,7 +7,7 @@ class UserController extends Controller{
      * @param $tab 配置分组ID
      * @author jry <598821125@qq.com>
      */
-    public function index() {
+    public function index(){
         // 获取所有用户
         $userDB = D('User');
         $userCount = $userDB->count();// 查询满足要求的总记录数

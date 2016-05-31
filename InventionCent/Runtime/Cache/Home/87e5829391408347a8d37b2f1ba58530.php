@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/login.css" type="text/css">
     <script type="text/javascript" src="/Public/libs/jquery/1.x/jquery.min.js"></script>
-    <title><?php echo ($meta_title); ?></title>
 </head>
 <body>
     <!-- 背景 -->
@@ -19,11 +18,15 @@
                 <img alt="logo" class="logo img-responsive" src="<?php echo (C("WEB_SITE_LOGO")); ?>">
             </a>
         </div>
-        <h4>后台管理登录</h4>
-        <form class="login-form" action="<?php echo U('Public/login');?>" method="post">
+        <h4>注  册</h4>
+        <form class="login-form" action="<?php echo U('Public/register');?>" method="post">
             <div class="form-group">
-                <input type="text" required="required" class="form-control" name="username" autocomplete="off">
-                <label class="form-label">账　号</label>
+                <input type="text" required="required" class="form-control" name="student_id" autocomplete="off">
+                <label class="form-label">学 号</label>
+            </div>
+            <div class="form-group">
+                <input type="text" required="required" class="form-control" name="user_name" autocomplete="off">
+                <label class="form-label">姓 名</label>
             </div>
             <div class="form-group">
                 <input type="password" required="required" class="form-control" name="password">
@@ -39,17 +42,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <a type="submit" class="visible-xs btn btn-primary-outline btn-block btn-pill btn-lg ajax-post" target-form="login-form">登录</a>
+                <input type="submit">注 册</input>
             </div>
-            <a class="link" target="_blank" href="<?php echo C('HOME_PAGE');?>">忘记密码 ? </a>
-            <button type="submit" class="floating-btn ajax-post hidden-xs" target-form="login-form">
-                <i class="icon-arrow"></i>
-            </button>
         </form>
-        <p class="create-account-callout mt-3">
-                新来的？
-        <a href="register" data-ga-click="Sign in, switch to sign up">创建一个账户</a>.
-        </p>
     </div>
 </body>
 

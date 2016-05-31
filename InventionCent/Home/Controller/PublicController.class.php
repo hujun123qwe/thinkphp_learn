@@ -31,17 +31,18 @@ class PublicController extends Controller {
             $user_object = D('Home/User');
             $user_info = $user_object->login($username, $password);
             if (!$user_info) {
-                $this->error($user_object->getError());
+                $this->error('登录失败');
             }
-
+            
             // 设置登录状态
+            //提交成功后，先生退出登录
             $uid = $user_object->auto_login($user_info);
 
             // 跳转
             if (0 < $user_info['user_id'] && $user_info['user_id'] === $uid) {
-                if($user_info['is_admin'] == 1){
+                if($user_info['user_type'] == 1){
                     $this->success('登录成功！', U('Admin/index'));    
-                }else if($user_info['is_admin'] == 0){
+                }else if($user_info['user_type'] == 0){
                     $this->success('登录成功！', U('Index/index'));
                 }
             } else {
@@ -106,23 +107,24 @@ class PublicController extends Controller {
     */
     public function register(){
         if(IS_POST){
-            if(!$this->check_verify(I('post.verify'))) {
+            if(!$this->check_verify(I('post.verify'))){
                 $this->error('验证码输入错误！');
             }
-            if(I('post.student_id')) {
+            if(I('post.student_id')){
                 $reg_data['student_id'] = I('post.student_id');
             }else{
-                $this->error('注册失败'，'必须输入学号');
+                $this->error('注册失败','必须输入学号');
             }
-            if(I('post.user_name')) {
+            if(I('post.user_name')){
                 $reg_data['user_name'] = I('post.user_name');
             }else{
-                $this->error('注册失败'，'必须输入姓名');
+                $this->error('注册失败','必须输入姓名');
             }
-            $reg_data['password']  = md5(I('post.password'));
+            $reg_data['password']  = I('post.password');
+            $reg_data['password'] = md5($reg_data['password']);
             $reg_data['add_time'] = time();
-            $reg_data['last_time'] = time();
-            $reg_data['ip'] = get_client_ip();
+            $reg_data['last_login'] = $reg_data['add_time'];
+            $reg_data['last_ip'] = get_client_ip();
             $userDB = D('User');
             $data = $userDB->create($reg_data);
             if($data){
@@ -130,12 +132,12 @@ class PublicController extends Controller {
                 if ($id) {
                     session('reg_verify', null);
                     $user_info = $userDB->login($data['user_name'], I('post.password'));
-                    $this->success('注册成功', U('index'));
+                    $this->success('注册成功', U('Index/index'));
                 } else {
-                    $this->error('注册失败'.$user_object->getError());
+                    $this->error('注册失败'.$userDB->getError());
                 }
             } else {
-                $this->error('注册失败'.$user_object->getError());
+                $this->error('注册失败'.$userDB->getError());
             }
         }else{
             $this->display();

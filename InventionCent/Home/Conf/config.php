@@ -18,8 +18,6 @@ return array(
 	//'配置项'=>'配置值'
     'URL_ROUTER_ON'   => true, //开启路由
     'URL_MAP_RULES' => array(
-        'login' => 'Login/login',
-        'register' => 'Register/register',
         'chooseItem' => 'Register/chooseItem',
         'item' => 'User/user_item',
         'info' => 'User/user_info',
@@ -44,7 +42,7 @@ return array(
 
     '__HOME_IMG__' => APP_PATH.'/Home/View/img',
     '__HOME_JS__' => APP_PATH.'/Home/View/js',
-    '__HOME_CSS__' => APP_PATH.'/Home/View/css',
+    '__HOME_CSS__' => __ROOT__.'/'.APP_PATH.'/Home/View/css',
     '__HOME_PUBLIC__'=> APP_PATH.'/Home/View/public',
 
     // 模板相关配置

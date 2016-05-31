@@ -48,21 +48,19 @@ class UserModel extends Model{
      * 用户登录
      * @author jry <598821125@qq.com>
      */
-    public function login($username, $password, $map) {
+    public function login($username, $password){
         //去除前后空格
         $username = trim($username);
-
         if (preg_match("/^1\d{10}$/", $username)) {
-            $map['student_id'] = array('eq', $username);    // 手机号登陆
+            $map['student_id'] = $username;    // 手机号登陆
         } else {
-            $map['user_name'] = array('eq', $username);  // 用户名登陆
+            $map['user_name'] = $username;  // 用户名登陆
         }
-
         $user_info = $this->where($map)->find(); //查找用户
         if (!$user_info) {
             $this->error = '用户不存在或被禁用！';
         } else {
-            if (user_md5($password) == $user_info['password']) {
+            if (md5($password) !== $user_info['password']) {
                 $this->error = '密码错误！';
             } else {
                 return $user_info;
@@ -107,8 +105,8 @@ class UserModel extends Model{
     public function auto_login($user) {
         // 记录登录SESSION和COOKIES
         $auth = array(
-            'uid'      => $user['user_id'],
-            'username' => $user['user_name'],
+            'user_id'      => $user['user_id'],
+            'password' => $user['password'],
         );
         session('user_auth', $auth);
         session('user_auth_sign', $this->data_auth_sign($auth));

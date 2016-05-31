@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-cn" class="is-copy-enabled">
+<html lang="zh-cn">
 <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="{$Think.config.__HOME_CSS__}/frameworks.css" type="text/css"/>
-    <link rel="stylesheet" href="{$Think.config.__HOME_CSS__}/github.css" type="text/css"/>
-    <link rel="stylesheet" href="{$Think.config.__HOME_CSS__}/site.css" type="text/css"/>
-    <link rel="stylesheet" href="__HOME_CSS__/login.css" type="text/css">
+    <link rel="stylesheet" href="{$Think.config.__HOME_CSS__}/login.css" type="text/css">
     <script type="text/javascript" src="__PUBLIC__/libs/jquery/1.x/jquery.min.js"></script>
 </head>
 <body>
@@ -24,11 +21,11 @@
         <h4>注  册</h4>
         <form class="login-form" action="{:U('Public/register')}" method="post">
             <div class="form-group">
-                <input type="text" required="required" class="form-control" name="username" autocomplete="off">
+                <input type="text" required="required" class="form-control" name="student_id" autocomplete="off">
                 <label class="form-label">学 号</label>
             </div>
             <div class="form-group">
-                <input type="text" required="required" class="form-control" name="username" autocomplete="off">
+                <input type="text" required="required" class="form-control" name="user_name" autocomplete="off">
                 <label class="form-label">姓 名</label>
             </div>
             <div class="form-group">
@@ -45,7 +42,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <a type="submit" class="visible-xs btn btn-primary-outline btn-block btn-pill btn-lg ajax-post" target-form="login-form">注 册</a>
+                <input type="submit">注 册</input>
             </div>
         </form>
     </div>
