@@ -28,6 +28,14 @@ class UserController extends Controller{
     }
 
     public function index_student(){
+        $user_id = 6;
+        $userDB = D('User');
+        $user_info = $userDB->getUserInfo($user_id);
+        $itemDB = D('Application');
+        $item_list = $itemDB->getItemList($user_info[0]['student_id']);
+        $this->assign('user_info',$user_info[0]);
+        $this->assign('item_list',$item_list);
+        $this->assign('meta_title','个人主页 | 大学生创新学分审核系统');
         $this->assign('layout_home', C('__LAYOUT_HOME__'));  // 页面公共继承模版
         $this->display(); // 输出模板
     }
@@ -117,28 +125,27 @@ class UserController extends Controller{
     public function edit_student(){
         if(IS_POST){
             $map = array();
-            if(!empty(I(post.email))){
-                $map['email'] = I(post.email);
+            $user_id = I('post.user_id');
+            if(I('post.email')){
+                $map['email'] = I('post.email');
             }
-            if(!empty(I(post.phone))){
-                $map['phone'] = I(post.phone);
+            if(I('post.phone')){
+                $map['phone'] = I('post.phone');
             }
-            if(!empty(I(post.academy))){
-                $map['academy'] = I(post.academy);
+            if(I('post.academy')){
+                $map['academy'] = I('post.academy');
             }
-            if(!empty(I(post.iclass))){
-                $map['iclass'] = I(post.iclass);
+            if(I('post.iclass')){
+                $map['iclass'] = I('post.iclass');
             }
-            if(!empty(I(post.address))){
-                $map['address'] = I(post.address);
+            if(I('post.address')){
+                $map['address'] = I('post.address');
             }
-            if(!empty(I(post.password))){
-                $map['password'] = I(post.password);
+            if(I('post.password')){
+                $map['password'] = I('post.password');
             }
-            var_dump($map);
-            exit;
             $userDB = D('User');            
-            if($userDB->edit_student($map)){
+            if($userDB->edit_student($map,$user_id)){
                 $this->display();
             }else{
                 $this->error('数据传递错误:(');

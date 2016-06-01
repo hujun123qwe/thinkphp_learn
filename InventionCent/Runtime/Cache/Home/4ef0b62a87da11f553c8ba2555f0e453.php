@@ -16,12 +16,13 @@
 <body>
 <div id="particles-js" class="background"></div>
 
+
     <!-- 登陆框 -->
     <div class="panel-lite">
         <div class="setup-wrapper">
             <div class="setup-main">
                 <div class="setup-form-container">
-                    <form action="<?php echo U('Application/srtp');?>" class="setup-form js-braintree-encrypt" method="post">
+                    <form action="<?php echo U('Application/srtp');?>" class="setup-form js-braintree-encrypt" enctype="multipart/form-data" method="post">
                         <h2 class="setup-form-title mb-3">大学生科研训练计划（SRTP）</h2>
                         <div class="form-group">
                             <input type="text" name="item_name" required="required" class="form-control"  placeholder="项目名称">
@@ -30,7 +31,7 @@
                             <input type="text" name="user_name" required="required" class="form-control" placeholder="姓名">
                             <input type="text" name="student_id" required="required" class="form-control" placeholder="学号">
                             <input type="text" name="academy" required="required" class="form-control" placeholder="学院">
-                            <input type="text" name="class" required="required" class="form-control" placeholder="班级">
+                            <input type="text" name="iclass" required="required" class="form-control" placeholder="班级">
                             <input type="text" name="phone" required="required" class="form-control" placeholder="联系手机">
                         </div>
                         <div class="form-group">

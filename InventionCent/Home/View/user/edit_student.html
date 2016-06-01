@@ -6,6 +6,7 @@
             <h3>编辑个人信息</h3>
 	            <div class="boxed-group-inner clearfix">
 	                <form accept-charset="UTF-8" action="{:U('User/edit_student')}" class="columns js-uploadable-container js-upload-avatar-image is-default" method="post">
+						<input type="hidden" name="user_id" value="{$user_info.user_id}"/>
 	                <div class="column two-thirds">
 	                    <dl class="form-group edit-profile-avatar">
 	                        <dt><label for="upload-profile-picture">上传头像 不要太污</label></dt>
@@ -15,7 +16,7 @@
 	                                <a href="#" class="btn button-change-profile-picture">
 	                                    <label for="upload-profile-picture">
 	                                        选择本地照片
-	                                        <input id="upload-profile-picture" type="file" class="manual-file-chooser js-manual-file-chooser js-avatar-field">
+	                                        <input id="upload-profile-picture" type="file" name="file_name" class="manual-file-chooser js-manual-file-chooser js-avatar-field">
 	                                    </label>
 	                                </a>
 

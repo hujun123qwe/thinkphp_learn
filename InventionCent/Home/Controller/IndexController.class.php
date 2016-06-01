@@ -11,8 +11,7 @@ class IndexController extends Controller {
 //   }
 
     public function index(){
-        $this->assign('layout_home', C('__LAYOUT_HOME__'));  // 页面公共继承模版
-        $this->display();
+        $this->redirect('User/index_student');
     }
     
     public function first_login(){

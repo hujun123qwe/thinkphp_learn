@@ -138,6 +138,7 @@
             <h3>编辑个人信息</h3>
 	            <div class="boxed-group-inner clearfix">
 	                <form accept-charset="UTF-8" action="<?php echo U('User/edit_student');?>" class="columns js-uploadable-container js-upload-avatar-image is-default" method="post">
+						<input type="hidden" name="user_id" value="<?php echo ($user_info["user_id"]); ?>"/>
 	                <div class="column two-thirds">
 	                    <dl class="form-group edit-profile-avatar">
 	                        <dt><label for="upload-profile-picture">上传头像 不要太污</label></dt>

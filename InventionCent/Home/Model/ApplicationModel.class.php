@@ -16,4 +16,17 @@ class ApplicationModel extends Model{
     	$map['item_id'] = array(eq, $item_id);
     	return $this->where($map)->select();
     }
+    
+    public function getItemList($student_id){
+        $map['student_id'] = array(eq, $student_id);
+        return $this->where($map)->select();
+    }
+    
+    public function edit($map,$item_id){
+        if(empty($map)){
+            return 0;
+        }else{
+            return $this->where("item_id = %d", $item_id)->save($map);
+        }
+    }
 }

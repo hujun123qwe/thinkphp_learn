@@ -162,11 +162,11 @@ class UserModel extends Model{
     /*
     edit student info 
     */
-    public function edit_student($map){
+    public function edit_student($map,$user_id){
         if(empty($map)){
             return 0;
         }else{
-            return $this->add($map);
+            return $this->where("user_id = %d",$user_id)->save($map);
         }
     }
 
