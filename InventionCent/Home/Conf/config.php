@@ -23,7 +23,7 @@ return array(
         'add' => 'Item/add_item',
         'first_login'=>'Index/first_login',
         'admin'=>'Admin/index',
-        'admin/user_admin'=>'User/admin',
+        'admin/user_admin'=>'User/user_admin',
         'admin/user_setting'=>'User/setting',
         'admin/user_list'=>'User/lists',
         'admin/news' => 'Public/news',

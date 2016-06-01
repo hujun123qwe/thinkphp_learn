@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/frameworks.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/github.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/site.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/Public/libs/cui/css/cui.min.css">
     <style>
         .breadcrumb>li,.pagination{display:inline-block}
         .breadcrumb{
@@ -102,27 +103,26 @@
         <div class="page-content container">
             <div class="columns profilecols">
                 <div class="column one-fourth" role="navigation">
-                    <nav class="menu">
-                        <h3 class="menu-heading">
-                            系统管理
-                        </h3>
-                            <li class="js-selected-navigation-item selected menu-item" aria-selected="true"><a href="news" ><i class="fa fa-wrench"></i><span class="nav-label">通知公告</span></a></li>
-                            <li class="js-selected-navigation-item menu-item"><a href="link" ><i class="fa fa-map-signs"></i><span class="nav-label">友情链接</span></a></li>
-                            <li class="js-selected-navigation-item menu-item"><a href="upload" ><i class="fa fa-upload"></i><span class="nav-label">上传管理</span></a></li>
-                     </nav>
+                    <!--<nav class="menu">-->
+                        <!--<h3 class="menu-heading">-->
+                            <!--系统管理-->
+                        <!--</h3>-->
+                            <!--<li class="js-selected-navigation-item selected menu-item" aria-selected="true"><a href="" ><i class="fa fa-wrench"></i><span class="nav-label">通知公告</span></a></li>-->
+                            <!--<li class="js-selected-navigation-item menu-item"><a href="" ><i class="fa fa-map-signs"></i><span class="nav-label">友情链接</span></a></li>-->
+                            <!--<li class="js-selected-navigation-item menu-item"><a href="" ><i class="fa fa-upload"></i><span class="nav-label">上传管理</span></a></li>-->
+                     <!--</nav>-->
                     <nav class="menu">
                         <h3 class="menu-heading">
                             用户管理
                         </h3>
-                        <li class="js-selected-navigation-item menu-item"><a href="user_admin" ><i class="fa fa-wrench"></i><span class="nav-label">管理员管理</span></a></li>
-                        <li class="js-selected-navigation-item menu-item"><a href="user_setting" ><i class="fa fa-map-signs"></i><span class="nav-label">用户设置</span></a></li>
-                        <li class="js-selected-navigation-item menu-item"><a href="user_list" ><i class="fa fa-upload"></i><span class="nav-label">用户列表</span></a></li>
+                        <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('User/user_admin');?>" ><i class="fa fa-wrench"></i><span class="nav-label">管理员管理</span></a></li>
+                        <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('User/user_list');?>" ><i class="fa fa-upload"></i><span class="nav-label">用户列表</span></a></li>
                     </nav>
                     <nav class="menu">
                         <h3 class="menu-heading">
                             申请管理
                         </h3>
-                        <li class="js-selected-navigation-item menu-item"><a href="news" ><i class="fa fa-wrench"></i><span class="nav-label">申请列表</span></a></li>
+                        <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('Application/item_list');?>" ><i class="fa fa-wrench"></i><span class="nav-label">申请列表</span></a></li>
                         <li class="js-selected-navigation-item menu-item"><a href="link" ><i class="fa fa-map-signs"></i><span class="nav-label">已通过申请</span></a></li>
                         <li class="js-selected-navigation-item menu-item"><a href="upload" ><i class="fa fa-upload"></i><span class="nav-label">未通过申请</span></a></li>
                         <li class="js-selected-navigation-item menu-item"><a href="news" ><i class="fa fa-wrench"></i><span class="nav-label">无效申请</span></a></li>
@@ -131,7 +131,7 @@
                         <h3 class="menu-heading">
                             学分管理
                         </h3>
-                        <li class="js-selected-navigation-item menu-item"><a href="news" ><i class="fa fa-wrench"></i><span class="nav-label">学分列表</span></a></li>
+                        <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('Credits/credits_list');?>" ><i class="fa fa-wrench"></i><span class="nav-label">学分列表</span></a></li>
                         <li class="js-selected-navigation-item menu-item"><a href="link" ><i class="fa fa-map-signs"></i><span class="nav-label">学分配置</span></a></li>
                         <li class="js-selected-navigation-item menu-item"><a href="upload" ><i class="fa fa-upload"></i><span class="nav-label">学分分类</span></a></li>
                     </nav>
@@ -147,7 +147,7 @@
                     <div class="boxed-group">
                         <h3>后台 管理 系统</h3>
                         <div class="boxed-group-inner clearfix">
-                            <div class="column two-thirds">
+                            <div class="column">
                                 
         <!-- 多标签后台内容部分 -->
         <div class="tab-content ct-tab-content">

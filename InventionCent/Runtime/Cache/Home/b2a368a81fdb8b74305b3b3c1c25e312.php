@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html lang="zh-cn">
 <head>
     <meta charset='utf-8'>
@@ -6,10 +6,10 @@
     <meta http-equiv="Content-Language" content="en">
     <meta name="viewport" content="width=device-width">
     <meta content="origin-when-cross-origin" name="referrer" />
-    <link rel="stylesheet" href="{$Think.config.__HOME_CSS__}/frameworks.css" type="text/css"/>
-    <link rel="stylesheet" href="{$Think.config.__HOME_CSS__}/github.css" type="text/css"/>
-    <link rel="stylesheet" href="{$Think.config.__HOME_CSS__}/site.css" type="text/css"/>
-    <link rel="stylesheet" type="text/css" href="__CUI__/css/cui.min.css">
+    <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/frameworks.css" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/github.css" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/site.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/Public/libs/cui/css/cui.min.css">
     <style>
         .breadcrumb>li,.pagination{display:inline-block}
         .breadcrumb{
@@ -24,13 +24,13 @@
         .breadcrumb>.active{color:#777}
 
     </style>
-    <title>{$meta_title}</title>
+    <title><?php echo ($meta_title); ?></title>
 </head>
 
 <body>
 <div class="header header-logged-in true" role="banner">
     <div class="container clearfix">
-        <a class="header-logo-invertocat" href="{:C('HOME_PAGE')}"><h2>大学生创新学分审核系统</h2></a>
+        <a class="header-logo-invertocat" href="<?php echo C('HOME_PAGE');?>"><h2>大学生创新学分审核系统</h2></a>
         <div class="header-search   js-site-search" role="search"></div>
         <ul class="header-nav left" role="navigation"></ul>
         <ul class="header-nav user-nav right" id="user-links">
@@ -115,14 +115,14 @@
                         <h3 class="menu-heading">
                             用户管理
                         </h3>
-                        <li class="js-selected-navigation-item menu-item"><a href="{:U('User/user_admin')}" ><i class="fa fa-wrench"></i><span class="nav-label">管理员管理</span></a></li>
-                        <li class="js-selected-navigation-item menu-item"><a href="{:U('User/user_list')}" ><i class="fa fa-upload"></i><span class="nav-label">用户列表</span></a></li>
+                        <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('User/user_admin');?>" ><i class="fa fa-wrench"></i><span class="nav-label">管理员管理</span></a></li>
+                        <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('User/user_list');?>" ><i class="fa fa-upload"></i><span class="nav-label">用户列表</span></a></li>
                     </nav>
                     <nav class="menu">
                         <h3 class="menu-heading">
                             申请管理
                         </h3>
-                        <li class="js-selected-navigation-item menu-item"><a href="{:U('Application/item_list')}" ><i class="fa fa-wrench"></i><span class="nav-label">申请列表</span></a></li>
+                        <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('Application/item_list');?>" ><i class="fa fa-wrench"></i><span class="nav-label">申请列表</span></a></li>
                         <li class="js-selected-navigation-item menu-item"><a href="link" ><i class="fa fa-map-signs"></i><span class="nav-label">已通过申请</span></a></li>
                         <li class="js-selected-navigation-item menu-item"><a href="upload" ><i class="fa fa-upload"></i><span class="nav-label">未通过申请</span></a></li>
                         <li class="js-selected-navigation-item menu-item"><a href="news" ><i class="fa fa-wrench"></i><span class="nav-label">无效申请</span></a></li>
@@ -131,7 +131,7 @@
                         <h3 class="menu-heading">
                             学分管理
                         </h3>
-                        <li class="js-selected-navigation-item menu-item"><a href="{:U('Credits/credits_list')}" ><i class="fa fa-wrench"></i><span class="nav-label">学分列表</span></a></li>
+                        <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('Credits/credits_list');?>" ><i class="fa fa-wrench"></i><span class="nav-label">学分列表</span></a></li>
                         <!--<li class="js-selected-navigation-item menu-item"><a href="link" ><i class="fa fa-map-signs"></i><span class="nav-label">学分配置</span></a></li>-->
                     </nav>
                     <nav class="menu">
@@ -147,8 +147,20 @@
                         <h3>后台 管理 系统</h3>
                         <div class="boxed-group-inner clearfix">
                             <div class="column">
-                                <block name="right-content">
-                                </block>
+                                
+    <table class="files js-navigation-container js-active-navigation-container">
+        <thead><tr><th> # </th><th>用户编号</th><th>用户名</th><th>密码</th></tr></thead>
+        <tbody>
+        <?php if(is_array($lists)): $k = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><tr class="js-navigation-item">
+                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($k); ?></span></td>
+                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["user_id"]); ?></span></td>
+                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["user_name"]); ?></span></td>
+            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+        </tbody>
+    </table>
+
+    <?php if(!empty($page)): ?><ul class="pagination"><?php echo ($page); ?></ul><?php endif; ?>
+
                             </div>
                         </div>
                     </div>
@@ -182,10 +194,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-

@@ -26,6 +26,14 @@ class UserModel extends Model{
         array('password','checkPwd','密码格式不正确',0,'function'), // 自定义函数验证密码格式
     );
 
+    public function getAdminNumber(){
+        return $this->where('user_type=%d',1)->count();
+    }
+
+    public function getStudentNumber(){
+        return $this->where('user_type=%d',0)->count();
+    }
+
     public function user(){
         echo 'some';
     }

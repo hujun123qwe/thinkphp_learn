@@ -1,0 +1,20 @@
+<extend name="$layout_admin"/>
+
+<block name="right-content">
+    <table class="files js-navigation-container js-active-navigation-container">
+        <thead><tr><th> # </th><th>用户编号</th><th>用户名</th><th>密码</th></tr></thead>
+        <tbody>
+        <volist name="lists" id="vo" key="k">
+            <tr class="js-navigation-item">
+                <td class="content"><span class="css-truncate css-truncate-target">{$k}</span></td>
+                <td class="content"><span class="css-truncate css-truncate-target">{$vo.user_id}</span></td>
+                <td class="content"><span class="css-truncate css-truncate-target">{$vo.user_name}</span></td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+
+    <notempty name="page">
+        <ul class="pagination">{$page}</ul>
+    </notempty>
+</block>

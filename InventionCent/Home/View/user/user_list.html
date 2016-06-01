@@ -1,0 +1,26 @@
+<extend name="$layout_admin"/>
+
+<block name="right-content">
+    <table class="table table-bordered table-striped table-hover">
+        <thead><tr><th>#</th><th>编号</th><th>用户名</th><th>学号</th><th>学院</th><th>班级</th><th>邮箱</th><th>手机号码</th><th>注册时间</th></tr></thead>
+        <tbody>
+        <volist name="lists" id="vo" key="k">
+            <tr class="js-navigation-item">
+                <td class="content"><span class="css-truncate css-truncate-target">{$k}</span></td>
+                <td class="content"><span class="css-truncate css-truncate-target">{$vo.user_id}</span></td>
+                <td class="content"><span class="css-truncate css-truncate-target">{$vo.user_name}</span></td>
+                <td class="content"><span class="css-truncate css-truncate-target">{$vo.student_id}</span></td>
+                <td class="content"><span class="css-truncate css-truncate-target">{$vo.academy}</span></td>
+                <td class="content"><span class="css-truncate css-truncate-target">{$vo.iclass}</span></td>
+                <td class="content"><span class="css-truncate css-truncate-target">{$vo.email}</span></td>
+                <td class="content"><span class="css-truncate css-truncate-target">{$vo.phone}</span></td>
+                <td class="content"><span class="css-truncate css-truncate-target">{$vo.add_time}</span></td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+
+    <notempty name="page">
+        <ul class="pagination">{$page}</ul>
+    </notempty>
+</block>

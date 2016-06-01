@@ -98,27 +98,33 @@ class UserController extends Controller{
         }
     }
     
-    public function admin(){
-        $lists=D('user')->where('1')->paginate(1);
-        $page = $lists->render();
-        $this->assign('lists', $lists);
-        $this->assign('page', $page);
-        return $this->fetch();
-        $this->assign('_admin_public_layout', C('ADMIN_PUBLIC_LAYOUT'));  // 页面公共继承模版
+    public function user_admin(){
+        // 获取所有用户
+        $userDB = D('User');
+        $adminCount = $userDB->getAdminNumber();
+        $Page       = new \Think\Page($adminCount,5);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+        $show       = $Page->show();// 分页显示输出
+        $limit = $Page->firstRow.','.$Page->listRows;// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+        $list = $userDB->where('user_type=%d',1)->order('user_id')->limit($limit)->select();
+        $this->assign('lists',$list);// 赋值数据集
+        $this->assign('page',$show);// 赋值分页输出
+        $this->assign('layout_admin', C('__LAYOUT_ADMIN__'));  // 页面公共继承模版
+        $this->assign('meta_title', "管理员管理 | 大学生创新学分审核系统");
         $this->display(); // 输出模板
     }
     
-    public function lists(){
+    public function user_list(){
         // 获取所有用户
         $userDB = D('User');
-        $userCount = $userDB->count();// 查询满足要求的总记录数
-        $Page       = new \Think\Page($userCount,5);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+        $userCount = $userDB->getStudentNumber();// 查询满足要求的总记录数
+        $Page       = new \Think\Page($userCount,20);// 实例化分页类 传入总记录数和每页显示的记录数(25)
         $show       = $Page->show();// 分页显示输出
         $limit = $Page->firstRow.','.$Page->listRows;// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
-        $list = $userDB->where('1')->order('user_id')->limit($limit)->select();
+        $list = $userDB->where('user_type=%d',0)->order('user_id')->limit($limit)->select();
         $this->assign('lists',$list);// 赋值数据集
         $this->assign('page',$show);// 赋值分页输出
-        $this->assign('_admin_public_layout', C('ADMIN_PUBLIC_LAYOUT'));  // 页面公共继承模版
+        $this->assign('layout_admin', C('__LAYOUT_ADMIN__'));  // 页面公共继承模版
+        $this->assign('meta_title', "学生管理 | 大学生创新学分审核系统");
         $this->display(); // 输出模板
     }
 

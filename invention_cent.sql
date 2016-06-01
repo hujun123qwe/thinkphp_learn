@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016-06-01 14:28:09
+-- Generation Time: 2016-06-01 17:46:59
 -- 服务器版本： 10.1.8-MariaDB
 -- PHP Version: 5.3.29-upupw
 
@@ -65,6 +65,7 @@ CREATE TABLE IF NOT EXISTS `ahut_application` (
   `item_id` int(6) unsigned NOT NULL,
   `item_name` varchar(255) NOT NULL,
   `item_type` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `item_status` tinyint(1) NOT NULL DEFAULT '0',
   `user_name` varchar(128) NOT NULL DEFAULT '',
   `student_id` int(10) unsigned NOT NULL DEFAULT '0',
   `academy` varchar(128) NOT NULL DEFAULT '哪学院？ ',
@@ -79,32 +80,39 @@ CREATE TABLE IF NOT EXISTS `ahut_application` (
 -- 转存表中的数据 `ahut_application`
 --
 
-INSERT INTO `ahut_application` (`item_id`, `item_name`, `item_type`, `user_name`, `student_id`, `academy`, `iclass`, `phone`, `group`, `grade`, `upload_file`) VALUES
-(1, 'fewewdfew', 1, '23ewfewfewf', 123, '123fewfewfew', '12312ewfewfew', 312312, 3, 1, ''),
-(2, '大学生诚信项目是ixnajisdie', 0, 'HUJUN', 123, 'HFE', '信122班', 2147483647, 1, 1, ''),
-(3, '大学生诚信项目是ixnajisdie', 0, 'HUJUN', 123, 'HFE', '信122班', 2147483647, 1, 1, ''),
-(4, '等级的英文_等级翻译_等级英语怎么说_海词词典', 0, '胡军', 129084213, '海词词典', '信122班', 2147483647, 1, 1, ''),
-(5, 'gtrgtrgtr', 0, '23', 123, '123', '12312', 312312, 1, 1, ''),
-(6, 'ew', 0, 'ew', 12, 'we', 'we', 23, 3, 1, './Uploads/2016-06-01/574e4cdd9f636.jpg');
+INSERT INTO `ahut_application` (`item_id`, `item_name`, `item_type`, `item_status`, `user_name`, `student_id`, `academy`, `iclass`, `phone`, `group`, `grade`, `upload_file`) VALUES
+(1, 'fewewdfew', 1, 0, '23ewfewfewf', 123, '123fewfewfew', '12312ewfewfew', 312312, 3, 1, ''),
+(2, '大学生诚信项目是ixnajisdie', 0, 0, 'HUJUN', 123, 'HFE', '信122班', 2147483647, 1, 1, ''),
+(3, '大学生诚信项目是ixnajisdie', 0, 0, 'HUJUN', 123, 'HFE', '信122班', 2147483647, 1, 1, ''),
+(4, '等级的英文_等级翻译_等级英语怎么说_海词词典', 0, 0, '胡军', 129084213, '海词词典', '信122班', 2147483647, 1, 1, ''),
+(5, 'gtrgtrgtr', 0, 0, '23', 123, '123', '12312', 312312, 1, 1, ''),
+(6, 'ew', 0, 0, 'ew', 12, 'we', 'we', 23, 3, 1, './Uploads/2016-06-01/574e4cdd9f636.jpg');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ahut_credit`
+-- 表的结构 `ahut_credits`
 --
 
-CREATE TABLE IF NOT EXISTS `ahut_credit` (
-  `credit_id` mediumint(8) unsigned NOT NULL,
-  `cat_id` smallint(5) NOT NULL DEFAULT '0',
-  `title` varchar(150) NOT NULL DEFAULT '',
+CREATE TABLE IF NOT EXISTS `ahut_credits` (
+  `credits_id` int(8) unsigned NOT NULL,
+  `credits_type` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `item_id` int(8) unsigned NOT NULL DEFAULT '0',
   `content` longtext NOT NULL,
-  `user_id` tinyint(1) NOT NULL DEFAULT '0',
+  `user_id` int(8) unsigned NOT NULL DEFAULT '0',
   `is_open` tinyint(1) unsigned NOT NULL DEFAULT '1',
-  `add_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `file_url` varchar(255) NOT NULL DEFAULT '',
+  `add_time` varchar(128) NOT NULL DEFAULT 'not defined',
   `is_verify` tinyint(1) NOT NULL DEFAULT '0',
   `verify_time` int(10) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `ahut_credits`
+--
+
+INSERT INTO `ahut_credits` (`credits_id`, `credits_type`, `item_id`, `content`, `user_id`, `is_open`, `add_time`, `is_verify`, `verify_time`) VALUES
+(0, 1, 1, 'This is test case', 6, 1, 'not defined', 1, 123123),
+(0, 5, 123, '', 123, 2, 'not defined', 3, 1232);
 
 -- --------------------------------------------------------
 
@@ -232,13 +240,6 @@ ALTER TABLE `ahut_application`
   ADD PRIMARY KEY (`item_id`);
 
 --
--- Indexes for table `ahut_credit`
---
-ALTER TABLE `ahut_credit`
-  ADD PRIMARY KEY (`credit_id`),
-  ADD KEY `cat_id` (`cat_id`);
-
---
 -- Indexes for table `ahut_credit_cat`
 --
 ALTER TABLE `ahut_credit_cat`
@@ -287,11 +288,6 @@ AUTO_INCREMENT=4;
 --
 ALTER TABLE `ahut_application`
   MODIFY `item_id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `ahut_credit`
---
-ALTER TABLE `ahut_credit`
-  MODIFY `credit_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `ahut_credit_cat`
 --
