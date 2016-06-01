@@ -26,9 +26,9 @@ class AdminController extends Controller {
      */
     protected function _initialize() {
         // 登录检测
-        if (!is_login()) { //还没登录跳转到登录页面
-            $this->redirect('Home/Public/login');
-        }
+//        if (!is_login()) { //还没登录跳转到登录页面
+//            $this->redirect('Home/Public/login');
+//        }
         $this->assign('_user_auth', session('user_auth'));                // 用户登录信息
         $this->assign('_admin_public_layout', C('ADMIN_PUBLIC_LAYOUT'));  // 页面公共继承模版
     }
@@ -38,25 +38,10 @@ class AdminController extends Controller {
      * @author jry <598821125@qq.com>
      */
     public function index(){
-        $this->assign('meta_title', "首页");
-        //var_dump($menu_list);
+        $this->assign('layout_admin', C('__LAYOUT_ADMIN__'));  // 页面公共继承模版
+        $this->assign('meta_title', "后台管理 | 大学生创新学分审核系统");
         $this->display();
     }
-
-    /**
-     * 删除缓存
-     * @author jry <598821125@qq.com>
-     */
-    public function removeRuntime() {
-        $file = new \Common\Util\File();
-        $result = $file->del_dir(RUNTIME_PATH);
-        if ($result) {
-            $this->success("缓存清理成功");
-        } else {
-            $this->error("缓存清理失败");
-        }
-    }
-
 
     /**
      * 设置一条或者多条数据的状态
