@@ -145,79 +145,56 @@
                 </div>
                 <div class="column three-fourths">
                     
-        <!-- 多标签后台内容部分 -->
-        <div class="tab-content ct-tab-content">
-            <!-- 首页 -->
-            <div role="tabpanel" class="fade in active" id="home">
-                <div class="dashboard clearfix">
-                    <div class="col-xs-12 col-sm-6 col-lg-4 ct-update">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="update pull-right"></div>
-                                <i class="fa fa-cog"></i> 系统信息
-                            </div>
-                            <div class="panel-body">
-                                <table class="table table-condensed text-overflow">
-                                    <tbody>
-                                    <tr>
-                                        <td>ThinkPHP版本</td>
-                                        <td><?php echo (THINK_VERSION); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>服务器操作系统</td>
-                                        <td><?php echo (PHP_OS); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>运行环境</td>
-                                        <td>
-                                            <?php
- $server_software = explode(' ', $_SERVER['SERVER_SOFTWARE']); echo $server_software[0]; ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PHP版本</td>
-                                        <td><?php echo PHP_VERSION; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>MYSQL版本</td>
-                                        <td><?php $system_info_mysql = M()->query("select version() as v;"); echo ($system_info_mysql["0"]["v"]); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>上传限制</td>
-                                        <td><?php echo ini_get('upload_max_filesize');?></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-lg-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-actions"></div>
-                                <i class="fa fa-th-list"></i> 产品团队
-                            </div>
-                            <div class="panel-body">
-                                <table class="table table-condensed">
-                                    <tbody>
-                                    <tr>
-                                        <td>核心团队</td>
-                                        <td>江如意、赵瀚卿...</td>
-                                    </tr>
-                                    <tr>
-                                        <td>联系我们</td>
-                                        <td>
-                                            service@corethink.cn
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+
+    <div class="tabnav">
+        <div class="right"><a href="<?php echo U('Application/add_item');?>" class="btn btn-sm">新增</a></div>
+        <nav class="tabnav-tabs" data-pjax role="navigation">
+            <a href="<?php echo U('Application/item_list');?>" class="tabnav-tab" aria-selected="true" role="tab">
+                <svg aria-hidden="true" class="octicon octicon-diff-added" height="16" version="1.1" viewBox="0 0 14 16" width="14">
+                    <path d="M13 1H1C0.45 1 0 1.45 0 2v12c0 0.55 0.45 1 1 1h12c0.55 0 1-0.45 1-1V2c0-0.55-0.45-1-1-1z m0 13H1V2h12v12zM6 9H3V7h3V4h2v3h3v2H8v3H6V9z">
+                    </path>
+                </svg>全部申请</a>
+            <a href="<?php echo U('Application/item_list_1');?>" class="tabnav-tab " aria-selected="false" role="tab">
+                <svg aria-hidden="true" class="octicon octicon-repo" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                已通过申请</a>
+            <a href="<?php echo U('Application/item_list_0');?>" class="tabnav-tab selected" aria-selected="false" role="tab">
+                <svg aria-hidden="true" class="octicon octicon-rss" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M2 13H0V11c1.11 0 2 0.89 2 2zM0 3v1c4.97 0 9 4.03 9 9h1c0-5.52-4.48-10-10-10z m0 4v1c2.75 0 5 2.25 5 5h1c0-3.31-2.69-6-6-6z"></path></svg>
+                未通过申请
+            </a>
+        </nav>
+    </div>
+
+    <div class="js-repo-filter position-relative">
+        <div class="contributions-tab">
+            <div class="columns popular-repos">
+                <div class="single-column">
+                    <div class="boxed-group flush">
+                        <h3>大学生创新实训项目</h3>
+                            <table class="table table-bordered table-striped table-hover">
+        <thead><tr><th>#</th><th>编号</th><th>项目名</th><th>项目类型</th><th>申请人</th><th>申请时间</th><th>是否通过</th><th>操作</th></tr></thead>
+        <tbody>
+        <?php if(is_array($lists)): $k = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><tr class="js-navigation-item">
+                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($k); ?></span></td>
+                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["item_id"]); ?></span></td>
+                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["item_name"]); ?></span></td>
+                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["user_name"]); ?></span></td>
+                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["add_time"]); ?></span></td>
+                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["item_status"]); ?></span></td>
+                <td><a>编辑</a>&nbsp;<a>删除</a>
+            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+        </tbody>
+    </table>
+
+    <?php if(!empty($page)): ?><ul class="pagination"><?php echo ($page); ?></ul><?php endif; ?>
                     </div>
                 </div>
             </div>
         </div>
+    </div><!-- /.contributions-tab -->
+
+
+
+
 
                 </div>
             </div>

@@ -24,6 +24,20 @@
         .breadcrumb>.active{color:#777}
 
     </style>
+    
+<script type="text/javascript" src="<?php echo (C("__HOME_JS__")); ?>/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo (C("__HOME_JS__")); ?>/jquery.form.js"></script>
+<!-- <script type="text/javascript" src="<?php echo (C("__HOME_JS__")); ?>/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo (C("__HOME_JS__")); ?>/jquery.form.js"></script> -->
+<script language="JavaScript">
+    function deleteItem($item_id){
+        alert("点击了确定");
+        $.post(<?php echo U('Application/deleteItem');?>,{'item_id':$item_id},
+            function(data){$('#result').html(data).show();
+        },'json');
+    }
+</script>
+
     <title><?php echo ($meta_title); ?></title>
 </head>
 
@@ -35,7 +49,7 @@
         <ul class="header-nav left" role="navigation"></ul>
         <ul class="header-nav user-nav right" id="user-links">
             <li class="header-nav-item">
-                <a href="/notifications" aria-label="You have no unread notifications" class="header-nav-link notification-indicator tooltipped tooltipped-s js-socket-channel js-notification-indicator" data-channel="notification-changed-v2:8892333" data-ga-click="Header, go to notifications, icon:read" data-hotkey="g n">
+                <a href="/notifications" aria-label="You have no unread notifications" class="header-nav-link notification-indicator tooltipped tooltipped-s js-socket-channel js-notification-indicator" data-channel="notification-changed-v2:8892333" data-ga-click="Header, go to notifications, icon:read">
                     <span class="mail-status "></span>
                     <svg aria-hidden="true" class="octicon octicon-bell" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 12v1H0v-1l0.73-0.58c0.77-0.77 0.81-2.55 1.19-4.42 0.77-3.77 4.08-5 4.08-5 0-0.55 0.45-1 1-1s1 0.45 1 1c0 0 3.39 1.23 4.16 5 0.38 1.88 0.42 3.66 1.19 4.42l0.66 0.58z m-7 4c1.11 0 2-0.89 2-2H5c0 1.11 0.89 2 2 2z"></path></svg>
                 </a>
@@ -143,30 +157,59 @@
                   </nav>
                 </div>
                 <div class="column three-fourths">
-                    <div class="boxed-group">
-                        <h3>后台 管理 系统</h3>
-                        <div class="boxed-group-inner clearfix">
-                            <div class="column">
-                                
-    <table class="table table-bordered table-striped table-hover">
-        <thead><tr><th>#</th><th>编号</th><th>项目名</th><th>项目类型</th><th>申请人</th><th>申请时间</th><th>是否通过</th></tr></thead>
+                    
+    <div class="tabnav">
+        <div class="right"><a href="<?php echo U('Application/add_item');?>" class="btn btn-sm">新增</a></div>
+        <nav class="tabnav-tabs" data-pjax role="navigation">
+            <a href="<?php echo U('Application/item_list');?>" class="tabnav-tab selected" aria-selected="true" role="tab">
+                <svg aria-hidden="true" class="octicon octicon-diff-added" height="16" version="1.1" viewBox="0 0 14 16" width="14">
+                    <path d="M13 1H1C0.45 1 0 1.45 0 2v12c0 0.55 0.45 1 1 1h12c0.55 0 1-0.45 1-1V2c0-0.55-0.45-1-1-1z m0 13H1V2h12v12zM6 9H3V7h3V4h2v3h3v2H8v3H6V9z">
+                    </path>
+                </svg>全部申请</a>
+            <a href="<?php echo U('Application/item_list_1');?>" class="tabnav-tab " aria-selected="false" role="tab">
+                <svg aria-hidden="true" class="octicon octicon-repo" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                已通过申请</a>
+            <a href="<?php echo U('Application/item_list_0');?>" class="tabnav-tab " aria-selected="false" role="tab">
+                <svg aria-hidden="true" class="octicon octicon-rss" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M2 13H0V11c1.11 0 2 0.89 2 2zM0 3v1c4.97 0 9 4.03 9 9h1c0-5.52-4.48-10-10-10z m0 4v1c2.75 0 5 2.25 5 5h1c0-3.31-2.69-6-6-6z"></path></svg>
+                未通过申请
+            </a>
+        </nav>
+    </div>
+
+    <div class="js-repo-filter position-relative">
+        <div class="contributions-tab">
+            <div class="columns popular-repos">
+                <div class="single-column">
+                    <div class="boxed-group flush">
+                        <h3>大学生创新实训项目</h3>
+                            <table class="table table-bordered table-striped table-hover">
+        <thead><tr><th>#</th><th>编号</th><th>项目名</th><th>项目类型</th><th>申请人</th><th>申请时间</th><th>是否通过</th><th>操作</th></tr></thead>
         <tbody>
         <?php if(is_array($lists)): $k = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><tr class="js-navigation-item">
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($k); ?></span></td>
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["item_id"]); ?></span></td>
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["item_name"]); ?></span></td>
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["user_name"]); ?></span></td>
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["add_time"]); ?></span></td>
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["item_status"]); ?></span></td>
+                <td class="content"><?php echo ($k); ?></td>
+                <td class="content"><?php echo ($vo["item_id"]); ?></td>
+                <td class="content"><?php echo ($vo["item_name"]); ?></td>
+                <td class="content"><?php echo ($vo["item_type"]); ?></td>
+                <td class="content"><?php echo ($vo["user_name"]); ?></td>
+                <td class="content"><?php echo ($vo["add_time"]); ?></td>
+                <td class="content"><?php echo ($vo["item_status"]); ?></td>
+                <td><a>编辑</a>&nbsp;
+                <a href="#" onClick="deleteItem(<?php echo ($vo["item_id"]); ?>)" id="result">删除</a>
             </tr><?php endforeach; endif; else: echo "" ;endif; ?>
         </tbody>
     </table>
 
     <?php if(!empty($page)): ?><ul class="pagination"><?php echo ($page); ?></ul><?php endif; ?>
-
-                            </div>
-                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.contributions-tab -->
+
+
+
+
+
                 </div>
             </div>
         </div>

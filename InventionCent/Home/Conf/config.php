@@ -43,7 +43,7 @@ return array(
     ),
 
     '__HOME_IMG__' => APP_PATH.'/Home/View/img',
-    '__HOME_JS__' => APP_PATH.'/Home/View/js',
+    '__HOME_JS__' => __ROOT__.'/'.APP_PATH.'/Home/View/js',
     '__HOME_CSS__' => __ROOT__.'/'.APP_PATH.'/Home/View/css',
     '__HOME_PUBLIC__'=> APP_PATH.'/Home/View/public',
 

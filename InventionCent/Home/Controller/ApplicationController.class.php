@@ -17,6 +17,21 @@ class ApplicationController extends Controller{
 //        }
 //    }
     
+    public function deleteItem($item_id){
+        echo 'invoke';
+        exit;
+        if(IS_AJAX){
+            $itemDB = D('Application');
+            if($itemDB->deleteItem($item_id)){
+                $data = '删除成功';
+                $this->ajaxReturn($data);
+            }else{
+                $data = '删除失败';
+                $this->ajaxReturn($data);
+            }
+        }
+    }
+
     public function edit(){
         if(IS_POST){
             $map = array();
@@ -215,5 +230,35 @@ class ApplicationController extends Controller{
         }else{// 上传成功
             return $file['savepath'].$file['savename'];
         }
+    }
+
+    public function item_list_1(){
+         // 获取所有用户
+        $itemDB = D('Application');
+        $itemCount = $itemDB->count();// 查询满足要求的总记录数
+        $Page       = new \Think\Page($itemCount,20);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+        $show       = $Page->show();// 分页显示输出
+        $limit = $Page->firstRow.','.$Page->listRows;// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+        $list = $itemDB->where(1)->order('item_id')->limit($limit)->select();
+        $this->assign('lists',$list);// 赋值数据集
+        $this->assign('page',$show);// 赋值分页输出
+        $this->assign('layout_admin', C('__LAYOUT_ADMIN__'));  // 页面公共继承模版
+        $this->assign('meta_title', "申请管理 | 大学生创新学分审核系统");
+        $this->display(); // 输出模板    
+    }
+
+    public function item_list_0(){
+        // 获取所有用户
+        $itemDB = D('Application');
+        $itemCount = $itemDB->count();// 查询满足要求的总记录数
+        $Page       = new \Think\Page($itemCount,20);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+        $show       = $Page->show();// 分页显示输出
+        $limit = $Page->firstRow.','.$Page->listRows;// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+        $list = $itemDB->where(1)->order('item_id')->limit($limit)->select();
+        $this->assign('lists',$list);// 赋值数据集
+        $this->assign('page',$show);// 赋值分页输出
+        $this->assign('layout_admin', C('__LAYOUT_ADMIN__'));  // 页面公共继承模版
+        $this->assign('meta_title', "申请管理 | 大学生创新学分审核系统");
+        $this->display(); // 输出模板
     }
 }
