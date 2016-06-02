@@ -26,7 +26,8 @@ class ApplicationController extends Controller{
             $this->error('删除失败');
         }
     }
-
+    
+    
     public function editItem(){
         if(IS_POST){
             $map = array();
@@ -259,6 +260,17 @@ class ApplicationController extends Controller{
         $show       = $Page->show();// 分页显示输出
         $limit = $Page->firstRow.','.$Page->listRows;// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
         $list = $itemDB->where(1)->order('item_id')->limit($limit)->select();
+        foreach($list as $vo){
+            foreach ($vo as $v){
+                if($v['item_status']=='1'){
+                    $v['item_status'] = '已通过';
+                }else if($v['item_status']=='0'){
+                    $v['item_status'] = '未审核';
+                }else{
+                    $v['item_status'] = '作假者';
+                }
+            }
+        }
         $this->assign('lists',$list);// 赋值数据集
         $this->assign('page',$show);// 赋值分页输出
         $this->assign('layout_admin', C('__LAYOUT_ADMIN__'));  // 页面公共继承模版

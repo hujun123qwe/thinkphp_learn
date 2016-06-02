@@ -31,6 +31,28 @@ class CreditsController extends Controller{
         $this->assign('meta_title', "学分管理 | 大学生创新学分审核系统");
         $this->display(); // 输出模板
     }
+
+    public function verifyItem(){
+        $item_id = I('get.item_id');
+        $itemDB = D('Application');
+        $item_info = $itemDB->getItemInfo($item_id);
+        $this->assign('item_info', $item_info[0]);
+        $this->assign('meta_title', "审核项目 | 大学生创新学分审核系统");
+        $this->assign('layout_admin', C('__LAYOUT_ADMIN__'));  // 页面公共继承模版
+        $this->display();
+    }
+    
+    public function verified(){
+        $item_id = I('get.item_id');
+        $itemDB = D('Application');
+        if($itemDB->verified($item_id)){
+            $this->success('审核通过');
+        }else{
+            $this->error('系统错误');
+        }
+    }
+    
+    
     public function check(){
         
     }

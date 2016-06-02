@@ -124,8 +124,8 @@
                             申请管理
                         </h3>
                         <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('Application/item_list');?>" ><i class="fa fa-wrench"></i><span class="nav-label">申请列表</span></a></li>
-                        <li class="js-selected-navigation-item menu-item"><a href="link" ><i class="fa fa-map-signs"></i><span class="nav-label">已通过申请</span></a></li>
-                        <li class="js-selected-navigation-item menu-item"><a href="upload" ><i class="fa fa-upload"></i><span class="nav-label">未通过申请</span></a></li>
+                        <!--<li class="js-selected-navigation-item menu-item"><a href="link" ><i class="fa fa-map-signs"></i><span class="nav-label">已通过申请</span></a></li>-->
+                        <!--<li class="js-selected-navigation-item menu-item"><a href="upload" ><i class="fa fa-upload"></i><span class="nav-label">未通过申请</span></a></li>-->
                         <li class="js-selected-navigation-item menu-item"><a href="news" ><i class="fa fa-wrench"></i><span class="nav-label">无效申请</span></a></li>
                     </nav>
                     <nav class="menu">
@@ -154,7 +154,7 @@
                     <path d="M13 1H1C0.45 1 0 1.45 0 2v12c0 0.55 0.45 1 1 1h12c0.55 0 1-0.45 1-1V2c0-0.55-0.45-1-1-1z m0 13H1V2h12v12zM6 9H3V7h3V4h2v3h3v2H8v3H6V9z">
                     </path>
                 </svg>全部申请</a>
-            <a href="<?php echo U('Application/item_list_1');?>" class="tabnav-tab selected" aria-selected="false" role="tab">
+            <a href="<?php echo U('Application/item_verified');?>" class="tabnav-tab selected" aria-selected="false" role="tab">
                 <svg aria-hidden="true" class="octicon octicon-repo" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
                 已通过申请</a>
             <a href="<?php echo U('Application/item_list_0');?>" class="tabnav-tab " aria-selected="false" role="tab">
@@ -174,13 +174,21 @@
                             <thead><tr><th>#</th><th>编号</th><th>项目名</th><th>项目类型</th><th>申请人</th><th>申请时间</th><th>是否通过</th><th>操作</th></tr></thead>
                             <tbody>
                             <?php if(is_array($lists)): $k = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><tr class="js-navigation-item">
-                                    <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($k); ?></span></td>
-                                    <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["item_id"]); ?></span></td>
-                                    <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["item_name"]); ?></span></td>
-                                    <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["user_name"]); ?></span></td>
-                                    <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["add_time"]); ?></span></td>
-                                    <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["item_status"]); ?></span></td>
-                                    <td><a>编辑</a>&nbsp;<a>删除</a>
+                                    <td class="content"><?php echo ($k); ?></td>
+                                    <td class="content"><?php echo ($vo["item_id"]); ?></td>
+                                    <td class="content"><?php echo ($vo["item_name"]); ?></td>
+                                    <td class="content"><?php echo ($vo["item_type"]); ?></td>
+                                    <td class="content"><?php echo ($vo["user_name"]); ?></td>
+                                    <td class="content"><?php echo ($vo["add_time"]); ?></td>
+                                    <td class="content">
+                                        <?php if($vo["item_status"] == 1 ): ?>已通过
+                                            <?php elseif($vo["item_status"] == 0): ?>未审核
+                                            <?php else: ?>未知参数<?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <a href="<?php echo U('Credits/verifyItem',array('item_id'=>$vo['item_id']),'');?>">审核</a>&nbsp;
+                                        <a href="editItem?item_id=<?php echo ($vo["item_id"]); ?>">编辑</a>&nbsp;
+                                        <a href="deleteItem?item_id=<?php echo ($vo["item_id"]); ?>">删除</a>
                                 </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                             </tbody>
                         </table>

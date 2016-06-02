@@ -36,4 +36,13 @@ class ApplicationModel extends Model{
             return $this->where("item_id = %d", $item_id)->save($map);
         }
     }
+
+    public function verified($item_id){
+        if(empty($item_id)){
+            return 0;
+        }else{
+            $map['item_status'] = 1;
+            return $this->where('item_id=%d',$item_id)->save($map);
+        }
+    }
 }
