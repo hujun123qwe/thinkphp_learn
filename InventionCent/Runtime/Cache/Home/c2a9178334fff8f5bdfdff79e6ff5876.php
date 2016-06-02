@@ -11,54 +11,66 @@
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/github.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/site.css" type="text/css"/>
     
+    <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/frameworks.css" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/github.css" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/site.css" type="text/css"/>
+
     <title><?php echo ($meta_title); ?></title>
 </head>
 <body>
 <div id="particles-js" class="background"></div>
 
 
+
     <!-- 登陆框 -->
     <div class="panel-lite">
         <a href="<?php echo C('HOME_PAGE');?>"><h1>大学生创新学分审核系统</h1></a>
         <div class="setup-wrapper">
+
             <div class="setup-main">
                 <div class="setup-form-container">
-                    <form action="<?php echo U('Application/srtp');?>" class="setup-form js-braintree-encrypt" enctype="multipart/form-data" method="post">
-                        <h2 class="setup-form-title mb-3">大学生科研训练计划（SRTP）</h2>
-                        <div class="form-group">
-                            <input type="text" name="item_name" required="required" class="form-control"  placeholder="项目名称">
+
+                    <form action="<?php echo U('Application/itemRoute');?>" class="setup-form js-braintree-encrypt" method="get">
+                        <h2 class="setup-form-title mb-3">
+                            选择你要申请的创新学分类型
+                        </h2>
+                        <div class="currency-container js-details-container">
+                            <label class="plan-choice plan-choice-free js-plan-choice-label open">
+                                <input type="radio" class="plan-choice-radio js-plan-choice" name="plan" value="1" checked>
+                                大学生科研训练计划（SRTP）
+                            </label>
+                            <label class="plan-choice plan-choice-free js-plan-choice-label open">
+                                <input type="radio" class="plan-choice-radio js-plan-choice" name="plan" value="2">
+                                学科竞赛
+                            </label>
+                            <label class="plan-choice plan-choice-free js-plan-choice-label open">
+                                <input type="radio" class="plan-choice-radio js-plan-choice" name="plan" value="3">
+                                “三创”教育课程体系
+                            </label>
+                            <label class="plan-choice plan-choice-free js-plan-choice-label open">
+                                <input type="radio" class="plan-choice-radio js-plan-choice" name="plan" value="4">
+                                论文发表学分认定
+                            </label>
+                            <label class="plan-choice plan-choice-free js-plan-choice-label open">
+                                <input type="radio" class="plan-choice-radio js-plan-choice" name="plan" value="5">
+                                专利成果
+                            </label>
+                            <label class="plan-choice plan-choice-free js-plan-choice-label open">
+                                <input type="radio" class="plan-choice-radio js-plan-choice" name="plan" value="6">
+                                其他科研、学术等创新活动
+                            </label>
+                            <p class="note mb-3">不用担心, 你可以在以后添加这些.</p>
                         </div>
-                        <div class="form-group">
-                            <input type="text" name="user_name" required="required" class="form-control" placeholder="姓名">
-                            <input type="text" name="student_id" required="required" class="form-control" placeholder="学号">
-                            <input type="text" name="academy" required="required" class="form-control" placeholder="学院">
-                            <input type="text" name="iclass" required="required" class="form-control" placeholder="班级">
-                            <input type="text" name="phone" required="required" class="form-control" placeholder="联系手机">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="teacher" required="required" class="form-control" placeholder="指导老师">
-                        </div>
-                        <div class="form-group">
-                            <label for="InputFile">《安徽工业大学SRTP项目结题验收表》</label>
-                            <br><input type="file" name="srtp_file" id="InputFile">
-                        </div>
-                        <label for="multiple">请选择小组人数</label>
-                        <select class="form-control" id="multiple" name="group">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                        <div class="checkbox">
-                            <label><input type="checkbox" name="is_important_item"> 重点课题项目</label>
-                        </div>
-                        <button type="submit" class="btn btn-default">提交申请</button>
+                        <input type="submit" value="确 定" class="btn btn-primary js-choose-plan-submit">
                     </form>
+                    <button class="btn btn-primary js-choose-plan-submit">
+                        跳过此步
+                    </button>
                 </div> <!-- /.setup-form-container -->
             </div> <!-- /.setup-main -->
         </div> <!-- /.setup-wrapper -->
     </div>
+
 
 </body>
 <script src="/Public/libs/particles/particles.min.js"></script>

@@ -14,70 +14,19 @@
 
 <body>
 <div class="header header-logged-in true" role="banner">
-    <div class="container clearfix">
+    <div class="container" style="margin-top:12px;">
         <a class="header-logo-invertocat" href="<?php echo C('HOME_PAGE');?>"><h2>大学生创新学分审核系统</h2></a>
         <div class="header-search   js-site-search" role="search"></div>
         <ul class="header-nav left" role="navigation"></ul>
-        <ul class="header-nav user-nav right" id="user-links">
-            <li class="header-nav-item">
-                <a href="/notifications" aria-label="You have no unread notifications" class="header-nav-link notification-indicator tooltipped tooltipped-s js-socket-channel js-notification-indicator" data-channel="notification-changed-v2:8892333" data-ga-click="Header, go to notifications, icon:read" data-hotkey="g n">
-                    <span class="mail-status "></span>
-                    <svg aria-hidden="true" class="octicon octicon-bell" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 12v1H0v-1l0.73-0.58c0.77-0.77 0.81-2.55 1.19-4.42 0.77-3.77 4.08-5 4.08-5 0-0.55 0.45-1 1-1s1 0.45 1 1c0 0 3.39 1.23 4.16 5 0.38 1.88 0.42 3.66 1.19 4.42l0.66 0.58z m-7 4c1.11 0 2-0.89 2-2H5c0 1.11 0.89 2 2 2z"></path></svg>
-                </a>
+        <ul class="header-nav user-nav right" style="padding-right:5px;">
+            <li class="header-nav-item" style="padding-right:12px;">
+                <span class="vcard-username">欢迎<?php echo ($user_info["user_name"]); ?>同学</span>
             </li>
-            <li class="header-nav-item dropdown js-menu-container">
-                <a class="header-nav-link tooltipped tooltipped-s js-menu-target">
-                    <svg aria-hidden="true" class="octicon octicon-plus left" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 9H7v5H5V9H0V7h5V2h2v5h5v2z"></path></svg>
-                    <span class="dropdown-caret"></span></a>
-                <div class="dropdown-menu-content js-menu-content">
-                    <ul class="dropdown-menu dropdown-menu-sw">
-                        <a class="dropdown-item" href="/new" data-ga-click="Header, create new repository">New repository</a>
-                        <a class="dropdown-item" href="/new/import" data-ga-click="Header, import a repository">Import repository</a>
-                        <a class="dropdown-item" href="/organizations/new" data-ga-click="Header, create new organization">New organization</a>
-                    </ul>
-                </div>
+            <li class="header-nav-item" style="padding-right:8px;">
+                <a href="<?php echo U('User/edit_student');?>" class="btn btn-sm">个人信息</a>
             </li>
-            <li class="header-nav-item dropdown js-menu-container">
-                <a class="header-nav-link name tooltipped tooltipped-sw js-menu-target">
-                    <img alt="@hujun123qwe" class="avatar" height="20" src="https://avatars2.githubusercontent.com/u/8892333?v=3&amp;s=40" width="20" />
-                    <span class="dropdown-caret"></span>
-                </a>
-                <div class="dropdown-menu-content js-menu-content">
-                    <div class="dropdown-menu  dropdown-menu-sw">
-                        <div class=" dropdown-header header-nav-current-user css-truncate">
-                            Signed in as <strong class="css-truncate-target">hujun123qwe</strong>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/hujun123qwe" data-ga-click="Header, go to profile, text:your profile">
-                            Your profile
-                        </a>
-                        <a class="dropdown-item" href="/stars" data-ga-click="Header, go to starred repos, text:your stars">
-                            Your stars
-                        </a>
-                        <a class="dropdown-item" href="/explore" data-ga-click="Header, go to explore, text:explore">
-                            Explore
-                        </a>
-                        <a class="dropdown-item" href="/integrations" data-ga-click="Header, go to integrations, text:integrations">
-                            Integrations
-                        </a>
-                        <a class="dropdown-item" href="https://help.github.com" data-ga-click="Header, go to help, text:help">
-                            Help
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/settings/profile" data-ga-click="Header, go to settings, icon:settings">
-                            Settings
-                        </a>
-                        <form accept-charset="UTF-8" action="/logout" class="logout-form" method="post">
-                            <div style="margin:0;padding:0;display:inline">
-                                <input name="utf8" type="hidden" value="&#x2713;" />
-                                <input name="authenticity_token" type="hidden"/>
-                            </div>
-                            <button class="dropdown-item dropdown-signout" data-ga-click="Header, sign out, icon:logout">
-                                Sign out
-                            </button>
-                        </form>
-                    </div>
-                </div>
+            <li class="header-nav-item" style="padding-right:8px;">
+                <a href="<?php echo U('Public/logout');?>" class="btn btn-sm">退出</a>
             </li>
         </ul>
     </div>
@@ -89,31 +38,33 @@
             <div class="columns profilecols">
                 <div class="column one-fourth vcard" itemscope itemtype="http://schema.org/Person">
                     <a href="/account" aria-label="Change your avatar" class="vcard-avatar d-block tooltipped tooltipped-s">
-                        <img alt="" class="avatar rounded-2" height="230" src="https://avatars1.githubusercontent.com/u/8892333?v=3&amp;s=460" width="230" />
+                        <img alt="" class="avatar rounded-2" height="230" src="<?php echo (C("__HOME_IMG__")); ?>/avatar_big.png" width="230" />
                     </a>
-
                     <h1 class="vcard-names my-3">
-                        <div class="vcard-fullname" itemprop="name">胡军<?php echo ($user["user_name"]); ?></div>
-                        <div class="vcard-username" itemprop="additionalName">129084213<?php echo ($user["student_id"]); ?></div>
+                        <div class="vcard-fullname" itemprop="name"><?php echo ($user_info["user_name"]); ?></div>
+                        <div class="vcard-username" itemprop="additionalName"><?php echo ($user_info["student_id"]); ?></div>
                     </h1>
                     <ul class="vcard-details border-top border-gray-light py-3">
                         <li aria-label="Organization" class="vcard-detail py-1 css-truncate css-truncate-target" itemprop="worksFor" title="ploverUAV">
                             <svg aria-hidden="true" class="octicon octicon-organization" height="16" version="1.1" viewBox="0 0 14 16" width="14">
-                                <path d="M4.75 4.95c0.55 0.64 1.34 1.05 2.25 1.05s1.7-0.41 2.25-1.05c0.34 0.63 1 1.05 1.75 1.05 1.11 0 2-0.89 2-2s-0.89-2-2-2c-0.41 0-0.77 0.13-1.08 0.33C9.61 1 8.42 0 7 0S4.39 1 4.08 2.33c-0.31-0.2-0.67-0.33-1.08-0.33-1.11 0-2 0.89-2 2s0.89 2 2 2c0.75 0 1.41-0.42 1.75-1.05z m5.2-1.52c0.2-0.38 0.59-0.64 1.05-0.64 0.66 0 1.2 0.55 1.2 1.2s-0.55 1.2-1.2 1.2-1.17-0.53-1.19-1.17c0.06-0.19 0.11-0.39 0.14-0.59zM7 0.98c1.11 0 2.02 0.91 2.02 2.02s-0.91 2.02-2.02 2.02-2.02-0.91-2.02-2.02S5.89 0.98 7 0.98zM3 5.2c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2c0.45 0 0.84 0.27 1.05 0.64 0.03 0.2 0.08 0.41 0.14 0.59-0.02 0.64-0.53 1.17-1.19 1.17z m10 0.8H1c-0.55 0-1 0.45-1 1v3c0 0.55 0.45 1 1 1v2c0 0.55 0.45 1 1 1h1c0.55 0 1-0.45 1-1v-1h1v3c0 0.55 0.45 1 1 1h2c0.55 0 1-0.45 1-1V12h1v1c0 0.55 0.45 1 1 1h1c0.55 0 1-0.45 1-1V11c0.55 0 1-0.45 1-1V7c0-0.55-0.45-1-1-1zM3 13h-1V10H1V7h2v6z m7-2h-1V9h-1v6H6V9h-1v2h-1V7h6v4z m3-1h-1v3h-1V7h2v3z"></path></svg>ploverUAV</li>
+                                <path d="M4.75 4.95c0.55 0.64 1.34 1.05 2.25 1.05s1.7-0.41 2.25-1.05c0.34 0.63 1 1.05 1.75 1.05 1.11 0 2-0.89 2-2s-0.89-2-2-2c-0.41 0-0.77 0.13-1.08 0.33C9.61 1 8.42 0 7 0S4.39 1 4.08 2.33c-0.31-0.2-0.67-0.33-1.08-0.33-1.11 0-2 0.89-2 2s0.89 2 2 2c0.75 0 1.41-0.42 1.75-1.05z m5.2-1.52c0.2-0.38 0.59-0.64 1.05-0.64 0.66 0 1.2 0.55 1.2 1.2s-0.55 1.2-1.2 1.2-1.17-0.53-1.19-1.17c0.06-0.19 0.11-0.39 0.14-0.59zM7 0.98c1.11 0 2.02 0.91 2.02 2.02s-0.91 2.02-2.02 2.02-2.02-0.91-2.02-2.02S5.89 0.98 7 0.98zM3 5.2c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2c0.45 0 0.84 0.27 1.05 0.64 0.03 0.2 0.08 0.41 0.14 0.59-0.02 0.64-0.53 1.17-1.19 1.17z m10 0.8H1c-0.55 0-1 0.45-1 1v3c0 0.55 0.45 1 1 1v2c0 0.55 0.45 1 1 1h1c0.55 0 1-0.45 1-1v-1h1v3c0 0.55 0.45 1 1 1h2c0.55 0 1-0.45 1-1V12h1v1c0 0.55 0.45 1 1 1h1c0.55 0 1-0.45 1-1V11c0.55 0 1-0.45 1-1V7c0-0.55-0.45-1-1-1zM3 13h-1V10H1V7h2v6z m7-2h-1V9h-1v6H6V9h-1v2h-1V7h6v4z m3-1h-1v3h-1V7h2v3z"></path>
+                            </svg><?php echo ($user_info["academy"]); ?></li>
                         <li aria-label="Home location" class="vcard-detail py-1 css-truncate css-truncate-target" itemprop="homeLocation" title="Anhui Maanshan">
                             <svg aria-hidden="true" class="octicon octicon-location" height="16" version="1.1" viewBox="0 0 12 16" width="12">
-                                <path d="M6 0C2.69 0 0 2.5 0 5.5c0 4.52 6 10.5 6 10.5s6-5.98 6-10.5C12 2.5 9.31 0 6 0z m0 14.55C4.14 12.52 1 8.44 1 5.5 1 3.02 3.25 1 6 1c1.34 0 2.61 0.48 3.56 1.36 0.92 0.86 1.44 1.97 1.44 3.14 0 2.94-3.14 7.02-5 9.05z m2-9.05c0 1.11-0.89 2-2 2s-2-0.89-2-2 0.89-2 2-2 2 0.89 2 2z"></path></svg>Anhui Maanshan</li>
+                                <path d="M6 0C2.69 0 0 2.5 0 5.5c0 4.52 6 10.5 6 10.5s6-5.98 6-10.5C12 2.5 9.31 0 6 0z m0 14.55C4.14 12.52 1 8.44 1 5.5 1 3.02 3.25 1 6 1c1.34 0 2.61 0.48 3.56 1.36 0.92 0.86 1.44 1.97 1.44 3.14 0 2.94-3.14 7.02-5 9.05z m2-9.05c0 1.11-0.89 2-2 2s-2-0.89-2-2 0.89-2 2-2 2 0.89 2 2z"></path>
+                            </svg><?php echo ($user_info["iclass"]); ?></li>
                         <li aria-label="Email" class="vcard-detail py-1 css-truncate css-truncate-target" itemprop="email">
                             <svg aria-hidden="true" class="octicon octicon-mail" height="16" version="1.1" viewBox="0 0 14 16" width="14">
                                 <path d="M0 4v8c0 0.55 0.45 1 1 1h12c0.55 0 1-0.45 1-1V4c0-0.55-0.45-1-1-1H1c-0.55 0-1 0.45-1 1z m13 0L7 9 1 4h12zM1 5.5l4 3L1 11.5V5.5z m1 6.5l3.5-3 1.5 1.5 1.5-1.5 3.5 3H2z m11-0.5L9 8.5l4-3v6z"></path></svg>
-                            <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;%68%75%6a%75%6e%31%32%33%71%77%65@%31%36%33.%43%4f%4d">hujun123qwe@163.COM</a></li>
+                            <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;%68%75%6a%75%6e%31%32%33%71%77%65@%31%36%33.%43%4f%4d"><?php echo ($user_info["email"]); ?></a></li>
                         <li aria-label="Blog or website" class="vcard-detail py-1 css-truncate css-truncate-target" itemprop="url">
                             <svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-                                <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg><a href="http://me.hujun.ren" class="url" rel="nofollow me">http://me.hujun.ren</a></li>
+                                <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+                            </svg><a href="http://me.hujun.ren" class="url" rel="nofollow me"><?php echo ($user_info["phone"]); ?></a></li>
                         <li aria-label="Member since" class="vcard-detail py-1 css-truncate css-truncate-target">
                             <svg aria-hidden="true" class="octicon octicon-clock" height="16" version="1.1" viewBox="0 0 14 16" width="14">
-                                <path d="M8 8h3v2H7c-0.55 0-1-0.45-1-1V4h2v4z m-1-5.7c3.14 0 5.7 2.56 5.7 5.7S10.14 13.7 7 13.7 1.3 11.14 1.3 8s2.56-5.7 5.7-5.7m0-1.3C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7S10.86 1 7 1z"></path></svg>
-                            <span class="join-label">Joined on </span><local-time class="join-date" datetime="2014-09-24T02:55:08Z" day="numeric" month="short" year="numeric">Sep 24, 2014</local-time></li>
+                                <path d="M8 8h3v2H7c-0.55 0-1-0.45-1-1V4h2v4z m-1-5.7c3.14 0 5.7 2.56 5.7 5.7S10.14 13.7 7 13.7 1.3 11.14 1.3 8s2.56-5.7 5.7-5.7m0-1.3C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7S10.86 1 7 1z"></path>
+                            </svg><span class="join-label">Joined on </span><local-time class="join-date" datetime="2014-09-24T02:55:08Z" day="numeric" month="short" year="numeric">Sep 24, 2014</local-time></li>
                     </ul>
 
                     <div class="vcard-stats border-top border-bottom border-gray-light mb-3 py-3">
@@ -148,7 +99,7 @@
 	                                <a href="#" class="btn button-change-profile-picture">
 	                                    <label for="upload-profile-picture">
 	                                        选择本地照片
-	                                        <input id="upload-profile-picture" type="file" class="manual-file-chooser js-manual-file-chooser js-avatar-field">
+	                                        <input id="upload-profile-picture" type="file" name="file_name" class="manual-file-chooser js-manual-file-chooser js-avatar-field">
 	                                    </label>
 	                                </a>
 

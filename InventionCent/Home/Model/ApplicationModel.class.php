@@ -29,7 +29,7 @@ class ApplicationModel extends Model{
         return $this->where($map)->select();
     }
     
-    public function edit($map,$item_id){
+    public function editItem($map,$item_id){
         if(empty($map)){
             return 0;
         }else{

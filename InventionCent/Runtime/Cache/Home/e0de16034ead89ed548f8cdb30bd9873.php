@@ -124,8 +124,8 @@
                             申请管理
                         </h3>
                         <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('Application/item_list');?>" ><i class="fa fa-wrench"></i><span class="nav-label">申请列表</span></a></li>
-                        <!--<li class="js-selected-navigation-item menu-item"><a href="link" ><i class="fa fa-map-signs"></i><span class="nav-label">已通过申请</span></a></li>-->
-                        <!--<li class="js-selected-navigation-item menu-item"><a href="upload" ><i class="fa fa-upload"></i><span class="nav-label">未通过申请</span></a></li>-->
+                        <li class="js-selected-navigation-item menu-item"><a href="link" ><i class="fa fa-map-signs"></i><span class="nav-label">已通过申请</span></a></li>
+                        <li class="js-selected-navigation-item menu-item"><a href="upload" ><i class="fa fa-upload"></i><span class="nav-label">未通过申请</span></a></li>
                         <li class="js-selected-navigation-item menu-item"><a href="news" ><i class="fa fa-wrench"></i><span class="nav-label">无效申请</span></a></li>
                     </nav>
                     <nav class="menu">
@@ -145,24 +145,44 @@
                 </div>
                 <div class="column three-fourths">
                     
-    <table class="table table-bordered table-striped table-hover">
-        <thead><tr><th>#</th><th>编号</th><th>用户名</th><th>学号</th><th>学院</th><th>班级</th><th>邮箱</th><th>手机号码</th><th>注册时间</th></tr></thead>
-        <tbody>
-        <?php if(is_array($lists)): $k = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><tr class="js-navigation-item">
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($k); ?></span></td>
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["user_id"]); ?></span></td>
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["user_name"]); ?></span></td>
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["student_id"]); ?></span></td>
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["academy"]); ?></span></td>
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["iclass"]); ?></span></td>
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["email"]); ?></span></td>
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["phone"]); ?></span></td>
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["add_time"]); ?></span></td>
-            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-        </tbody>
-    </table>
-
-    <?php if(!empty($page)): ?><ul class="pagination"><?php echo ($page); ?></ul><?php endif; ?>
+        <div class="boxed-group">
+            <h3>编辑项目</h3>
+            <div class="boxed-group-inner clearfix">
+                <form accept-charset="UTF-8" action="<?php echo U('Application/edit');?>" class="columns js-uploadable-container js-upload-avatar-image is-default" method="post">
+                    <input type="hidden" name="item_id" value="<?php echo ($item_info["item_id"]); ?>"/>
+                    <div class="column two-thirds">
+                        <dl class="form-group">
+                            <dt><label for="user_profile_name">项目名称</label></dt>
+                            <dd><input class="form-control" id="user_profile_name" name="item_name" size="30" type="text" value="<?php echo ($item_info["item_name"]); ?>" /></dd>
+                        </dl>
+                        <dl class="form-group">
+                            <dt><label for="h1">申请人姓名</label></dt>
+                            <dd><input class="form-control" id="h1" name="user_name" size="30" type="text" value="<?php echo ($item_info["user_name"]); ?>" /></dd>
+                        </dl>
+                        <dl class="form-group">
+                            <dt><label for="h2">申请人学号</label></dt>
+                            <dd><input class="form-control" id="h2" name="student_id" size="30" type="text" value="<?php echo ($item_info["student_id"]); ?>" /></dd>
+                        </dl>
+                        <dl class="form-group">
+                            <dt><label for="h2">申请人学院</label></dt>
+                            <dd><input class="form-control" id="h2" name="academy" size="30" type="text" value="<?php echo ($item_info["academy"]); ?>" /></dd>
+                        </dl>
+                        <dl class="form-group">
+                            <dt><label for="h3">申请人班级</label></dt>
+                            <dd><input class="form-control" id="h3" name="iclass" size="30" type="text" value="<?php echo ($item_info["iclass"]); ?>" /></dd>
+                        </dl>
+                        <dl class="form-group">
+                            <dt><label for="h5">联系手机</label></dt>
+                            <dd><input class="form-control" id="h5" name="phone" size="30" type="text" value="<?php echo ($item_info["phone"]); ?>" /></dd>
+                        </dl>
+                        <p><button type="submit" class="btn btn-primary">确认 更改</button></p>
+                    </div>
+                </form>
+                <p class="note">
+                    We store your personal data in the Anhui University of Technology only.
+                </p>
+            </div>
+        </div>
 
                 </div>
             </div>

@@ -1,0 +1,63 @@
+<extend name="$layout_login"/>
+<block name="css&js">
+    <link rel="stylesheet" href="{$Think.config.__HOME_CSS__}/frameworks.css" type="text/css"/>
+    <link rel="stylesheet" href="{$Think.config.__HOME_CSS__}/github.css" type="text/css"/>
+    <link rel="stylesheet" href="{$Think.config.__HOME_CSS__}/site.css" type="text/css"/>
+</block>
+<block name="container">
+
+    <!-- 登陆框 -->
+    <div class="panel-lite">
+        <a href="{:C('HOME_PAGE')}"><h1>大学生创新学分审核系统</h1></a>
+        <div class="setup-wrapper">
+
+            <div class="setup-main">
+                <div class="setup-form-container">
+
+                    <form action="{:U('Application/itemRoute')}" class="setup-form js-braintree-encrypt" method="get">
+                        <h2 class="setup-form-title mb-3">
+                            选择你要申请的创新学分类型
+                        </h2>
+                        <div class="currency-container js-details-container">
+                            <label class="plan-choice plan-choice-free js-plan-choice-label open">
+                                <input type="radio" class="plan-choice-radio js-plan-choice" name="plan" value="1" checked>
+                                大学生科研训练计划（SRTP）
+                            </label>
+                            <label class="plan-choice plan-choice-free js-plan-choice-label open">
+                                <input type="radio" class="plan-choice-radio js-plan-choice" name="plan" value="2">
+                                学科竞赛
+                            </label>
+                            <label class="plan-choice plan-choice-free js-plan-choice-label open">
+                                <input type="radio" class="plan-choice-radio js-plan-choice" name="plan" value="3">
+                                “三创”教育课程体系
+                            </label>
+                            <label class="plan-choice plan-choice-free js-plan-choice-label open">
+                                <input type="radio" class="plan-choice-radio js-plan-choice" name="plan" value="4">
+                                论文发表学分认定
+                            </label>
+                            <label class="plan-choice plan-choice-free js-plan-choice-label open">
+                                <input type="radio" class="plan-choice-radio js-plan-choice" name="plan" value="5">
+                                专利成果
+                            </label>
+                            <label class="plan-choice plan-choice-free js-plan-choice-label open">
+                                <input type="radio" class="plan-choice-radio js-plan-choice" name="plan" value="6">
+                                其他科研、学术等创新活动
+                            </label>
+                            <p class="note mb-3">不用担心, 你可以在以后添加这些.</p>
+                        </div>
+                        <input type="submit" value="确 定" class="btn btn-primary js-choose-plan-submit">
+                    </form>
+                    <button class="btn btn-primary js-choose-plan-submit">
+                        跳过此步
+                    </button>
+                </div> <!-- /.setup-form-container -->
+            </div> <!-- /.setup-main -->
+        </div> <!-- /.setup-wrapper -->
+    </div>
+
+</block>
+
+
+
+
+

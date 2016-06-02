@@ -25,19 +25,6 @@
 
     </style>
     
-<script type="text/javascript" src="<?php echo (C("__HOME_JS__")); ?>/jquery.min.js"></script>
-<script type="text/javascript" src="<?php echo (C("__HOME_JS__")); ?>/jquery.form.js"></script>
-<!-- <script type="text/javascript" src="<?php echo (C("__HOME_JS__")); ?>/jquery.min.js"></script>
-<script type="text/javascript" src="<?php echo (C("__HOME_JS__")); ?>/jquery.form.js"></script> -->
-<script language="JavaScript">
-    function deleteItem($item_id){
-        alert("点击了确定");
-        $.post(<?php echo U('Application/deleteItem');?>,{'item_id':$item_id},
-            function(data){$('#result').html(data).show();
-        },'json');
-    }
-</script>
-
     <title><?php echo ($meta_title); ?></title>
 </head>
 
@@ -137,8 +124,8 @@
                             申请管理
                         </h3>
                         <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('Application/item_list');?>" ><i class="fa fa-wrench"></i><span class="nav-label">申请列表</span></a></li>
-                        <li class="js-selected-navigation-item menu-item"><a href="link" ><i class="fa fa-map-signs"></i><span class="nav-label">已通过申请</span></a></li>
-                        <li class="js-selected-navigation-item menu-item"><a href="upload" ><i class="fa fa-upload"></i><span class="nav-label">未通过申请</span></a></li>
+                        <!--<li class="js-selected-navigation-item menu-item"><a href="link" ><i class="fa fa-map-signs"></i><span class="nav-label">已通过申请</span></a></li>-->
+                        <!--<li class="js-selected-navigation-item menu-item"><a href="upload" ><i class="fa fa-upload"></i><span class="nav-label">未通过申请</span></a></li>-->
                         <li class="js-selected-navigation-item menu-item"><a href="news" ><i class="fa fa-wrench"></i><span class="nav-label">无效申请</span></a></li>
                     </nav>
                     <nav class="menu">
@@ -193,8 +180,8 @@
                 <td class="content"><?php echo ($vo["user_name"]); ?></td>
                 <td class="content"><?php echo ($vo["add_time"]); ?></td>
                 <td class="content"><?php echo ($vo["item_status"]); ?></td>
-                <td><a>编辑</a>&nbsp;
-                <a href="#" onClick="deleteItem(<?php echo ($vo["item_id"]); ?>)" id="result">删除</a>
+                <td><a href="editItem?item_id=<?php echo ($vo["item_id"]); ?>">编辑</a>&nbsp;
+                <a href="deleteItem?item_id=<?php echo ($vo["item_id"]); ?>">删除</a>
             </tr><?php endforeach; endif; else: echo "" ;endif; ?>
         </tbody>
     </table>

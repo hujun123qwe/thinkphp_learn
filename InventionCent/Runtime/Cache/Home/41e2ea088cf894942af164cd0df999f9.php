@@ -24,6 +24,7 @@
         .breadcrumb>.active{color:#777}
 
     </style>
+    
     <title><?php echo ($meta_title); ?></title>
 </head>
 
@@ -35,7 +36,7 @@
         <ul class="header-nav left" role="navigation"></ul>
         <ul class="header-nav user-nav right" id="user-links">
             <li class="header-nav-item">
-                <a href="/notifications" aria-label="You have no unread notifications" class="header-nav-link notification-indicator tooltipped tooltipped-s js-socket-channel js-notification-indicator" data-channel="notification-changed-v2:8892333" data-ga-click="Header, go to notifications, icon:read" data-hotkey="g n">
+                <a href="/notifications" aria-label="You have no unread notifications" class="header-nav-link notification-indicator tooltipped tooltipped-s js-socket-channel js-notification-indicator" data-channel="notification-changed-v2:8892333" data-ga-click="Header, go to notifications, icon:read">
                     <span class="mail-status "></span>
                     <svg aria-hidden="true" class="octicon octicon-bell" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 12v1H0v-1l0.73-0.58c0.77-0.77 0.81-2.55 1.19-4.42 0.77-3.77 4.08-5 4.08-5 0-0.55 0.45-1 1-1s1 0.45 1 1c0 0 3.39 1.23 4.16 5 0.38 1.88 0.42 3.66 1.19 4.42l0.66 0.58z m-7 4c1.11 0 2-0.89 2-2H5c0 1.11 0.89 2 2 2z"></path></svg>
                 </a>
@@ -143,11 +144,7 @@
                   </nav>
                 </div>
                 <div class="column three-fourths">
-                    <div class="boxed-group">
-                        <h3>后台 管理 系统</h3>
-                        <div class="boxed-group-inner clearfix">
-                            <div class="column">
-                                
+                    
     <table class="table table-bordered table-striped table-hover">
         <thead><tr><th>#</th><th>编号</th><th>学分类型</th><th>项目类型</th><th>申请人</th><th>通过时间</th><th>是否通过</th></tr></thead>
         <tbody>
@@ -164,9 +161,6 @@
 
     <?php if(!empty($page)): ?><ul class="pagination"><?php echo ($page); ?></ul><?php endif; ?>
 
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

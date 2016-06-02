@@ -14,70 +14,19 @@
 
 <body>
 <div class="header header-logged-in true" role="banner">
-    <div class="container clearfix">
+    <div class="container" style="margin-top:12px;">
         <a class="header-logo-invertocat" href="<?php echo C('HOME_PAGE');?>"><h2>大学生创新学分审核系统</h2></a>
         <div class="header-search   js-site-search" role="search"></div>
         <ul class="header-nav left" role="navigation"></ul>
-        <ul class="header-nav user-nav right" id="user-links">
-            <li class="header-nav-item">
-                <a href="/notifications" aria-label="You have no unread notifications" class="header-nav-link notification-indicator tooltipped tooltipped-s js-socket-channel js-notification-indicator" data-channel="notification-changed-v2:8892333" data-ga-click="Header, go to notifications, icon:read" data-hotkey="g n">
-                    <span class="mail-status "></span>
-                    <svg aria-hidden="true" class="octicon octicon-bell" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 12v1H0v-1l0.73-0.58c0.77-0.77 0.81-2.55 1.19-4.42 0.77-3.77 4.08-5 4.08-5 0-0.55 0.45-1 1-1s1 0.45 1 1c0 0 3.39 1.23 4.16 5 0.38 1.88 0.42 3.66 1.19 4.42l0.66 0.58z m-7 4c1.11 0 2-0.89 2-2H5c0 1.11 0.89 2 2 2z"></path></svg>
-                </a>
+        <ul class="header-nav user-nav right" style="padding-right:5px;">
+            <li class="header-nav-item" style="padding-right:12px;">
+                <span class="vcard-username">欢迎<?php echo ($user_info["user_name"]); ?>同学</span>
             </li>
-            <li class="header-nav-item dropdown js-menu-container">
-                <a class="header-nav-link tooltipped tooltipped-s js-menu-target">
-                    <svg aria-hidden="true" class="octicon octicon-plus left" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 9H7v5H5V9H0V7h5V2h2v5h5v2z"></path></svg>
-                    <span class="dropdown-caret"></span></a>
-                <div class="dropdown-menu-content js-menu-content">
-                    <ul class="dropdown-menu dropdown-menu-sw">
-                        <a class="dropdown-item" href="/new" data-ga-click="Header, create new repository">New repository</a>
-                        <a class="dropdown-item" href="/new/import" data-ga-click="Header, import a repository">Import repository</a>
-                        <a class="dropdown-item" href="/organizations/new" data-ga-click="Header, create new organization">New organization</a>
-                    </ul>
-                </div>
+            <li class="header-nav-item" style="padding-right:8px;">
+                <a href="<?php echo U('User/edit_student');?>" class="btn btn-sm">个人信息</a>
             </li>
-            <li class="header-nav-item dropdown js-menu-container">
-                <a class="header-nav-link name tooltipped tooltipped-sw js-menu-target">
-                    <img alt="@hujun123qwe" class="avatar" height="20" src="https://avatars2.githubusercontent.com/u/8892333?v=3&amp;s=40" width="20" />
-                    <span class="dropdown-caret"></span>
-                </a>
-                <div class="dropdown-menu-content js-menu-content">
-                    <div class="dropdown-menu  dropdown-menu-sw">
-                        <div class=" dropdown-header header-nav-current-user css-truncate">
-                            Signed in as <strong class="css-truncate-target">hujun123qwe</strong>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/hujun123qwe" data-ga-click="Header, go to profile, text:your profile">
-                            Your profile
-                        </a>
-                        <a class="dropdown-item" href="/stars" data-ga-click="Header, go to starred repos, text:your stars">
-                            Your stars
-                        </a>
-                        <a class="dropdown-item" href="/explore" data-ga-click="Header, go to explore, text:explore">
-                            Explore
-                        </a>
-                        <a class="dropdown-item" href="/integrations" data-ga-click="Header, go to integrations, text:integrations">
-                            Integrations
-                        </a>
-                        <a class="dropdown-item" href="https://help.github.com" data-ga-click="Header, go to help, text:help">
-                            Help
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/settings/profile" data-ga-click="Header, go to settings, icon:settings">
-                            Settings
-                        </a>
-                        <form accept-charset="UTF-8" action="/logout" class="logout-form" method="post">
-                            <div style="margin:0;padding:0;display:inline">
-                                <input name="utf8" type="hidden" value="&#x2713;" />
-                                <input name="authenticity_token" type="hidden"/>
-                            </div>
-                            <button class="dropdown-item dropdown-signout" data-ga-click="Header, sign out, icon:logout">
-                                Sign out
-                            </button>
-                        </form>
-                    </div>
-                </div>
+            <li class="header-nav-item" style="padding-right:8px;">
+                <a href="<?php echo U('Public/logout');?>" class="btn btn-sm">退出</a>
             </li>
         </ul>
     </div>
@@ -89,7 +38,7 @@
             <div class="columns profilecols">
                 <div class="column one-fourth vcard" itemscope itemtype="http://schema.org/Person">
                     <a href="/account" aria-label="Change your avatar" class="vcard-avatar d-block tooltipped tooltipped-s">
-                        <img alt="" class="avatar rounded-2" height="230" src="https://avatars1.githubusercontent.com/u/8892333?v=3&amp;s=460" width="230" />
+                        <img alt="" class="avatar rounded-2" height="230" src="<?php echo (C("__HOME_IMG__")); ?>/avatar_big.png" width="230" />
                     </a>
                     <h1 class="vcard-names my-3">
                         <div class="vcard-fullname" itemprop="name"><?php echo ($user_info["user_name"]); ?></div>
@@ -138,26 +87,21 @@
 
 <div class="column three-fourths">
     <div class="tabnav">
-        <div class="right">
-            <a href="/account" class="btn btn-sm">
-                编辑
-            </a>
+        <div class="right"><a href="<?php echo U('Application/chooseItem');?>" class="btn btn-sm">我要申请</a>
         </div>
-
         <nav class="tabnav-tabs" data-pjax role="navigation">
-            <a href="" class="tabnav-tab selected" aria-selected="true" role="tab">
+            <a href="<?php echo U('User/index_student');?>" class="tabnav-tab selected" aria-selected="true" role="tab">
                 <svg aria-hidden="true" class="octicon octicon-diff-added" height="16" version="1.1" viewBox="0 0 14 16" width="14">
                     <path d="M13 1H1C0.45 1 0 1.45 0 2v12c0 0.55 0.45 1 1 1h12c0.55 0 1-0.45 1-1V2c0-0.55-0.45-1-1-1z m0 13H1V2h12v12zM6 9H3V7h3V4h2v3h3v2H8v3H6V9z">
-
                     </path>
                 </svg>
                 全部申请
             </a>
-            <a href="" class="tabnav-tab " aria-selected="false" role="tab">
+            <a href="<?php echo U('Application/item_verified');?>" class="tabnav-tab " aria-selected="false" role="tab">
                 <svg aria-hidden="true" class="octicon octicon-repo" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
                 已通过申请
             </a>
-            <a href="" class="tabnav-tab " aria-selected="false" role="tab">
+            <a href="<?php echo U('Application/item_unverify');?>" class="tabnav-tab " aria-selected="false" role="tab">
                 <svg aria-hidden="true" class="octicon octicon-rss" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M2 13H0V11c1.11 0 2 0.89 2 2zM0 3v1c4.97 0 9 4.03 9 9h1c0-5.52-4.48-10-10-10z m0 4v1c2.75 0 5 2.25 5 5h1c0-3.31-2.69-6-6-6z"></path></svg>
                 未通过申请
             </a>
@@ -170,7 +114,7 @@
             <div class="columns popular-repos">
                 <div class="single-column">
                     <div class="boxed-group flush">
-                        <h3>Popular repositories</h3>
+                        <h3>大学生科研训练计划（SRTP）</h3>
                         <ul class="boxed-group-inner mini-repo-list">
                             <?php if(is_array($item_list)): $i = 0; $__LIST__ = $item_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="public source">
                                     <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
@@ -189,6 +133,112 @@
                                 </li><?php endforeach; endif; else: echo "" ;endif; ?>
                         </ul>
                     </div>
+
+                    <div class="boxed-group flush">
+                        <h3>学科竞赛</h3>
+                        <ul class="boxed-group-inner mini-repo-list">
+                            <?php if(is_array($item_list)): $i = 0; $__LIST__ = $item_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="public source">
+                                    <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
+                                        <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12">
+                                            <path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                                        <span class="repo-and-owner css-truncate-target">
+                                            <span class="repo" title="点击编辑"><?php echo ($vo["item_name"]); ?></span>
+                                        </span>
+                                        <span class="stars">
+                                            审核状态<?php echo ($vo["item_status"]); ?>
+                                        </span>
+                                    <span class="repo-description css-truncate-target">
+                                        属于什么类型的<?php echo ($vo["item_type"]); ?>
+                                    </span>
+                                    </a>
+                                </li><?php endforeach; endif; else: echo "" ;endif; ?>
+                        </ul>
+                    </div>
+
+                    <div class="boxed-group flush">
+                        <h3>“三创”教育课程体系</h3>
+                        <ul class="boxed-group-inner mini-repo-list">
+                            <?php if(is_array($item_list)): $i = 0; $__LIST__ = $item_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="public source">
+                                    <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
+                                        <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12">
+                                            <path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                                        <span class="repo-and-owner css-truncate-target">
+                                            <span class="repo" title="点击编辑"><?php echo ($vo["item_name"]); ?></span>
+                                        </span>
+                                        <span class="stars">
+                                            审核状态<?php echo ($vo["item_status"]); ?>
+                                        </span>
+                                    <span class="repo-description css-truncate-target">
+                                        属于什么类型的<?php echo ($vo["item_type"]); ?>
+                                    </span>
+                                    </a>
+                                </li><?php endforeach; endif; else: echo "" ;endif; ?>
+                        </ul>
+                    </div>
+
+                    <div class="boxed-group flush">
+                        <h3>论文</h3>
+                        <ul class="boxed-group-inner mini-repo-list">
+                            <?php if(is_array($item_list)): $i = 0; $__LIST__ = $item_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="public source">
+                                    <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
+                                        <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12">
+                                            <path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                                        <span class="repo-and-owner css-truncate-target">
+                                            <span class="repo" title="点击编辑"><?php echo ($vo["item_name"]); ?></span>
+                                        </span>
+                                        <span class="stars">
+                                            审核状态<?php echo ($vo["item_status"]); ?>
+                                        </span>
+                                    <span class="repo-description css-truncate-target">
+                                        属于什么类型的<?php echo ($vo["item_type"]); ?>
+                                    </span>
+                                    </a>
+                                </li><?php endforeach; endif; else: echo "" ;endif; ?>
+                        </ul>
+                    </div>
+
+                    <div class="boxed-group flush">
+                        <h3>专利成果</h3>
+                        <ul class="boxed-group-inner mini-repo-list">
+                            <?php if(is_array($item_list)): $i = 0; $__LIST__ = $item_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="public source">
+                                    <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
+                                        <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12">
+                                            <path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                                        <span class="repo-and-owner css-truncate-target">
+                                            <span class="repo" title="点击编辑"><?php echo ($vo["item_name"]); ?></span>
+                                        </span>
+                                        <span class="stars">
+                                            审核状态<?php echo ($vo["item_status"]); ?>
+                                        </span>
+                                    <span class="repo-description css-truncate-target">
+                                        属于什么类型的<?php echo ($vo["item_type"]); ?>
+                                    </span>
+                                    </a>
+                                </li><?php endforeach; endif; else: echo "" ;endif; ?>
+                        </ul>
+                    </div>
+
+                    <div class="boxed-group flush">
+                        <h3>其他</h3>
+                        <ul class="boxed-group-inner mini-repo-list">
+                            <?php if(is_array($item_list)): $i = 0; $__LIST__ = $item_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="public source">
+                                    <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
+                                        <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12">
+                                            <path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                                        <span class="repo-and-owner css-truncate-target">
+                                            <span class="repo" title="点击编辑"><?php echo ($vo["item_name"]); ?></span>
+                                        </span>
+                                        <span class="stars">
+                                            审核状态<?php echo ($vo["item_status"]); ?>
+                                        </span>
+                                    <span class="repo-description css-truncate-target">
+                                        属于什么类型的<?php echo ($vo["item_type"]); ?>
+                                    </span>
+                                    </a>
+                                </li><?php endforeach; endif; else: echo "" ;endif; ?>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>

@@ -19,7 +19,7 @@
 
     <!-- 登陆框 -->
     <div class="panel-lite" style="width: 400px;">
-        <div class="brand"><a href="<?php echo C('HOME_PAGE');?>"><h2>大学生创新学分审核系统</h2></a></div>
+        <a href="<?php echo C('HOME_PAGE');?>"><h1>大学生创新学分审核系统</h1></a>
         <form class="login-form" action="<?php echo U('Public/login');?>" method="post">
             <div class="form-group">
                 <input type="text" required="required" class="form-control" name="username" placeholder="学号">
@@ -31,7 +31,7 @@
                 <div class="input-group">
                     <input type="text" required="required" class="col-sm-4 form-control" name="verify" placeholder="验证码">
                     <span class="input-group-addon verifyimg-box" style="display: table-cell;padding-left:45px;">
-                        <img class="verifyimg reload-verify" alt="CoreThink验证码" src="<?php echo U('Public/verify');?>" title="点击刷新">
+                        <img class="verifyimg reload-verify" alt="验证码" src="<?php echo U('Public/verify');?>" title="点击刷新">
                     </span>
                 </div>
             </div>
