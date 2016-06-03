@@ -64,20 +64,20 @@
                         <li aria-label="Member since" class="vcard-detail py-1 css-truncate css-truncate-target">
                             <svg aria-hidden="true" class="octicon octicon-clock" height="16" version="1.1" viewBox="0 0 14 16" width="14">
                                 <path d="M8 8h3v2H7c-0.55 0-1-0.45-1-1V4h2v4z m-1-5.7c3.14 0 5.7 2.56 5.7 5.7S10.14 13.7 7 13.7 1.3 11.14 1.3 8s2.56-5.7 5.7-5.7m0-1.3C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7S10.86 1 7 1z"></path>
-                            </svg><span class="join-label">Joined on </span><local-time class="join-date" datetime="2014-09-24T02:55:08Z" day="numeric" month="short" year="numeric">Sep 24, 2014</local-time></li>
+                            </svg><span class="join-label">Joined on </span><local-time class="join-date" datetime="2014-09-24T02:55:08Z" day="numeric" month="short" year="numeric">{$user_info.add_time|date="D F d Y",###}</local-time></li>
                     </ul>
 
                     <div class="vcard-stats border-top border-bottom border-gray-light mb-3 py-3">
                         <a class="vcard-stat">
-                            <strong class="vcard-stat-count d-block">1</strong>
+                            <strong class="vcard-stat-count d-block">{$application_count}</strong>
                             <span class="text-muted">提交申请</span>
                         </a>
                         <a class="vcard-stat">
-                            <strong class="vcard-stat-count d-block">6</strong>
+                            <strong class="vcard-stat-count d-block">{$application_verified}</strong>
                             <span class="text-muted">通过申请</span>
                         </a>
                         <a class="vcard-stat">
-                            <strong class="vcard-stat-count d-block">0</strong>
+                            <strong class="vcard-stat-count d-block">{$credits_value}</strong>
                             <span class="text-muted">创新学分</span>
                         </a>
                     </div>

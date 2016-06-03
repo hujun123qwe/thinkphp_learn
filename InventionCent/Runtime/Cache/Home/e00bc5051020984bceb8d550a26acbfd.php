@@ -64,20 +64,20 @@
                         <li aria-label="Member since" class="vcard-detail py-1 css-truncate css-truncate-target">
                             <svg aria-hidden="true" class="octicon octicon-clock" height="16" version="1.1" viewBox="0 0 14 16" width="14">
                                 <path d="M8 8h3v2H7c-0.55 0-1-0.45-1-1V4h2v4z m-1-5.7c3.14 0 5.7 2.56 5.7 5.7S10.14 13.7 7 13.7 1.3 11.14 1.3 8s2.56-5.7 5.7-5.7m0-1.3C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7S10.86 1 7 1z"></path>
-                            </svg><span class="join-label">Joined on </span><local-time class="join-date" datetime="2014-09-24T02:55:08Z" day="numeric" month="short" year="numeric">Sep 24, 2014</local-time></li>
+                            </svg><span class="join-label">Joined on </span><local-time class="join-date" datetime="2014-09-24T02:55:08Z" day="numeric" month="short" year="numeric"><?php echo (date("D F d Y",$user_info["add_time"])); ?></local-time></li>
                     </ul>
 
                     <div class="vcard-stats border-top border-bottom border-gray-light mb-3 py-3">
                         <a class="vcard-stat">
-                            <strong class="vcard-stat-count d-block">1</strong>
+                            <strong class="vcard-stat-count d-block"><?php echo ($application_count); ?></strong>
                             <span class="text-muted">提交申请</span>
                         </a>
                         <a class="vcard-stat">
-                            <strong class="vcard-stat-count d-block">6</strong>
+                            <strong class="vcard-stat-count d-block"><?php echo ($application_verified); ?></strong>
                             <span class="text-muted">通过申请</span>
                         </a>
                         <a class="vcard-stat">
-                            <strong class="vcard-stat-count d-block">0</strong>
+                            <strong class="vcard-stat-count d-block"><?php echo ($credits_value); ?></strong>
                             <span class="text-muted">创新学分</span>
                         </a>
                     </div>
@@ -117,18 +117,20 @@
                         <h3>大学生科研训练计划（SRTP）</h3>
                         <ul class="boxed-group-inner mini-repo-list">
                             <?php if(is_array($item_list)): $i = 0; $__LIST__ = $item_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="public source">
-                                    <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
+                                   <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
                                         <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12">
-                                            <path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                                            <path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path>
+                                        </svg>
                                         <span class="repo-and-owner css-truncate-target">
                                             <span class="repo" title="点击编辑"><?php echo ($vo["item_name"]); ?></span>
                                         </span>
+
                                         <span class="stars">
                                             审核状态<?php echo ($vo["item_status"]); ?>
                                         </span>
-                                    <span class="repo-description css-truncate-target">
-                                        属于什么类型的<?php echo ($vo["item_type"]); ?>
-                                    </span>
+                                        <span class="repo-description css-truncate-target">
+                                            申请时间<?php echo ($vo["item_time"]); ?>
+                                        </span>
                                     </a>
                                 </li><?php endforeach; endif; else: echo "" ;endif; ?>
                         </ul>

@@ -2,12 +2,12 @@
 namespace Home\Controller;
 use Think\Controller;
 class UserController extends Controller{
-//    protected function _initialize() {
-//        // 登录检测
-//        if (!is_login()) { //还没登录跳转到登录页面
-//            $this->redirect('Home/Public/login');
-//        }
-//    }
+   protected function _initialize() {
+       // 登录检测
+       if (!is_login()) { //还没登录跳转到登录页面
+           $this->redirect('Home/Public/login');
+       }
+   }
     /**
      * 管理员列表
      * @param $tab 配置分组ID
@@ -28,11 +28,23 @@ class UserController extends Controller{
     }
 
     public function index_student(){
-        $user_id = 6;
+
+        $user_id = is_login();
         $userDB = D('User');
         $user_info = $userDB->getUserInfo($user_id);
+
         $itemDB = D('Application');
-        $item_list = $itemDB->getItemList($user_info[0]['student_id']);
+        $item_list = $itemDB->getItemList($user_info[0]['user_id']);
+        $application_count = $itemDB->getApplicationCount($user_info[0]['user_id']);
+        $application_verified = $itemDB->getApplicationVerified($user_info[0]['user_id']);
+
+        $creditsDB = D('Credits');
+        $credits_value = $creditsDB->getCreditsValue($user_id);
+
+        $this->assign('application_count',$application_count);
+        $this->assign('application_verified',$application_verified);
+        $this->assign('credits_value',$credits_value);
+
         $this->assign('user_info',$user_info[0]);
         $this->assign('item_list',$item_list);
         $this->assign('meta_title','个人主页 | 大学生创新学分审核系统');
@@ -157,16 +169,27 @@ class UserController extends Controller{
                 $this->error('数据传递错误:(');
             }
         }else{
-            // $user_id = is_login();
-            // if($user_id){
-            //     $userDB = D('user');
-            //     $user_info = $userDB->getUserInfo($user_id);
-            // }else{
-            //     $this->error('你已经掉线了',U('Public/login'));
-            // }
+            $user_id = is_login();
+            if($user_id){
+                $userDB = D('user');
+                $user_info = $userDB->getUserInfo($user_id);
+            }else{
+                $this->error('你已经掉线了',U('Public/login'));
+            }
 //测试用            
             $userDB = D('user');
-            $user_info = $userDB->getUserInfo(6);
+            $user_info = $userDB->getUserInfo($user_id);
+
+            $itemDB = D('Application');
+            $application_count = $itemDB->getApplicationCount($user_info[0]['user_id']);
+            $application_verified = $itemDB->getApplicationVerified($user_info[0]['user_id']);
+
+            $creditsDB = D('Credits');
+            $credits_value = $creditsDB->getCreditsValue($user_id);
+
+            $this->assign('application_count',$application_count);
+            $this->assign('application_verified',$application_verified);
+            $this->assign('credits_value',$credits_value);
             $this->assign('meta_title','编辑个人信息 | 大学生创新学分审核系统');
             $this->assign('user_info', $user_info[0]);
             $this->assign('layout_home', C('__LAYOUT_HOME__'));  // 页面公共继承模版

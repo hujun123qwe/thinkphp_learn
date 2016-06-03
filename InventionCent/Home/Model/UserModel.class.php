@@ -60,11 +60,7 @@ class UserModel extends Model{
     public function login($username, $password){
         //去除前后空格
         $username = trim($username);
-        if (preg_match("/^1\d{10}$/", $username)) {
-            $map['student_id'] = $username;    // 手机号登陆
-        } else {
-            $map['user_name'] = $username;  // 用户名登陆
-        }
+        $map['student_id'] = array(eq,$username);
         $user_info = $this->where($map)->find(); //查找用户
         if (!$user_info) {
             $this->error = '用户不存在或被禁用！';
@@ -114,7 +110,7 @@ class UserModel extends Model{
     public function auto_login($user){
         // 记录登录SESSION和COOKIES
         $auth = array(
-            'user_id'      => $user['user_id'],
+            'user_id'  => $user['user_id'],
             'password' => $user['password'],
         );
         session('user_auth', $auth);

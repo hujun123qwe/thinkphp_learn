@@ -24,9 +24,13 @@ class ApplicationModel extends Model{
     	return $this->where($map)->select();
     }
     
-    public function getItemList($student_id){
-        $map['student_id'] = array(eq, $student_id);
-        return $this->where($map)->select();
+    public function getItemList($user_id){
+        if(empty($user_id)){
+            return 0;
+        }else{
+            $map['user_id'] = array(eq, $user_id);
+            return $this->where($map)->select();
+        }
     }
     
     public function editItem($map,$item_id){
@@ -43,6 +47,22 @@ class ApplicationModel extends Model{
         }else{
             $map['item_status'] = 1;
             return $this->where('item_id=%d',$item_id)->save($map);
+        }
+    }
+
+    public function getApplicationCount($user_id){
+        if(empty($user_id)){
+            return 0;
+        }else{
+            return $this->where('user_id=%d',$user_id)->count();
+        }
+    }
+
+    public function getApplicationVerified($user_id){
+        if(empty($user_id)){
+            return 0;
+        }else{
+            return $this->where('user_id=%d & is_verify=%d',$user_id,1)->count();
         }
     }
 }

@@ -63,9 +63,6 @@
                         </div>
                         <input type="submit" value="确 定" class="btn btn-primary js-choose-plan-submit">
                     </form>
-                    <button class="btn btn-primary js-choose-plan-submit">
-                        跳过此步
-                    </button>
                 </div> <!-- /.setup-form-container -->
             </div> <!-- /.setup-main -->
         </div> <!-- /.setup-wrapper -->
