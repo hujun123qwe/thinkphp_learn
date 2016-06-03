@@ -85,64 +85,41 @@
 
                 
 
-<div class="column three-fourths">
-    <div class="tabnav">
-        <div class="right"><a href="<?php echo U('Application/chooseItem');?>" class="btn btn-sm">我要申请</a>
+    <div class="column three-fourths">
+        <div class="tabnav">
+            <div class="right"><a href="<?php echo U('Application/chooseItem');?>" class="btn btn-sm">我要申请</a>
+            </div>
+            <nav class="tabnav-tabs" data-pjax role="navigation">
+                <a href="<?php echo U('User/index_student');?>" class="tabnav-tab" aria-selected="true" role="tab">
+                    <svg aria-hidden="true" class="octicon octicon-diff-added" height="16" version="1.1" viewBox="0 0 14 16" width="14">
+                        <path d="M13 1H1C0.45 1 0 1.45 0 2v12c0 0.55 0.45 1 1 1h12c0.55 0 1-0.45 1-1V2c0-0.55-0.45-1-1-1z m0 13H1V2h12v12zM6 9H3V7h3V4h2v3h3v2H8v3H6V9z">
+                        </path>
+                    </svg>
+                    全部申请
+                </a>
+                <a href="<?php echo U('Application/item_verified_student');?>" class="tabnav-tab " aria-selected="false" role="tab">
+                    <svg aria-hidden="true" class="octicon octicon-repo" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                    已通过申请
+                </a>
+                <a href="<?php echo U('Application/item_unverify_student');?>" class="tabnav-tab selected" aria-selected="false" role="tab">
+                    <svg aria-hidden="true" class="octicon octicon-rss" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M2 13H0V11c1.11 0 2 0.89 2 2zM0 3v1c4.97 0 9 4.03 9 9h1c0-5.52-4.48-10-10-10z m0 4v1c2.75 0 5 2.25 5 5h1c0-3.31-2.69-6-6-6z"></path></svg>
+                    未通过申请
+                </a>
+            </nav>
         </div>
-        <nav class="tabnav-tabs" data-pjax role="navigation">
-            <a href="<?php echo U('User/index_student');?>" class="tabnav-tab selected" aria-selected="true" role="tab">
-                <svg aria-hidden="true" class="octicon octicon-diff-added" height="16" version="1.1" viewBox="0 0 14 16" width="14">
-                    <path d="M13 1H1C0.45 1 0 1.45 0 2v12c0 0.55 0.45 1 1 1h12c0.55 0 1-0.45 1-1V2c0-0.55-0.45-1-1-1z m0 13H1V2h12v12zM6 9H3V7h3V4h2v3h3v2H8v3H6V9z">
-                    </path>
-                </svg>
-                全部申请
-            </a>
-            <a href="<?php echo U('Application/item_verified_student');?>" class="tabnav-tab " aria-selected="false" role="tab">
-                <svg aria-hidden="true" class="octicon octicon-repo" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
-                已通过申请
-            </a>
-            <a href="<?php echo U('Application/item_unverify_student');?>" class="tabnav-tab " aria-selected="false" role="tab">
-                <svg aria-hidden="true" class="octicon octicon-rss" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M2 13H0V11c1.11 0 2 0.89 2 2zM0 3v1c4.97 0 9 4.03 9 9h1c0-5.52-4.48-10-10-10z m0 4v1c2.75 0 5 2.25 5 5h1c0-3.31-2.69-6-6-6z"></path></svg>
-                未通过申请
-            </a>
-        </nav>
-    </div>
 
 
-    <div class="js-repo-filter position-relative">
-        <div class="contributions-tab">
-            <div class="columns popular-repos">
-                <div class="single-column">
-                    <div class="boxed-group flush">
-                        <h3>大学生科研训练计划（SRTP）</h3>
-                        <ul class="boxed-group-inner mini-repo-list">
-                            <?php if(is_array($item_list)): $i = 0; $__LIST__ = $item_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="public source">
-                                   <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
-                                        <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12">
-                                            <path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path>
-                                        </svg>
-                                        <span class="repo-and-owner css-truncate-target">
-                                            <span class="repo" title="点击编辑"><?php echo ($vo["item_name"]); ?></span>
-                                        </span>
-
-                                        <span class="stars">
-                                            审核状态<?php echo ($vo["item_status"]); ?>
-                                        </span>
-                                        <span class="repo-description css-truncate-target">
-                                            申请时间<?php echo ($vo["item_time"]); ?>
-                                        </span>
-                                    </a>
-                                </li><?php endforeach; endif; else: echo "" ;endif; ?>
-                        </ul>
-                    </div>
-
-                    <div class="boxed-group flush">
-                        <h3>学科竞赛</h3>
-                        <ul class="boxed-group-inner mini-repo-list">
-                            <?php if(is_array($item_list)): $i = 0; $__LIST__ = $item_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="public source">
-                                    <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
-                                        <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12">
-                                            <path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+        <div class="js-repo-filter position-relative">
+            <div class="contributions-tab">
+                <div class="columns popular-repos">
+                    <div class="single-column">
+                        <div class="boxed-group flush">
+                            <h3>大学生科研训练计划（SRTP）</h3>
+                            <ul class="boxed-group-inner mini-repo-list">
+                                <?php if(is_array($lists)): $i = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="public source">
+                                        <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
+                                            <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12">
+                                                <path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
                                         <span class="repo-and-owner css-truncate-target">
                                             <span class="repo" title="点击编辑"><?php echo ($vo["item_name"]); ?></span>
                                         </span>
@@ -152,18 +129,18 @@
                                     <span class="repo-description css-truncate-target">
                                         属于什么类型的<?php echo ($vo["item_type"]); ?>
                                     </span>
-                                    </a>
-                                </li><?php endforeach; endif; else: echo "" ;endif; ?>
-                        </ul>
-                    </div>
+                                        </a>
+                                    </li><?php endforeach; endif; else: echo "" ;endif; ?>
+                            </ul>
+                        </div>
 
-                    <div class="boxed-group flush">
-                        <h3>“三创”教育课程体系</h3>
-                        <ul class="boxed-group-inner mini-repo-list">
-                            <?php if(is_array($item_list)): $i = 0; $__LIST__ = $item_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="public source">
-                                    <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
-                                        <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12">
-                                            <path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                        <div class="boxed-group flush">
+                            <h3>学科竞赛</h3>
+                            <ul class="boxed-group-inner mini-repo-list">
+                                <?php if(is_array($lists)): $i = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="public source">
+                                        <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
+                                            <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12">
+                                                <path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
                                         <span class="repo-and-owner css-truncate-target">
                                             <span class="repo" title="点击编辑"><?php echo ($vo["item_name"]); ?></span>
                                         </span>
@@ -173,18 +150,18 @@
                                     <span class="repo-description css-truncate-target">
                                         属于什么类型的<?php echo ($vo["item_type"]); ?>
                                     </span>
-                                    </a>
-                                </li><?php endforeach; endif; else: echo "" ;endif; ?>
-                        </ul>
-                    </div>
+                                        </a>
+                                    </li><?php endforeach; endif; else: echo "" ;endif; ?>
+                            </ul>
+                        </div>
 
-                    <div class="boxed-group flush">
-                        <h3>论文</h3>
-                        <ul class="boxed-group-inner mini-repo-list">
-                            <?php if(is_array($item_list)): $i = 0; $__LIST__ = $item_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="public source">
-                                    <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
-                                        <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12">
-                                            <path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                        <div class="boxed-group flush">
+                            <h3>“三创”教育课程体系</h3>
+                            <ul class="boxed-group-inner mini-repo-list">
+                                <?php if(is_array($lists)): $i = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="public source">
+                                        <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
+                                            <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12">
+                                                <path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
                                         <span class="repo-and-owner css-truncate-target">
                                             <span class="repo" title="点击编辑"><?php echo ($vo["item_name"]); ?></span>
                                         </span>
@@ -194,18 +171,18 @@
                                     <span class="repo-description css-truncate-target">
                                         属于什么类型的<?php echo ($vo["item_type"]); ?>
                                     </span>
-                                    </a>
-                                </li><?php endforeach; endif; else: echo "" ;endif; ?>
-                        </ul>
-                    </div>
+                                        </a>
+                                    </li><?php endforeach; endif; else: echo "" ;endif; ?>
+                            </ul>
+                        </div>
 
-                    <div class="boxed-group flush">
-                        <h3>专利成果</h3>
-                        <ul class="boxed-group-inner mini-repo-list">
-                            <?php if(is_array($item_list)): $i = 0; $__LIST__ = $item_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="public source">
-                                    <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
-                                        <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12">
-                                            <path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                        <div class="boxed-group flush">
+                            <h3>论文</h3>
+                            <ul class="boxed-group-inner mini-repo-list">
+                                <?php if(is_array($lists)): $i = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="public source">
+                                        <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
+                                            <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12">
+                                                <path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
                                         <span class="repo-and-owner css-truncate-target">
                                             <span class="repo" title="点击编辑"><?php echo ($vo["item_name"]); ?></span>
                                         </span>
@@ -215,18 +192,18 @@
                                     <span class="repo-description css-truncate-target">
                                         属于什么类型的<?php echo ($vo["item_type"]); ?>
                                     </span>
-                                    </a>
-                                </li><?php endforeach; endif; else: echo "" ;endif; ?>
-                        </ul>
-                    </div>
+                                        </a>
+                                    </li><?php endforeach; endif; else: echo "" ;endif; ?>
+                            </ul>
+                        </div>
 
-                    <div class="boxed-group flush">
-                        <h3>其他</h3>
-                        <ul class="boxed-group-inner mini-repo-list">
-                            <?php if(is_array($item_list)): $i = 0; $__LIST__ = $item_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="public source">
-                                    <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
-                                        <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12">
-                                            <path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                        <div class="boxed-group flush">
+                            <h3>专利成果</h3>
+                            <ul class="boxed-group-inner mini-repo-list">
+                                <?php if(is_array($lists)): $i = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="public source">
+                                        <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
+                                            <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12">
+                                                <path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
                                         <span class="repo-and-owner css-truncate-target">
                                             <span class="repo" title="点击编辑"><?php echo ($vo["item_name"]); ?></span>
                                         </span>
@@ -236,16 +213,37 @@
                                     <span class="repo-description css-truncate-target">
                                         属于什么类型的<?php echo ($vo["item_type"]); ?>
                                     </span>
-                                    </a>
-                                </li><?php endforeach; endif; else: echo "" ;endif; ?>
-                        </ul>
-                    </div>
+                                        </a>
+                                    </li><?php endforeach; endif; else: echo "" ;endif; ?>
+                            </ul>
+                        </div>
 
+                        <div class="boxed-group flush">
+                            <h3>其他</h3>
+                            <ul class="boxed-group-inner mini-repo-list">
+                                <?php if(is_array($lists)): $i = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="public source">
+                                        <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
+                                            <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12">
+                                                <path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                                        <span class="repo-and-owner css-truncate-target">
+                                            <span class="repo" title="点击编辑"><?php echo ($vo["item_name"]); ?></span>
+                                        </span>
+                                        <span class="stars">
+                                            审核状态<?php echo ($vo["item_status"]); ?>
+                                        </span>
+                                    <span class="repo-description css-truncate-target">
+                                        属于什么类型的<?php echo ($vo["item_type"]); ?>
+                                    </span>
+                                        </a>
+                                    </li><?php endforeach; endif; else: echo "" ;endif; ?>
+                            </ul>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
-    </div><!-- /.contributions-tab -->
-</div>
+        </div><!-- /.contributions-tab -->
+    </div>
 
                 
             </div>

@@ -62,7 +62,9 @@ class ApplicationModel extends Model{
         if(empty($user_id)){
             return 0;
         }else{
-            return $this->where('user_id=%d & is_verify=%d',$user_id,1)->count();
+            $map['user_id'] = $user_id;
+            $map['item_status'] = 1;
+            return $this->where($map)->count();
         }
     }
 }

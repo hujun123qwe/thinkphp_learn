@@ -26,8 +26,7 @@ class ApplicationController extends Controller{
             $this->error('删除失败');
         }
     }
-    
-    
+
     public function editItem(){
         if(IS_POST){
             $map = array();
@@ -116,7 +115,7 @@ class ApplicationController extends Controller{
                 $this->error('编辑失败');
             }
         }else{
-            $user_id = 6;
+            $user_id = is_login();
             $userDB = D('User');
             $user_info = $userDB->getUserInfo($user_id);
             $this->assign('user_info',$user_info[0]);
@@ -124,6 +123,17 @@ class ApplicationController extends Controller{
             $itemDB = D('Application');
             $item_info = $itemDB->getItemInfo(1);
             $this->assign('item_info', $item_info[0]);
+
+            $application_count = $itemDB->getApplicationCount($user_info[0]['user_id']);
+            $application_verified = $itemDB->getApplicationVerified($user_info[0]['user_id']);
+
+            $creditsDB = D('Credits');
+            $credits_value = $creditsDB->getCreditsValue($user_id);
+
+            $this->assign('application_count',$application_count);
+            $this->assign('application_verified',$application_verified);
+            $this->assign('credits_value',$credits_value);
+
             $this->assign('meta_title', "编辑项目 | 大学生创新学分审核系统");
             $this->assign('layout_home', C('__LAYOUT_HOME__'));  // 页面公共继承模版
             $this->display();
@@ -324,33 +334,99 @@ class ApplicationController extends Controller{
     }
 
     //显示用的，不处理数据
-    public function item_verified($user_id=-1){
+    public function item_verified_admin(){
         // 获取所有用户
         $itemDB = D('Application');
         $itemCount = $itemDB->count();// 查询满足要求的总记录数
         $Page       = new \Think\Page($itemCount,20);// 实例化分页类 传入总记录数和每页显示的记录数(25)
         $show       = $Page->show();// 分页显示输出
         $limit = $Page->firstRow.','.$Page->listRows;// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+        $list = $itemDB->where('item_status=%d',1)->order('apply_id')->limit($limit)->select();
+        $this->assign('lists',$list);// 赋值数据集
+        $this->assign('page',$show);// 赋值分页输出
+        $this->assign('layout_admin', C('__LAYOUT_ADMIN__'));  // 页面公共继承模版
+        $this->assign('meta_title', "已通过申请 | 大学生创新学分审核系统");
+        $this->display(); // 输出模板ied
+    }
 
-        if($user_id=-1){
-            $list = $itemDB->where('item_status=%d',1)->order('item_id')->limit($limit)->select();
-            $this->assign('lists',$list);// 赋值数据集
-            $this->assign('page',$show);// 赋值分页输出
-            $this->assign('user_id',$user_id);
-            $this->assign('layout_admin', C('__LAYOUT_ADMIN__'));  // 页面公共继承模版
-            $this->assign('meta_title', "申请管理 | 大学生创新学分审核系统");
-            $this->display('item_verified_admin'); // 输出模板ied
-        }else{
-            $list = $itemDB->where('item_status=%d,user_id=%d',1,$user_id)->order('item_id')->limit($limit)->select();
-            $this->assign('lists',$list);// 赋值数据集
-            $this->assign('page',$show);// 赋值分页输出
-            $this->assign('user_id',$user_id);
-            $this->assign('layout_home', C('__LAYOUT_HOME__'));  // 页面公共继承模版
-            $this->assign('meta_title', "已通过申请 | 大学生创新学分审核系统");
-            $this->display('item_verified_student'); // 输出模板ied
-        }
+    public function item_verified_student(){
+        $user_id = is_login();
+        $itemDB = D('Application');
+        $itemCount = $itemDB->count();// 查询满足要求的总记录数
+        $Page       = new \Think\Page($itemCount,20);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+        $show       = $Page->show();// 分页显示输出
+        $limit = $Page->firstRow.','.$Page->listRows;// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+        $map['item_status']=1;
+        $map['user_id'] = $user_id;
+        $list = $itemDB->where($map)->order('apply_id')->limit($limit)->select();
+        $this->assign('lists',$list);// 赋值数据集
+        $this->assign('page',$show);// 赋值分页输出
+        $this->assign('user_id',$user_id);
 
+        $userDB = D('user');
+        $user_info = $userDB->getUserInfo($user_id);
 
+        $application_count = $itemDB->getApplicationCount($user_info[0]['user_id']);
+        $application_verified = $itemDB->getApplicationVerified($user_info[0]['user_id']);
 
+        $creditsDB = D('Credits');
+        $credits_value = $creditsDB->getCreditsValue($user_id);
+
+        $this->assign('application_count',$application_count);
+        $this->assign('application_verified',$application_verified);
+        $this->assign('credits_value',$credits_value);
+        $this->assign('user_info', $user_info[0]);
+
+        $this->assign('layout_home', C('__LAYOUT_HOME__'));  // 页面公共继承模版
+        $this->assign('meta_title', "已通过申请 | 大学生创新学分审核系统");
+        $this->display(); // 输出模板ied
+    }
+
+    public function item_unverify_student(){
+        $user_id = is_login();
+        $itemDB = D('Application');
+        $itemCount = $itemDB->count();// 查询满足要求的总记录数
+        $Page       = new \Think\Page($itemCount,20);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+        $show       = $Page->show();// 分页显示输出
+        $limit = $Page->firstRow.','.$Page->listRows;// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+        $map['item_status']=0;
+        $map['user_id'] = $user_id;
+        $list = $itemDB->where('item_status=%d AND user_id=%d',0,$user_id)->order('apply_id')->limit($limit)->select();
+        $this->assign('lists',$list);// 赋值数据集
+        $this->assign('page',$show);// 赋值分页输出
+        $this->assign('user_id',$user_id);
+
+        $userDB = D('user');
+        $user_info = $userDB->getUserInfo($user_id);
+
+        $application_count = $itemDB->getApplicationCount($user_info[0]['user_id']);
+        $application_verified = $itemDB->getApplicationVerified($user_info[0]['user_id']);
+
+        $creditsDB = D('Credits');
+        $credits_value = $creditsDB->getCreditsValue($user_id);
+
+        $this->assign('application_count',$application_count);
+        $this->assign('application_verified',$application_verified);
+        $this->assign('credits_value',$credits_value);
+        $this->assign('user_info', $user_info[0]);
+
+        $this->assign('layout_home', C('__LAYOUT_HOME__'));  // 页面公共继承模版
+        $this->assign('meta_title', "已通过申请 | 大学生创新学分审核系统");
+        $this->display(); // 输出模板ied
+    }
+
+    public function item_unverified_admin(){
+        // 获取所有用户
+        $itemDB = D('Application');
+        $itemCount = $itemDB->count();// 查询满足要求的总记录数
+        $Page       = new \Think\Page($itemCount,20);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+        $show       = $Page->show();// 分页显示输出
+        $limit = $Page->firstRow.','.$Page->listRows;// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+        $list = $itemDB->where('item_status=%d',0)->order('apply_id')->limit($limit)->select();
+        $this->assign('lists',$list);// 赋值数据集
+        $this->assign('page',$show);// 赋值分页输出
+        $this->assign('layout_admin', C('__LAYOUT_ADMIN__'));  // 页面公共继承模版
+        $this->assign('meta_title', "未通过申请 | 大学生创新学分审核系统");
+        $this->display(); // 输出模板ied
     }
 }

@@ -95,62 +95,48 @@
                 </div>
                 <div class="column three-fourths">
                     
-    <div class="tabnav">
-        <div class="right"><a href="<?php echo U('Application/add_item');?>" class="btn btn-sm">新增</a></div>
-        <nav class="tabnav-tabs" data-pjax role="navigation">
-            <a href="<?php echo U('Application/item_list');?>" class="tabnav-tab selected" aria-selected="true" role="tab">
-                <svg aria-hidden="true" class="octicon octicon-diff-added" height="16" version="1.1" viewBox="0 0 14 16" width="14">
-                    <path d="M13 1H1C0.45 1 0 1.45 0 2v12c0 0.55 0.45 1 1 1h12c0.55 0 1-0.45 1-1V2c0-0.55-0.45-1-1-1z m0 13H1V2h12v12zM6 9H3V7h3V4h2v3h3v2H8v3H6V9z">
-                    </path>
-                </svg>全部申请</a>
-            <a href="<?php echo U('Application/item_verified_admin');?>" class="tabnav-tab " aria-selected="false" role="tab">
-                <svg aria-hidden="true" class="octicon octicon-repo" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
-                已通过申请</a>
-            <a href="<?php echo U('Application/item_unverified_admin');?>" class="tabnav-tab " aria-selected="false" role="tab">
-                <svg aria-hidden="true" class="octicon octicon-rss" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M2 13H0V11c1.11 0 2 0.89 2 2zM0 3v1c4.97 0 9 4.03 9 9h1c0-5.52-4.48-10-10-10z m0 4v1c2.75 0 5 2.25 5 5h1c0-3.31-2.69-6-6-6z"></path></svg>
-                未通过申请
-            </a>
-        </nav>
-    </div>
-
-    <div class="js-repo-filter position-relative">
-        <div class="contributions-tab">
-            <div class="columns popular-repos">
-                <div class="single-column">
-                    <div class="boxed-group flush">
-               <table class="capped-list">
-        <thead><tr><th>#</th><th>编号</th><th>项目名</th><th>项目类型</th><th>申请人</th><th>申请时间</th><th>是否通过</th><th>操作</th></tr></thead>
-        <tbody>
-        <?php if(is_array($lists)): $k = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><tr class="js-navigation-item">
-                <td><?php echo ($k); ?></td>
-                <td><?php echo ($vo["apply_id"]); ?></td>
-                <td><a href="editItem?apply_id=<?php echo ($vo["apply_id"]); ?>"><?php echo ($vo["item_name"]); ?></a></td>
-                <td><?php echo ($vo["item_type"]); ?></td>
-                <td><?php echo ($vo["student_id"]); ?></td>
-                <td><?php echo (date("y-m-d",$vo["apply_time"])); ?></td>
-                <td>
-                    <?php if($vo["item_status"] == 1 ): ?>已通过
-                        <?php elseif($vo["item_status"] == 0): ?>未审核
-                      <?php else: ?>未知参数<?php endif; ?>
-                </td>
-                <td>
-                    <a href="<?php echo U('Credits/verifyItem',array('apply_id'=>$vo['apply_id']),'');?>">审核</a>&nbsp;
-                    <a href="deleteItem?apply_id=<?php echo ($vo["apply_id"]); ?>">删除</a>
-                </td>
-            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-        </tbody>
-    </table>
-
-    <?php if(!empty($page)): ?><ul class="pagination"><?php echo ($page); ?></ul><?php endif; ?>
-                    </div>
+    <div class="boxed-group">
+        <h3>编辑个人信息</h3>
+        <div class="boxed-group-inner clearfix">
+            <form accept-charset="UTF-8" action="<?php echo U('User/edit_admin');?>" class="columns js-uploadable-container js-upload-avatar-image is-default" method="post">
+                <input type="hidden" name="user_id" value="<?php echo ($user_info_student["user_id"]); ?>"/>
+                <div class="column two-thirds">
+                    <dl class="form-group">
+                        <dt><label for="user_profile_name">姓名</label></dt>
+                        <dd><input class="form-control" id="user_profile_name" name="user_name" size="30" type="text" value="<?php echo ($user_info_student["user_name"]); ?>" /></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt><label for="h1">学号</label></dt>
+                        <dd><input class="form-control" id="h1" name="student_id" size="30" type="text" value="<?php echo ($user_info_student["student_id"]); ?>" /></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt><label for="h2">学院</label></dt>
+                        <dd><input class="form-control" id="h2" name="academy" size="30" type="text" value="<?php echo ($user_info_student["academy"]); ?>" /></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt><label for="h3">班级</label></dt>
+                        <dd><input class="form-control" id="h3" name="iclass" size="30" type="text" value="<?php echo ($user_info_student["iclass"]); ?>" /></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt><label for="h4">邮箱</label></dt>
+                        <dd><input class="form-control" id="h4" name="email" size="30" type="text" value="<?php echo ($user_info_student["email"]); ?>" /></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt><label for="h5">联系手机</label></dt>
+                        <dd><input class="form-control" id="h5" name="phone" size="30" type="text" value="<?php echo ($user_info_student["phone"]); ?>" /></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt><label for="user_profile_location">住址</label></dt>
+                        <dd><input class="form-control" id="user_profile_location" name="address" size="30" type="text" value="<?php echo ($user_info_student["address"]); ?>" /></dd>
+                    </dl>
+                    <p><button type="submit" class="btn btn-primary">确认 更改</button></p>
                 </div>
-            </div>
+            </form>
+            <p class="note">
+                We store your personal data in the Anhui University of Technology only.
+            </p>
         </div>
-    </div><!-- /.contributions-tab -->
-
-
-
-
+    </div>
 
                 </div>
             </div>

@@ -1,0 +1,46 @@
+<extend name='$layout_admin'/>
+
+<block name="right-content">
+    <div class="boxed-group">
+        <h3>编辑个人信息</h3>
+        <div class="boxed-group-inner clearfix">
+            <form accept-charset="UTF-8" action="{:U('User/edit_admin')}" class="columns js-uploadable-container js-upload-avatar-image is-default" method="post">
+                <input type="hidden" name="user_id" value="{$user_info_student.user_id}"/>
+                <div class="column two-thirds">
+                    <dl class="form-group">
+                        <dt><label for="user_profile_name">姓名</label></dt>
+                        <dd><input class="form-control" id="user_profile_name" name="user_name" size="30" type="text" value="{$user_info_student.user_name}" /></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt><label for="h1">学号</label></dt>
+                        <dd><input class="form-control" id="h1" name="student_id" size="30" type="text" value="{$user_info_student.student_id}" /></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt><label for="h2">学院</label></dt>
+                        <dd><input class="form-control" id="h2" name="academy" size="30" type="text" value="{$user_info_student.academy}" /></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt><label for="h3">班级</label></dt>
+                        <dd><input class="form-control" id="h3" name="iclass" size="30" type="text" value="{$user_info_student.iclass}" /></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt><label for="h4">邮箱</label></dt>
+                        <dd><input class="form-control" id="h4" name="email" size="30" type="text" value="{$user_info_student.email}" /></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt><label for="h5">联系手机</label></dt>
+                        <dd><input class="form-control" id="h5" name="phone" size="30" type="text" value="{$user_info_student.phone}" /></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt><label for="user_profile_location">住址</label></dt>
+                        <dd><input class="form-control" id="user_profile_location" name="address" size="30" type="text" value="{$user_info_student.address}" /></dd>
+                    </dl>
+                    <p><button type="submit" class="btn btn-primary">确认 更改</button></p>
+                </div>
+            </form>
+            <p class="note">
+                We store your personal data in the Anhui University of Technology only.
+            </p>
+        </div>
+    </div>
+</block>

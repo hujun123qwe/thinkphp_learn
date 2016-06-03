@@ -80,35 +80,6 @@ class UserController extends Controller{
         }
     }
 
-    /**
-     * 编辑
-     * @author jry <598821125@qq.com>
-     */
-    public function edit($id){
-        if (IS_POST) {
-            $access_object = D('Access');
-            $data = $access_object->create();
-            if ($data) {
-                if ($access_object->save($data)) {
-                    $this->success('更新成功', U('index'));
-                } else {
-                    $this->error('更新失败');
-                }
-            } else {
-                $this->error($access_object->getError());
-            }
-        } else {
-            // 使用FormBuilder快速建立表单页面。
-            $builder = new \Common\Builder\FormBuilder();
-            $builder->setMetaTitle('编辑配置')  // 设置页面标题
-            ->setPostUrl(U('edit'))    // 设置表单提交地址
-            ->addFormItem('id', 'hidden', 'ID', 'ID')
-                ->addFormItem('uid', 'text', 'UID', '用户ID')
-                ->addFormItem('group', 'select', '用户组', '不同用户组对应相应的权限', select_list_as_tree('Group'))
-                ->setFormData(D('Access')->find($id))
-                ->display();
-        }
-    }
     
     public function user_admin(){
         // 获取所有用户
@@ -176,7 +147,7 @@ class UserController extends Controller{
             }else{
                 $this->error('你已经掉线了',U('Public/login'));
             }
-//测试用            
+            
             $userDB = D('user');
             $user_info = $userDB->getUserInfo($user_id);
 
@@ -193,6 +164,162 @@ class UserController extends Controller{
             $this->assign('meta_title','编辑个人信息 | 大学生创新学分审核系统');
             $this->assign('user_info', $user_info[0]);
             $this->assign('layout_home', C('__LAYOUT_HOME__'));  // 页面公共继承模版
+            $this->display();
+        }
+    }
+
+    public function edit_admin($user_id=-1){
+        if(IS_POST){
+            $map = array();
+            $user_id = I('post.user_id');
+            if(I('post.email')){
+                $map['email'] = I('post.email');
+            }
+            if(I('post.phone')){
+                $map['phone'] = I('post.phone');
+            }
+            if(I('post.academy')){
+                $map['academy'] = I('post.academy');
+            }
+            if(I('post.iclass')){
+                $map['iclass'] = I('post.iclass');
+            }
+            if(I('post.address')){
+                $map['address'] = I('post.address');
+            }
+            if(I('post.password')){
+                $map['password'] = I('post.password');
+            }
+            $userDB = D('User');
+            if($userDB->edit_student($map,$user_id)){
+                $this->success('个人信息更新成功');
+            }else{
+                $this->error('个人信息未作任何更改');
+            }
+        }else{
+            if($user_id == -1){
+                $user_id = is_login();
+            }
+            if($user_id){
+                $userDB = D('user');
+                $user_info = $userDB->getUserInfo($user_id);
+            }else{
+                $this->error('你已经掉线了',U('Public/login'));
+            }
+            $userDB = D('user');
+            $user_info = $userDB->getUserInfo($user_id);
+            $this->assign('user_info', $user_info[0]);
+            $this->assign('meta_title','编辑个人信息 | 大学生创新学分审核系统');
+            $this->assign('layout_admin', C('__LAYOUT_ADMIN__'));  // 页面公共继承模版
+            $this->display('edit_admin');
+        }
+    }
+
+    public function editUser($user_id_student){
+        $userDB = D('User');
+        $user_info_student = $userDB->getUserInfo($user_id_student);
+        if(IS_POST){
+            $map = array();
+            $user_id = I('post.user_id');
+            if(I('post.email')){
+                $map['email'] = I('post.email');
+            }
+            if(I('post.phone')){
+                $map['phone'] = I('post.phone');
+            }
+            if(I('post.academy')){
+                $map['academy'] = I('post.academy');
+            }
+            if(I('post.iclass')){
+                $map['iclass'] = I('post.iclass');
+            }
+            if(I('post.address')){
+                $map['address'] = I('post.address');
+            }
+            if(I('post.password')){
+                $map['password'] = I('post.password');
+            }
+            $userDB = D('User');
+            if($userDB->edit_student($map,$user_id)){
+                $this->success('个人信息更新成功');
+            }else{
+                $this->error('个人信息未作任何更改');
+            }
+        }else{
+            $user_id = is_login();
+            if($user_id){
+                $userDB = D('user');
+                $user_info = $userDB->getUserInfo($user_id);
+            }else{
+                $this->error('你已经掉线了',U('Public/login'));
+            }
+            $userDB = D('user');
+            $user_info = $userDB->getUserInfo($user_id);
+            $this->assign('user_info', $user_info[0]);
+            $this->assign('meta_title','编辑个人信息 | 大学生创新学分审核系统');
+            $this->assign('layout_admin', C('__LAYOUT_ADMIN__'));  // 页面公共继承模版
+            $this->display();
+        }
+    }
+    
+    public function delete_student(){
+        $user_id = I('get.user_id');
+        $userDB = D('User');
+        if($userDB->deleteUser($user_id)){
+            $this->success('删除成功');
+        }else{
+            $this->error('删除失败');
+        }
+    }
+
+    public function delete_admin(){
+        $this->error('禁止删除管理员');
+    }
+
+    public function edit_student_pro(){
+        if(IS_POST){
+            $map = array();
+            $user_id = I('post.user_id');
+            if(I('post.email')){
+                $map['email'] = I('post.email');
+            }
+            if(I('post.phone')){
+                $map['phone'] = I('post.phone');
+            }
+            if(I('post.academy')){
+                $map['academy'] = I('post.academy');
+            }
+            if(I('post.iclass')){
+                $map['iclass'] = I('post.iclass');
+            }
+            if(I('post.address')){
+                $map['address'] = I('post.address');
+            }
+            if(I('post.password')){
+                $map['password'] = I('post.password');
+            }
+            $userDB = D('User');
+            if($userDB->edit_student($map,$user_id)){
+                $this->success('个人信息更新成功');
+            }else{
+                $this->error('个人信息未作任何更改');
+            }
+        }else{
+            $user_id_student = I('get.user_id_student');
+            $user_id = is_login();
+            if($user_id){
+                $userDB = D('user');
+                $user_info = $userDB->getUserInfo($user_id);
+            }else{
+                $this->error('你已经掉线了',U('Public/login'));
+            }
+            $userDB = D('user');
+            $user_info = $userDB->getUserInfo($user_id);
+            $user_info_student = $userDB->getUserInfo($user_id_student);
+            $this->assign('user_info', $user_info[0]);
+            $this->assign('user_info_student',$user_info_student[0]);
+            $this->assign('meta_title','编辑学生信息 | 大学生创新学分审核系统');
+            $this->assign('layout_admin', C('__LAYOUT_ADMIN__'));  // 页面公共继承模版
             $this->display();
         }
     }

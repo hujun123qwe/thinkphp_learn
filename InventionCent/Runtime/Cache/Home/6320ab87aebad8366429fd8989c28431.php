@@ -95,10 +95,11 @@
                 </div>
                 <div class="column three-fourths">
                     
+
     <div class="tabnav">
         <div class="right"><a href="<?php echo U('Application/add_item');?>" class="btn btn-sm">新增</a></div>
         <nav class="tabnav-tabs" data-pjax role="navigation">
-            <a href="<?php echo U('Application/item_list');?>" class="tabnav-tab selected" aria-selected="true" role="tab">
+            <a href="<?php echo U('Application/item_list');?>" class="tabnav-tab " aria-selected="true" role="tab">
                 <svg aria-hidden="true" class="octicon octicon-diff-added" height="16" version="1.1" viewBox="0 0 14 16" width="14">
                     <path d="M13 1H1C0.45 1 0 1.45 0 2v12c0 0.55 0.45 1 1 1h12c0.55 0 1-0.45 1-1V2c0-0.55-0.45-1-1-1z m0 13H1V2h12v12zM6 9H3V7h3V4h2v3h3v2H8v3H6V9z">
                     </path>
@@ -106,7 +107,7 @@
             <a href="<?php echo U('Application/item_verified_admin');?>" class="tabnav-tab " aria-selected="false" role="tab">
                 <svg aria-hidden="true" class="octicon octicon-repo" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
                 已通过申请</a>
-            <a href="<?php echo U('Application/item_unverified_admin');?>" class="tabnav-tab " aria-selected="false" role="tab">
+            <a href="<?php echo U('Application/item_unverified_admin');?>" class="tabnav-tab selected" aria-selected="false" role="tab">
                 <svg aria-hidden="true" class="octicon octicon-rss" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M2 13H0V11c1.11 0 2 0.89 2 2zM0 3v1c4.97 0 9 4.03 9 9h1c0-5.52-4.48-10-10-10z m0 4v1c2.75 0 5 2.25 5 5h1c0-3.31-2.69-6-6-6z"></path></svg>
                 未通过申请
             </a>
@@ -118,30 +119,30 @@
             <div class="columns popular-repos">
                 <div class="single-column">
                     <div class="boxed-group flush">
-               <table class="capped-list">
-        <thead><tr><th>#</th><th>编号</th><th>项目名</th><th>项目类型</th><th>申请人</th><th>申请时间</th><th>是否通过</th><th>操作</th></tr></thead>
-        <tbody>
-        <?php if(is_array($lists)): $k = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><tr class="js-navigation-item">
-                <td><?php echo ($k); ?></td>
-                <td><?php echo ($vo["apply_id"]); ?></td>
-                <td><a href="editItem?apply_id=<?php echo ($vo["apply_id"]); ?>"><?php echo ($vo["item_name"]); ?></a></td>
-                <td><?php echo ($vo["item_type"]); ?></td>
-                <td><?php echo ($vo["student_id"]); ?></td>
-                <td><?php echo (date("y-m-d",$vo["apply_time"])); ?></td>
-                <td>
-                    <?php if($vo["item_status"] == 1 ): ?>已通过
-                        <?php elseif($vo["item_status"] == 0): ?>未审核
-                      <?php else: ?>未知参数<?php endif; ?>
-                </td>
-                <td>
-                    <a href="<?php echo U('Credits/verifyItem',array('apply_id'=>$vo['apply_id']),'');?>">审核</a>&nbsp;
-                    <a href="deleteItem?apply_id=<?php echo ($vo["apply_id"]); ?>">删除</a>
-                </td>
-            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-        </tbody>
-    </table>
+                        <table class="capped-list">
+                            <thead><tr><th>#</th><th>编号</th><th>项目名</th><th>项目类型</th><th>申请人</th><th>申请时间</th><th>是否通过</th><th>操作</th></tr></thead>
+                            <tbody>
+                            <?php if(is_array($lists)): $k = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><tr class="js-navigation-item">
+                                    <td><?php echo ($k); ?></td>
+                                    <td><?php echo ($vo["apply_id"]); ?></td>
+                                    <td><a href="editItem?apply_id=<?php echo ($vo["apply_id"]); ?>"><?php echo ($vo["item_name"]); ?></a></td>
+                                    <td><?php echo ($vo["item_type"]); ?></td>
+                                    <td><?php echo ($vo["student_id"]); ?></td>
+                                    <td><?php echo (date("y-m-d",$vo["apply_time"])); ?></td>
+                                    <td>
+                                        <?php if($vo["item_status"] == 1 ): ?>已通过
+                                            <?php elseif($vo["item_status"] == 0): ?>未审核
+                                            <?php else: ?>未知参数<?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <a href="<?php echo U('Credits/verifyItem',array('apply_id'=>$vo['apply_id']),'');?>">审核</a>&nbsp;
+                                        <a href="deleteItem?apply_id=<?php echo ($vo["apply_id"]); ?>">删除</a>
+                                    </td>
+                                </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                            </tbody>
+                        </table>
 
-    <?php if(!empty($page)): ?><ul class="pagination"><?php echo ($page); ?></ul><?php endif; ?>
+                        <?php if(!empty($page)): ?><ul class="pagination"><?php echo ($page); ?></ul><?php endif; ?>
                     </div>
                 </div>
             </div>

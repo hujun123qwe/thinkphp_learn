@@ -64,20 +64,20 @@
                         <li aria-label="Member since" class="vcard-detail py-1 css-truncate css-truncate-target">
                             <svg aria-hidden="true" class="octicon octicon-clock" height="16" version="1.1" viewBox="0 0 14 16" width="14">
                                 <path d="M8 8h3v2H7c-0.55 0-1-0.45-1-1V4h2v4z m-1-5.7c3.14 0 5.7 2.56 5.7 5.7S10.14 13.7 7 13.7 1.3 11.14 1.3 8s2.56-5.7 5.7-5.7m0-1.3C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7S10.86 1 7 1z"></path>
-                            </svg><span class="join-label">Joined on </span><local-time class="join-date" datetime="2014-09-24T02:55:08Z" day="numeric" month="short" year="numeric">Sep 24, 2014</local-time></li>
+                            </svg><span class="join-label">Joined on </span><local-time class="join-date" datetime="2014-09-24T02:55:08Z" day="numeric" month="short" year="numeric"><?php echo (date("D F d Y",$user_info["add_time"])); ?></local-time></li>
                     </ul>
 
                     <div class="vcard-stats border-top border-bottom border-gray-light mb-3 py-3">
                         <a class="vcard-stat">
-                            <strong class="vcard-stat-count d-block">1</strong>
+                            <strong class="vcard-stat-count d-block"><?php echo ($application_count); ?></strong>
                             <span class="text-muted">提交申请</span>
                         </a>
                         <a class="vcard-stat">
-                            <strong class="vcard-stat-count d-block">6</strong>
+                            <strong class="vcard-stat-count d-block"><?php echo ($application_verified); ?></strong>
                             <span class="text-muted">通过申请</span>
                         </a>
                         <a class="vcard-stat">
-                            <strong class="vcard-stat-count d-block">0</strong>
+                            <strong class="vcard-stat-count d-block"><?php echo ($credits_value); ?></strong>
                             <span class="text-muted">创新学分</span>
                         </a>
                     </div>
@@ -93,27 +93,27 @@
 	                <div class="column two-thirds">
 	                    <dl class="form-group">
 	                        <dt><label for="user_profile_name">项目名称</label></dt>
-	                        <dd><input class="form-control" id="user_profile_name" name="item_name" size="30" type="text" value="<?php echo ($item_info["item_name"]); ?>" /></dd>
+	                        <dd><input class="form-control" style="opacity: 0.5;" disabled="disabled" id="user_profile_name" name="item_name" size="30" type="text" value="<?php echo ($item_info["item_name"]); ?>" /></dd>
 	                    </dl>
 	                    <dl class="form-group">
 	                        <dt><label for="h1">申请人姓名</label></dt>
-	                        <dd><input class="form-control" id="h1" name="user_name" size="30" type="text" value="<?php echo ($item_info["user_name"]); ?>" /></dd>
+	                        <dd><input class="form-control" style="opacity: 0.5;" disabled="disabled" id="h1" name="user_name" size="30" type="text" value="<?php echo ($user_info["user_name"]); ?>" /></dd>
 	                    </dl>
 	                    <dl class="form-group">
 	                        <dt><label for="h2">申请人学号</label></dt>
-	                        <dd><input class="form-control" id="h2" name="student_id" size="30" type="text" value="<?php echo ($item_info["student_id"]); ?>" /></dd>
+	                        <dd><input class="form-control disabled"  style="opacity: 0.5;" disabled="disabled" id="h2" name="student_id" size="30" type="text" value="<?php echo ($user_info["student_id"]); ?>" /></dd>
 	                    </dl>
 	                    <dl class="form-group">
 	                        <dt><label for="h2">申请人学院</label></dt>
-	                        <dd><input class="form-control" id="h2" name="academy" size="30" type="text" value="<?php echo ($item_info["academy"]); ?>" /></dd>
+	                        <dd><input class="form-control"  style="opacity: 0.5;" disabled="disabled" id="h2" name="academy" size="30" type="text" value="<?php echo ($user_info["academy"]); ?>" /></dd>
 	                    </dl>
 	                    <dl class="form-group">
 	                        <dt><label for="h3">申请人班级</label></dt>
-	                        <dd><input class="form-control" id="h3" name="iclass" size="30" type="text" value="<?php echo ($item_info["iclass"]); ?>" /></dd>
+	                        <dd><input class="form-control"  style="opacity: 0.5;" disabled="disabled" id="h3" name="iclass" size="30" type="text" value="<?php echo ($user_info["iclass"]); ?>" /></dd>
 	                    </dl>
 	                    <dl class="form-group">
 	                        <dt><label for="h5">联系手机</label></dt>
-	                        <dd><input class="form-control" id="h5" name="phone" size="30" type="text" value="<?php echo ($item_info["phone"]); ?>" /></dd>
+	                        <dd><input class="form-control"  style="opacity: 0.5;" disabled="disabled" id="h5" name="phone" size="30" type="text" value="<?php echo ($user_info["phone"]); ?>" /></dd>
 	                    </dl>	                    
 	                    <p><button type="submit" class="btn btn-primary">确认 更改</button></p>
 	                </div>

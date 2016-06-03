@@ -181,4 +181,12 @@ class UserModel extends Model{
         $map['user_id'] = array(eq, $user_id);
         return $this->where($map)->select();
     }
+
+    public function deleteUser($user_id){
+        if(empty($user_id)){
+            return 0;
+        }else{
+            return $this->where('user_id=%d',$user_id)->delete();
+        }
+    }
 }

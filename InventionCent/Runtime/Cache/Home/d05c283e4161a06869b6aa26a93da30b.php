@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/frameworks.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/github.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/site.css" type="text/css"/>
-    <link rel="stylesheet" type="text/css" href="/Public/libs/cui/css/cui.min.css">
+    <!--<link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/table.css" type="text/css"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="/Public/libs/cui/css/cui.min.css">-->
     <style>
         .breadcrumb>li,.pagination{display:inline-block}
         .breadcrumb{
@@ -31,69 +32,18 @@
 <body>
 <div class="header header-logged-in true" role="banner">
     <div class="container clearfix">
-        <a class="header-logo-invertocat" href="<?php echo C('HOME_PAGE');?>"><h2>大学生创新学分审核系统</h2></a>
+        <a class="header-logo-invertocat" href="<?php echo U('Admin/index');?>"><h2>大学生创新学分审核系统</h2></a>
         <div class="header-search   js-site-search" role="search"></div>
         <ul class="header-nav left" role="navigation"></ul>
-        <ul class="header-nav user-nav right" id="user-links">
-            <li class="header-nav-item">
-                <a href="/notifications" aria-label="You have no unread notifications" class="header-nav-link notification-indicator tooltipped tooltipped-s js-socket-channel js-notification-indicator" data-channel="notification-changed-v2:8892333" data-ga-click="Header, go to notifications, icon:read">
-                    <span class="mail-status "></span>
-                    <svg aria-hidden="true" class="octicon octicon-bell" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 12v1H0v-1l0.73-0.58c0.77-0.77 0.81-2.55 1.19-4.42 0.77-3.77 4.08-5 4.08-5 0-0.55 0.45-1 1-1s1 0.45 1 1c0 0 3.39 1.23 4.16 5 0.38 1.88 0.42 3.66 1.19 4.42l0.66 0.58z m-7 4c1.11 0 2-0.89 2-2H5c0 1.11 0.89 2 2 2z"></path></svg>
-                </a>
+        <ul class="header-nav user-nav right" style="padding-right:5px;">
+            <li class="header-nav-item" style="padding-right:12px;">
+                <span class="vcard-username">欢迎<?php echo ($user_info["user_name"]); ?>管理员</span>
             </li>
-            <li class="header-nav-item dropdown js-menu-container">
-                <a class="header-nav-link tooltipped tooltipped-s js-menu-target">
-                    <svg aria-hidden="true" class="octicon octicon-plus left" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 9H7v5H5V9H0V7h5V2h2v5h5v2z"></path></svg>
-                    <span class="dropdown-caret"></span></a>
-                <div class="dropdown-menu-content js-menu-content">
-                    <ul class="dropdown-menu dropdown-menu-sw">
-                        <a class="dropdown-item" href="/new" data-ga-click="Header, create new repository">New repository</a>
-                        <a class="dropdown-item" href="/new/import" data-ga-click="Header, import a repository">Import repository</a>
-                        <a class="dropdown-item" href="/organizations/new" data-ga-click="Header, create new organization">New organization</a>
-                    </ul>
-                </div>
+            <li class="header-nav-item" style="padding-right:8px;">
+                <a href="<?php echo U('User/edit_admin');?>" class="btn btn-sm">个人信息</a>
             </li>
-            <li class="header-nav-item dropdown js-menu-container">
-                <a class="header-nav-link name tooltipped tooltipped-sw js-menu-target">
-                    <img alt="@hujun123qwe" class="avatar" height="20" src="https://avatars2.githubusercontent.com/u/8892333?v=3&amp;s=40" width="20" />
-                    <span class="dropdown-caret"></span>
-                </a>
-                <div class="dropdown-menu-content js-menu-content">
-                    <div class="dropdown-menu  dropdown-menu-sw">
-                        <div class=" dropdown-header header-nav-current-user css-truncate">
-                            Signed in as <strong class="css-truncate-target">hujun123qwe</strong>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/hujun123qwe" data-ga-click="Header, go to profile, text:your profile">
-                            Your profile
-                        </a>
-                        <a class="dropdown-item" href="/stars" data-ga-click="Header, go to starred repos, text:your stars">
-                            Your stars
-                        </a>
-                        <a class="dropdown-item" href="/explore" data-ga-click="Header, go to explore, text:explore">
-                            Explore
-                        </a>
-                        <a class="dropdown-item" href="/integrations" data-ga-click="Header, go to integrations, text:integrations">
-                            Integrations
-                        </a>
-                        <a class="dropdown-item" href="https://help.github.com" data-ga-click="Header, go to help, text:help">
-                            Help
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/settings/profile" data-ga-click="Header, go to settings, icon:settings">
-                            Settings
-                        </a>
-                        <form accept-charset="UTF-8" action="/logout" class="logout-form" method="post">
-                            <div style="margin:0;padding:0;display:inline">
-                                <input name="utf8" type="hidden" value="&#x2713;" />
-                                <input name="authenticity_token" type="hidden"/>
-                            </div>
-                            <button class="dropdown-item dropdown-signout" data-ga-click="Header, sign out, icon:logout">
-                                Sign out
-                            </button>
-                        </form>
-                    </div>
-                </div>
+            <li class="header-nav-item" style="padding-right:8px;">
+                <a href="<?php echo U('Public/logout');?>" class="btn btn-sm">退出</a>
             </li>
         </ul>
     </div>
@@ -145,79 +95,72 @@
                 </div>
                 <div class="column three-fourths">
                     
-        <!-- 多标签后台内容部分 -->
-        <div class="tab-content ct-tab-content">
-            <!-- 首页 -->
-            <div role="tabpanel" class="fade in active" id="home">
-                <div class="dashboard clearfix">
-                    <div class="col-xs-12 col-sm-6 col-lg-4 ct-update">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="update pull-right"></div>
-                                <i class="fa fa-cog"></i> 系统信息
-                            </div>
-                            <div class="panel-body">
-                                <table class="table table-condensed text-overflow">
-                                    <tbody>
-                                    <tr>
-                                        <td>ThinkPHP版本</td>
-                                        <td><?php echo (THINK_VERSION); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>服务器操作系统</td>
-                                        <td><?php echo (PHP_OS); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>运行环境</td>
-                                        <td>
-                                            <?php
+<div class="columns">
+    <div class="single-column">
+
+        <div class="boxed-group flush">
+            <h3>产品团队</h3>
+            <ul class="boxed-group-inner mini-repo-list">
+                <li class="public source">
+                    <table class="capped-list">
+                        <tbody>
+                        <tr>
+                            <td>ThinkPHP版本</td>
+                            <td><?php echo (THINK_VERSION); ?></td>
+                        </tr>
+                        <tr>
+                            <td>服务器操作系统</td>
+                            <td><?php echo (PHP_OS); ?></td>
+                        </tr>
+                        <tr>
+                            <td>运行环境</td>
+                            <td>
+                                <?php
  $server_software = explode(' ', $_SERVER['SERVER_SOFTWARE']); echo $server_software[0]; ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PHP版本</td>
-                                        <td><?php echo PHP_VERSION; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>MYSQL版本</td>
-                                        <td><?php $system_info_mysql = M()->query("select version() as v;"); echo ($system_info_mysql["0"]["v"]); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>上传限制</td>
-                                        <td><?php echo ini_get('upload_max_filesize');?></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-lg-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-actions"></div>
-                                <i class="fa fa-th-list"></i> 产品团队
-                            </div>
-                            <div class="panel-body">
-                                <table class="table table-condensed">
-                                    <tbody>
-                                    <tr>
-                                        <td>核心团队</td>
-                                        <td>江如意、赵瀚卿...</td>
-                                    </tr>
-                                    <tr>
-                                        <td>联系我们</td>
-                                        <td>
-                                            service@corethink.cn
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>PHP版本</td>
+                            <td><?php echo PHP_VERSION; ?></td>
+                        </tr>
+                        <tr>
+                            <td>MYSQL版本</td>
+                            <td><?php $system_info_mysql = M()->query("select version() as v;"); echo ($system_info_mysql["0"]["v"]); ?></td>
+                        </tr>
+                        <tr>
+                            <td>上传限制</td>
+                            <td><?php echo ini_get('upload_max_filesize');?></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </li>
+            </ul>
         </div>
+
+        <div class="boxed-group flush">
+            <h3>产品团队</h3>
+            <ul class="boxed-group-inner mini-repo-list">
+                <li class="public source">
+                    <table class="capped-list">
+                        <tbody>
+                        <tr>
+                            <td>核心团队</td>
+                            <td>江如意、赵瀚卿...</td>
+                        </tr>
+                        <tr>
+                            <td>联系我们</td>
+                            <td>
+                                service@corethink.cn
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
 
                 </div>
             </div>
