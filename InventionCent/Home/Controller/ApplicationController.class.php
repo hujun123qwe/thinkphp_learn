@@ -31,7 +31,7 @@ class ApplicationController extends Controller{
         if(IS_POST){
             $map = array();
             //必须要一个id来判断
-            $item_id = I('post.item_id');
+            $item_id = I('post.apply_id');
             if(I('post.item_name')){
                 $map['item_name'] = I('post.item_name');
             }
@@ -68,7 +68,7 @@ class ApplicationController extends Controller{
             $user_info = $userDB->getUserInfo($user_id);
             $this->assign('user_info',$user_info[0]);
 
-            $item_id = I('get.item_id');
+            $item_id = I('get.apply_id');
             $itemDB = D('Application');
             $item_info = $itemDB->getItemInfo($item_id);
             $this->assign('item_info', $item_info[0]);
@@ -142,7 +142,7 @@ class ApplicationController extends Controller{
 
     public function itemRoute(){
         if(IS_GET){
-            $application_type = I('get.plan');
+            $application_type = I('get.item_type');
             switch ($application_type){
                 case 1:
                     $this->srtp();
@@ -157,7 +157,7 @@ class ApplicationController extends Controller{
                     $this->paper();
                     break;
                 case 5:
-                    $this->paper();
+                    $this->patent();
                     break;
                 case 6:
                     $this->other();
@@ -232,30 +232,41 @@ class ApplicationController extends Controller{
             if($file_path = $this->my_upload($file_name)){
                 $map['upload_file'] = $file_path;
             }else{
-                echo 'upload_error';
-                exit;
+                $this->error('上传文件错误');
             }
+            for($i=0;$i<5;$i++){
+                $file_name='other_file_'.$i;
+                if($file_path = $this->my_upload($file_name)){
+                    $upload_file_path = 'upload_file_'.$i;
+                    $map[$upload_file_path] = $file_path;
+                }
+            }
+            $map['user_id']=is_login();
+            $map['item_id'] = I('post.item_id');
             $map['item_name'] = I('post.item_name');
-            $map['user_name'] = I('post.user_name');
-            $map['student_id'] = I('post.student_id');
-            $map['phone'] = I('post.phone');
             $map['teacher'] = I('post.teacher');
-            $map['academy'] = I('post.academy');
-            $map['iclass'] = I('post.iclass');
-            $map['group'] = I('post.group');
+            $map['igroup'] = I('post.group');
+            $map['grade'] = I('post.grade');
             if(I('post.is_important_item')){
                 $map['item_type'] = 1;
             }else{
                 $map['item_type'] = 0;
             }
-            $userDB = D('Application');
-            if($userDB->srtp($map)){
+            $map_encode = json_encode($map);
+            var_dump($map_encode);
+            echo "<br><br><br>";
+            $map_decode = json_decode($map_encode);
+            var_dump($map_decode);
+            exit;
+
+            $applicationDB = D('Application');
+            if($applicationDB->srtp($map)){
                 $this->success('申请提交成功，请等待审核', U('Index/index'));
             }else{
                 $this->error('申请提交失败', U('Application/srtp'));
             }
         }else{
-
+            $this->assign('user_info',$this->getUser());
             $this->assign('meta_title', '大学生科研训练计划（SRTP） | 大学生创新学分审核系统');
             $this->assign('layout_login',C('__LAYOUT_LOGIN__'));
             $this->display('srtp');
@@ -428,5 +439,27 @@ class ApplicationController extends Controller{
         $this->assign('layout_admin', C('__LAYOUT_ADMIN__'));  // 页面公共继承模版
         $this->assign('meta_title', "未通过申请 | 大学生创新学分审核系统");
         $this->display(); // 输出模板ied
+    }
+
+    public function item_invalid(){
+        // 获取所有用户
+        $itemDB = D('Application');
+        $itemCount = $itemDB->count();// 查询满足要求的总记录数
+        $Page       = new \Think\Page($itemCount,20);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+        $show       = $Page->show();// 分页显示输出
+        $limit = $Page->firstRow.','.$Page->listRows;// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+        $list = $itemDB->where('item_status=%d',6)->order('apply_id')->limit($limit)->select();
+        $this->assign('lists',$list);// 赋值数据集
+        $this->assign('page',$show);// 赋值分页输出
+        $this->assign('layout_admin', C('__LAYOUT_ADMIN__'));  // 页面公共继承模版
+        $this->assign('meta_title', "作废申请 | 大学生创新学分审核系统");
+        $this->display(); // 输出模板ied
+    }
+
+    public function getUser(){
+        $user_id = is_login();
+        $userDB = D('User');
+        $user_info = $userDB->getUserInfo($user_id);
+        return $user_info[0];
     }
 }

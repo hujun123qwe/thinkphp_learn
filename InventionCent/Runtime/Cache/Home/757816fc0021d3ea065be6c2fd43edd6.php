@@ -14,9 +14,8 @@
             max-width: 100%;
         }
         body{
-            background: #290C0C;
             font-family: '微软雅黑';
-            color: #fff;
+            color: #290C0C;
             font-size: 16px;
         }
         .message-box{
@@ -122,7 +121,6 @@
         <div class="message-action">
             <a class="btn" id="btn-now" href="<?php echo($jumpUrl); ?>">立即跳转</a>
             <a class="btn" id="btn-stop" onclick="stop()">停止跳转</a>
-            <a class="btn" id="btn-now" href="<?php echo(C('HOME_PAGE')); ?>">返回首页</a>
         </div>
     </div>
     <script type="text/javascript">

@@ -67,16 +67,14 @@
                             用户管理
                         </h3>
                         <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('User/user_admin');?>" ><i class="fa fa-wrench"></i><span class="nav-label">管理员管理</span></a></li>
-                        <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('User/user_list');?>" ><i class="fa fa-upload"></i><span class="nav-label">用户列表</span></a></li>
+                        <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('User/user_list');?>" ><i class="fa fa-upload"></i><span class="nav-label">学生列表</span></a></li>
                     </nav>
                     <nav class="menu">
                         <h3 class="menu-heading">
                             申请管理
                         </h3>
                         <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('Application/item_list');?>" ><i class="fa fa-wrench"></i><span class="nav-label">申请列表</span></a></li>
-                        <!--<li class="js-selected-navigation-item menu-item"><a href="link" ><i class="fa fa-map-signs"></i><span class="nav-label">已通过申请</span></a></li>-->
-                        <!--<li class="js-selected-navigation-item menu-item"><a href="upload" ><i class="fa fa-upload"></i><span class="nav-label">未通过申请</span></a></li>-->
-                        <li class="js-selected-navigation-item menu-item"><a href="news" ><i class="fa fa-wrench"></i><span class="nav-label">无效申请</span></a></li>
+                        <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('Application/item_invalid');?>" ><i class="fa fa-wrench"></i><span class="nav-label">作废申请</span></a></li>
                     </nav>
                     <nav class="menu">
                         <h3 class="menu-heading">
@@ -123,7 +121,7 @@
                         <dt><label for="h5">联系手机</label></dt>
                         <dd><input class="form-control" id="h5" name="phone" size="30" type="text" value="<?php echo ($item_info["phone"]); ?>" /></dd>
                     </dl>
-                    <p><a href="<?php echo U('Credits/verified',array('item_id'=>$item_info['item_id']),'');?>"><button class="btn">审核 通过</button></a>
+                    <p><a href="<?php echo U('Credits/verified',array('apply_id'=>$item_info['apply_id']),'');?>"><button class="btn">审核 通过</button></a>
                         <a href=""><button class="btn">返回</button></a>
                         <a href=""><button class="btn">弄虚作假</button></a>
                     </p>

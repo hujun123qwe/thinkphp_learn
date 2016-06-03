@@ -7,7 +7,7 @@ class ApplicationModel extends Model{
         if(empty($item_id)){
             return 0;
         }else{
-            return $this->where('item_id=%d',$item_id)->delete();
+            return $this->where('apply_id=%d',$item_id)->delete();
         }
     }
 
@@ -20,7 +20,7 @@ class ApplicationModel extends Model{
     }
 
     public function getItemInfo($item_id){
-    	$map['item_id'] = array(eq, $item_id);
+    	$map['apply_id'] = array(eq, $item_id);
     	return $this->where($map)->select();
     }
     
@@ -37,7 +37,7 @@ class ApplicationModel extends Model{
         if(empty($map)){
             return 0;
         }else{
-            return $this->where("item_id = %d", $item_id)->save($map);
+            return $this->where("apply_id = %d", $item_id)->save($map);
         }
     }
 
@@ -46,7 +46,7 @@ class ApplicationModel extends Model{
             return 0;
         }else{
             $map['item_status'] = 1;
-            return $this->where('item_id=%d',$item_id)->save($map);
+            return $this->where('apply_id=%d',$item_id)->save($map);
         }
     }
 

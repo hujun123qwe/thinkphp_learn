@@ -1,23 +1,42 @@
 <extend name="$layout_admin"/>
 
 <block name="right-content">
-    <table class="table table-bordered table-striped table-hover">
-        <thead><tr><th>#</th><th>编号</th><th>学分类型</th><th>项目类型</th><th>申请人</th><th>通过时间</th><th>是否通过</th></tr></thead>
-        <tbody>
-        <volist name="lists" id="vo" key="k">
-            <tr>
-                <td class="content"><span class="css-truncate css-truncate-target">{$k}</span></td>
-                <td class="content"><span class="css-truncate css-truncate-target">{$vo.credits_id}</span></td>
-                <td class="content"><span class="css-truncate css-truncate-target">{$vo.credits_type}</span></td>
-                <td class="content"><span class="css-truncate css-truncate-target">{$vo.item_id}</span></td>
-                <td class="content"><span class="css-truncate css-truncate-target">{$vo.verify_time}</span></td>
-                <td class="content"><span class="css-truncate css-truncate-target">{$vo.is_verify}</span></td>
-            </tr>
-        </volist>
-        </tbody>
-    </table>
+    <div class="columns">
+        <div class="single-column">
+            <div class="boxed-group flush">
+                <h3>学分列表管理</h3>
+                <ul class="boxed-group-inner mini-repo-list">
+                    <li class="public source">
+                        <table class="capped-list">
+                            <thead><tr><th> # </th><th>编号</th><th>申请编号</th><th>用户编号</th><th>学分值</th><th>生成时间</th><th>是否统计</th><th>统计时间</th><th>操作</th></tr></thead>
+                            <tbody>
+                            <volist name="lists" id="vo" key="k">
+                                <tr><td>{$k}</td>
+                                    <td>{$vo.credits_id}</td>
+                                    <td>{$vo.apply_id}</td>
+                                    <td>{$vo.user_id}</td>
+                                    <td>{$vo.credits_value}</td>
+                                    <td>{$vo.create_time|date="y-m-d",###}</td>
+                                    <td><if condition="$vo.is_add eq 1 ">已统计
+                                        <elseif condition="$vo.is_add eq 0"/>未统计
+                                        <else />未知参数
+                                    </if></td>
+                                    <td>{$vo.add_time|date="y-m-d",###}</td>
+                                    <td><a href="edit_admin?user_id={$vo.user_id}">编辑</a>&nbsp;
+                                        <a href="delete_admin?user_id={$vo.user_id}">删除</a>
+                                    </td>
+                                </tr>
+                            </volist>
+                            </tbody>
+                        </table>
 
-    <notempty name="page">
-        <ul class="pagination">{$page}</ul>
-    </notempty>
+                        <notempty name="page">
+                            <ul class="pagination">{$page}</ul>
+                        </notempty>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
 </block>

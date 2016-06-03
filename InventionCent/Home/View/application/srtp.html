@@ -1,43 +1,71 @@
 <extend name="$layout_login"/>
-
+<block name="js">
+    <script type="text/javascript">
+        $(function () {
+            $(".btn-pill").on('click',function () {
+                var file_form_num = $(".file_form_num").size();
+                if(file_form_num>4){
+                    alert("好像用不到这么多材料，打包上传吧!");
+                }else {
+                    $("#file_form").append("<lable>其他材料</lable><input type=\"file\" class=\"form-control file_form_num\" name=\"other_file_" + file_form_num + "\">");
+                }
+            })
+        });
+    </script>
+</block>
 <block name="container">
     <!-- 登陆框 -->
     <div class="panel-lite">
-        <a href="{:C('HOME_PAGE')}"><h1>大学生创新学分审核系统</h1></a>
+        <h1><a href="{:C('HOME_PAGE')}">大学生创新学分审核系统</a></h1>
         <div class="setup-wrapper">
             <div class="setup-main">
-                <div class="setup-form-container">
+                <div class="setup-form-container" style="color: #666666;">
                     <form action="{:U('Application/srtp')}" class="setup-form js-braintree-encrypt" enctype="multipart/form-data" method="post">
+                        <input type="hidden" name="item_id" value="1"/>
                         <h2 class="setup-form-title mb-3">大学生科研训练计划（SRTP）</h2>
                         <div class="form-group">
                             <input type="text" name="item_name" required="required" class="form-control"  placeholder="项目名称">
                         </div>
-                        <div class="form-group">
-                            <input type="text" name="user_name" required="required" class="form-control" placeholder="姓名">
-                            <input type="text" name="student_id" required="required" class="form-control" placeholder="学号">
-                            <input type="text" name="academy" required="required" class="form-control" placeholder="学院">
-                            <input type="text" name="iclass" required="required" class="form-control" placeholder="班级">
-                            <input type="text" name="phone" required="required" class="form-control" placeholder="联系手机">
+                        <div class="form-inline" >
+                            <input type="text" style="width: 218px;" class="form-control" value="姓名：{$user_info.user_name}">
+                            <input type="text" style="width: 218px;" class="form-control" value="学号：{$user_info.student_id}">
+                        </div>
+                        <div class="form-inline">
+                            <input type="text" style="width: 218px;" class="form-control" value="学院：{$user_info.academy}">
+                            <input type="text" style="width: 218px;" class="form-control" value="班级：{$user_info.iclass}">
                         </div>
                         <div class="form-group">
                             <input type="text" name="teacher" required="required" class="form-control" placeholder="指导老师">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="file_form">
                             <label for="InputFile">《安徽工业大学SRTP项目结题验收表》</label>
-                            <br><input type="file" name="srtp_file" id="InputFile">
+                            <input type="file" class="form-control" name="srtp_file" id="InputFile">
                         </div>
-                        <label for="multiple">请选择小组人数</label>
-                        <select class="form-control" id="multiple" name="group">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                        <div class="checkbox">
-                            <label><input type="checkbox" name="is_important_item"> 重点课题项目</label>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-pill" style="color:#666666;">+上传更多</button>
                         </div>
-                        <button type="submit" class="btn btn-default">提交申请</button>
+                        <div class="form-inline">
+                            <label>请选择小组人数</label>
+                            <select class="form-control" name="group" style="width: 80px;">
+                                <option value="1">1人组</option>
+                                <option value="2">2人组</option>
+                                <option value="3">3人组</option>
+                                <option value="4">4人组</option>
+                                <option value="5">5人组</option>
+                            </select>
+                            <span style="margin-left: 40px;"></span>
+                            <label>请选择成绩等级</label>
+                            <select class="form-control" name="grade" style="width: 80px;">
+                                <option value="1">优秀</option>
+                                <option value="2">良好</option>
+                                <option value="3">通过</option>
+                                <option value="4">不通过</option>
+                            </select>
+                        </div>
+                        <div class="form-checkbox">
+                            <input type="checkbox" name="is_important_item"><label>重点课题项目</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">提交申请</button>
                     </form>
                 </div> <!-- /.setup-form-container -->
             </div> <!-- /.setup-main -->

@@ -1,0 +1,42 @@
+<extend name="$layout_admin"/>
+<block name="right-content">
+        <div class="columns">
+            <div class="single-column">
+                <div class="boxed-group flush">
+                    <h3>作废的申请单</h3>
+                    <ul class="boxed-group-inner mini-repo-list">
+                        <li class="public source">
+                        <table class="capped-list">
+                            <thead><tr><th>#</th><th>编号</th><th>项目名</th><th>项目类型</th><th>申请人</th><th>申请时间</th><th>是否通过</th><th>操作</th></tr></thead>
+                            <tbody>
+                            <volist name="lists" id="vo" key="k">
+                                <tr class="js-navigation-item">
+                                    <td>{$k}</td>
+                                    <td>{$vo.apply_id}</td>
+                                    <td><a href="editItem?apply_id={$vo.apply_id}">{$vo.item_name}</a></td>
+                                    <td>{$vo.item_type}</td>
+                                    <td>{$vo.student_id}</td>
+                                    <td>{$vo.apply_time|date="y-m-d",###}</td>
+                                    <td>
+                                        <if condition="$vo.item_status eq 1 ">已通过
+                                            <elseif condition="$vo.item_status eq 0"/>未审核
+                                            <else />未知参数
+                                        </if>
+                                    </td>
+                                    <td>
+                                        <a href="{:U('Credits/verifyItem',array('apply_id'=>$vo['apply_id']),'')}">审核</a>&nbsp;
+                                        <a href="deleteItem?apply_id={$vo.apply_id}">删除</a>
+                                    </td>
+                                </tr>
+                            </volist>
+                            </tbody>
+                        </table>
+
+                        <notempty name="page">
+                            <ul class="pagination">{$page}</ul>
+                        </notempty>
+                    </div>
+                </div>
+            </div>
+        </div>
+</block>

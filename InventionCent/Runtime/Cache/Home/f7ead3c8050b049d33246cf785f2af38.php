@@ -37,7 +37,7 @@
         <div class="page-content container">
             <div class="columns profilecols">
                 <div class="column one-fourth vcard" itemscope itemtype="http://schema.org/Person">
-                    <a href="/account" aria-label="Change your avatar" class="vcard-avatar d-block tooltipped tooltipped-s">
+                    <a href="#" aria-label="Change your avatar" class="vcard-avatar d-block tooltipped tooltipped-s">
                         <img alt="" class="avatar rounded-2" height="230" src="<?php echo (C("__HOME_IMG__")); ?>/avatar_big.png" width="230" />
                     </a>
                     <h1 class="vcard-names my-3">
@@ -264,10 +264,10 @@
         </a>
         <ul class="site-footer-links">
             <li>&copy; 2016 <span>安徽工业大学</span>, Inc.</li>
-            <li><a href="http：//www.ahut.edu.cn">工大首页</a></li>
+            <li><a href="http://www.ahut.edu.cn">工大首页</a></li>
             <li><a href="http://gczx.ahut.edu.cn/">工创中心</a></li>
-            <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
-            <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact</a></li>
+            <li><a href="http://jwcad.ahut.edu.cn/">教务处</a></li>
+            <li><a href="http://library_web.ahut.edu.cn/MainWeb/index.asp">校图书馆</a></li>
             <li><a href="https://help.github.com" data-ga-click="Footer, go to help, text:help">Help</a></li>
         </ul>
     </div>

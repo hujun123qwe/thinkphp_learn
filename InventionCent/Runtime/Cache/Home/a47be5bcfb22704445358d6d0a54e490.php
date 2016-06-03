@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Language" content="en">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/login.css" type="text/css">
-    <script type="text/javascript" src="/Public/libs/jquery/1.x/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo (C("__HOME_JS__")); ?>/jquery.min.js"></script>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/frameworks.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/github.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/site.css" type="text/css"/>
@@ -19,7 +19,7 @@
 
     <!-- 登陆框 -->
     <div class="panel-lite" style="width: 400px;">
-        <a href="<?php echo C('HOME_PAGE');?>"><h1>大学生创新学分审核系统</h1></a>
+        <h1><a href="<?php echo C('HOME_PAGE');?>">大学生创新学分审核系统</a></h1>
         <form class="login-form" action="<?php echo U('Public/login');?>" method="post">
             <div class="form-group">
                 <input type="text" required="required" class="form-control" name="username" placeholder="学号">
@@ -47,7 +47,7 @@
     </div>
 
 </body>
-<script src="/Public/libs/particles/particles.min.js"></script>
+<script src="<?php echo (C("__HOME_JS__")); ?>/particles.min.js"></script>
 <script type="text/javascript">
     $(function(){
         // 刷新验证码

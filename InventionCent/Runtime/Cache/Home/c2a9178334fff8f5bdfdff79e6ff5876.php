@@ -6,62 +6,55 @@
     <meta http-equiv="Content-Language" content="en">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/login.css" type="text/css">
-    <script type="text/javascript" src="/Public/libs/jquery/1.x/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo (C("__HOME_JS__")); ?>/jquery.min.js"></script>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/frameworks.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/github.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/site.css" type="text/css"/>
     
-    <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/frameworks.css" type="text/css"/>
-    <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/github.css" type="text/css"/>
-    <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/site.css" type="text/css"/>
-
     <title><?php echo ($meta_title); ?></title>
 </head>
 <body>
 <div id="particles-js" class="background"></div>
 
 
-
     <!-- 登陆框 -->
     <div class="panel-lite">
-        <a href="<?php echo C('HOME_PAGE');?>"><h1>大学生创新学分审核系统</h1></a>
+        <h1><a href="<?php echo C('HOME_PAGE');?>">大学生创新学分审核系统</a></h1>
         <div class="setup-wrapper">
-
             <div class="setup-main">
                 <div class="setup-form-container">
-
                     <form action="<?php echo U('Application/itemRoute');?>" class="setup-form js-braintree-encrypt" method="get">
                         <h2 class="setup-form-title mb-3">
                             选择你要申请的创新学分类型
                         </h2>
                         <div class="currency-container js-details-container">
                             <label class="plan-choice plan-choice-free js-plan-choice-label open">
-                                <input type="radio" class="plan-choice-radio js-plan-choice" name="plan" value="1" checked>
+                                <input type="radio" class="plan-choice-radio js-plan-choice" name="item_type" value="1" checked>
                                 大学生科研训练计划（SRTP）
                             </label>
                             <label class="plan-choice plan-choice-free js-plan-choice-label open">
-                                <input type="radio" class="plan-choice-radio js-plan-choice" name="plan" value="2">
+                                <input type="radio" class="plan-choice-radio js-plan-choice" name="item_type" value="2">
                                 学科竞赛
                             </label>
                             <label class="plan-choice plan-choice-free js-plan-choice-label open">
-                                <input type="radio" class="plan-choice-radio js-plan-choice" name="plan" value="3">
+                                <input type="radio" class="plan-choice-radio js-plan-choice" name="item_type" value="3">
                                 “三创”教育课程体系
                             </label>
                             <label class="plan-choice plan-choice-free js-plan-choice-label open">
-                                <input type="radio" class="plan-choice-radio js-plan-choice" name="plan" value="4">
+                                <input type="radio" class="plan-choice-radio js-plan-choice" name="item_type" value="4">
                                 论文发表学分认定
                             </label>
                             <label class="plan-choice plan-choice-free js-plan-choice-label open">
-                                <input type="radio" class="plan-choice-radio js-plan-choice" name="plan" value="5">
+                                <input type="radio" class="plan-choice-radio js-plan-choice" name="item_type" value="5">
                                 专利成果
                             </label>
                             <label class="plan-choice plan-choice-free js-plan-choice-label open">
-                                <input type="radio" class="plan-choice-radio js-plan-choice" name="plan" value="6">
+                                <input type="radio" class="plan-choice-radio js-plan-choice" name="item_type" value="6">
                                 其他科研、学术等创新活动
                             </label>
-                            <p class="note mb-3">不用担心, 你可以在以后添加这些.</p>
+                            <p class="note mb-3">请认真选择, 一旦确定将不可更改.</p>
                         </div>
-                        <input type="submit" value="确 定" class="btn btn-primary js-choose-plan-submit">
+                        <input type="submit" value="确 定" class="btn btn-primary js-choose-plan-submit" style="width: 80px;">
                     </form>
                 </div> <!-- /.setup-form-container -->
             </div> <!-- /.setup-main -->
@@ -70,7 +63,7 @@
 
 
 </body>
-<script src="/Public/libs/particles/particles.min.js"></script>
+<script src="<?php echo (C("__HOME_JS__")); ?>/particles.min.js"></script>
 <script type="text/javascript">
     $(function(){
         // 刷新验证码

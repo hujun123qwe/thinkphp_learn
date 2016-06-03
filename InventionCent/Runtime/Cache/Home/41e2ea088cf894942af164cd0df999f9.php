@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/frameworks.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/github.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/site.css" type="text/css"/>
-    <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/table.css" type="text/css"/>
-    <!--<link rel="stylesheet" type="text/css" href="/Public/libs/cui/css/cui.min.css">-->
     <style>
         .breadcrumb>li,.pagination{display:inline-block}
         .breadcrumb{
@@ -35,66 +33,15 @@
         <a class="header-logo-invertocat" href="<?php echo U('Admin/index');?>"><h2>大学生创新学分审核系统</h2></a>
         <div class="header-search   js-site-search" role="search"></div>
         <ul class="header-nav left" role="navigation"></ul>
-        <ul class="header-nav user-nav right" id="user-links">
-            <li class="header-nav-item">
-                <a href="/notifications" aria-label="You have no unread notifications" class="header-nav-link notification-indicator tooltipped tooltipped-s js-socket-channel js-notification-indicator" data-channel="notification-changed-v2:8892333" data-ga-click="Header, go to notifications, icon:read">
-                    <span class="mail-status "></span>
-                    <svg aria-hidden="true" class="octicon octicon-bell" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 12v1H0v-1l0.73-0.58c0.77-0.77 0.81-2.55 1.19-4.42 0.77-3.77 4.08-5 4.08-5 0-0.55 0.45-1 1-1s1 0.45 1 1c0 0 3.39 1.23 4.16 5 0.38 1.88 0.42 3.66 1.19 4.42l0.66 0.58z m-7 4c1.11 0 2-0.89 2-2H5c0 1.11 0.89 2 2 2z"></path></svg>
-                </a>
+        <ul class="header-nav user-nav right" style="padding-right:5px;">
+            <li class="header-nav-item" style="padding-right:12px;">
+                <span class="vcard-username">欢迎<?php echo ($user_info["user_name"]); ?>管理员</span>
             </li>
-            <li class="header-nav-item dropdown js-menu-container">
-                <a class="header-nav-link tooltipped tooltipped-s js-menu-target">
-                    <svg aria-hidden="true" class="octicon octicon-plus left" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 9H7v5H5V9H0V7h5V2h2v5h5v2z"></path></svg>
-                    <span class="dropdown-caret"></span></a>
-                <div class="dropdown-menu-content js-menu-content">
-                    <ul class="dropdown-menu dropdown-menu-sw">
-                        <a class="dropdown-item" href="/new" data-ga-click="Header, create new repository">New repository</a>
-                        <a class="dropdown-item" href="/new/import" data-ga-click="Header, import a repository">Import repository</a>
-                        <a class="dropdown-item" href="/organizations/new" data-ga-click="Header, create new organization">New organization</a>
-                    </ul>
-                </div>
+            <li class="header-nav-item" style="padding-right:8px;">
+                <a href="<?php echo U('User/edit_admin');?>" class="btn btn-sm">个人信息</a>
             </li>
-            <li class="header-nav-item dropdown js-menu-container">
-                <a class="header-nav-link name tooltipped tooltipped-sw js-menu-target">
-                    <img alt="@hujun123qwe" class="avatar" height="20" src="https://avatars2.githubusercontent.com/u/8892333?v=3&amp;s=40" width="20" />
-                    <span class="dropdown-caret"></span>
-                </a>
-                <div class="dropdown-menu-content js-menu-content">
-                    <div class="dropdown-menu  dropdown-menu-sw">
-                        <div class=" dropdown-header header-nav-current-user css-truncate">
-                            Signed in as <strong class="css-truncate-target">hujun123qwe</strong>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/hujun123qwe" data-ga-click="Header, go to profile, text:your profile">
-                            Your profile
-                        </a>
-                        <a class="dropdown-item" href="/stars" data-ga-click="Header, go to starred repos, text:your stars">
-                            Your stars
-                        </a>
-                        <a class="dropdown-item" href="/explore" data-ga-click="Header, go to explore, text:explore">
-                            Explore
-                        </a>
-                        <a class="dropdown-item" href="/integrations" data-ga-click="Header, go to integrations, text:integrations">
-                            Integrations
-                        </a>
-                        <a class="dropdown-item" href="https://help.github.com" data-ga-click="Header, go to help, text:help">
-                            Help
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/settings/profile" data-ga-click="Header, go to settings, icon:settings">
-                            Settings
-                        </a>
-                        <form accept-charset="UTF-8" action="/logout" class="logout-form" method="post">
-                            <div style="margin:0;padding:0;display:inline">
-                                <input name="utf8" type="hidden" value="&#x2713;" />
-                                <input name="authenticity_token" type="hidden"/>
-                            </div>
-                            <button class="dropdown-item dropdown-signout" data-ga-click="Header, sign out, icon:logout">
-                                Sign out
-                            </button>
-                        </form>
-                    </div>
-                </div>
+            <li class="header-nav-item" style="padding-right:8px;">
+                <a href="<?php echo U('Public/logout');?>" class="btn btn-sm">退出</a>
             </li>
         </ul>
     </div>
@@ -118,16 +65,14 @@
                             用户管理
                         </h3>
                         <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('User/user_admin');?>" ><i class="fa fa-wrench"></i><span class="nav-label">管理员管理</span></a></li>
-                        <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('User/user_list');?>" ><i class="fa fa-upload"></i><span class="nav-label">用户列表</span></a></li>
+                        <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('User/user_list');?>" ><i class="fa fa-upload"></i><span class="nav-label">学生列表</span></a></li>
                     </nav>
                     <nav class="menu">
                         <h3 class="menu-heading">
                             申请管理
                         </h3>
                         <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('Application/item_list');?>" ><i class="fa fa-wrench"></i><span class="nav-label">申请列表</span></a></li>
-                        <!--<li class="js-selected-navigation-item menu-item"><a href="link" ><i class="fa fa-map-signs"></i><span class="nav-label">已通过申请</span></a></li>-->
-                        <!--<li class="js-selected-navigation-item menu-item"><a href="upload" ><i class="fa fa-upload"></i><span class="nav-label">未通过申请</span></a></li>-->
-                        <li class="js-selected-navigation-item menu-item"><a href="news" ><i class="fa fa-wrench"></i><span class="nav-label">无效申请</span></a></li>
+                        <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('Application/item_invalid');?>" ><i class="fa fa-wrench"></i><span class="nav-label">作废申请</span></a></li>
                     </nav>
                     <nav class="menu">
                         <h3 class="menu-heading">
@@ -146,21 +91,39 @@
                 </div>
                 <div class="column three-fourths">
                     
-    <table class="table table-bordered table-striped table-hover">
-        <thead><tr><th>#</th><th>编号</th><th>学分类型</th><th>项目类型</th><th>申请人</th><th>通过时间</th><th>是否通过</th></tr></thead>
-        <tbody>
-        <?php if(is_array($lists)): $k = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><tr>
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($k); ?></span></td>
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["credits_id"]); ?></span></td>
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["credits_type"]); ?></span></td>
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["item_id"]); ?></span></td>
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["verify_time"]); ?></span></td>
-                <td class="content"><span class="css-truncate css-truncate-target"><?php echo ($vo["is_verify"]); ?></span></td>
-            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-        </tbody>
-    </table>
+    <div class="columns">
+        <div class="single-column">
+            <div class="boxed-group flush">
+                <h3>学分列表管理</h3>
+                <ul class="boxed-group-inner mini-repo-list">
+                    <li class="public source">
+                        <table class="capped-list">
+                            <thead><tr><th> # </th><th>编号</th><th>申请编号</th><th>用户编号</th><th>学分值</th><th>生成时间</th><th>是否统计</th><th>统计时间</th><th>操作</th></tr></thead>
+                            <tbody>
+                            <?php if(is_array($lists)): $k = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><tr><td><?php echo ($k); ?></td>
+                                    <td><?php echo ($vo["credits_id"]); ?></td>
+                                    <td><?php echo ($vo["apply_id"]); ?></td>
+                                    <td><?php echo ($vo["user_id"]); ?></td>
+                                    <td><?php echo ($vo["credits_value"]); ?></td>
+                                    <td><?php echo (date("y-m-d",$vo["create_time"])); ?></td>
+                                    <td><?php if($vo["is_add"] == 1 ): ?>已统计
+                                        <?php elseif($vo["is_add"] == 0): ?>未统计
+                                        <?php else: ?>未知参数<?php endif; ?></td>
+                                    <td><?php echo (date("y-m-d",$vo["add_time"])); ?></td>
+                                    <td><a href="edit_admin?user_id=<?php echo ($vo["user_id"]); ?>">编辑</a>&nbsp;
+                                        <a href="delete_admin?user_id=<?php echo ($vo["user_id"]); ?>">删除</a>
+                                    </td>
+                                </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                            </tbody>
+                        </table>
 
-    <?php if(!empty($page)): ?><ul class="pagination"><?php echo ($page); ?></ul><?php endif; ?>
+                        <?php if(!empty($page)): ?><ul class="pagination"><?php echo ($page); ?></ul><?php endif; ?>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
 
                 </div>
             </div>
@@ -176,19 +139,17 @@
             <li>中心地址：安徽省马鞍山市马向路新城东区（东校区）邮编：243032</li>
         </ul>
         <a href="https://github.com" aria-label="Homepage" class="site-footer-mark" title="GitHub">
-            <svg aria-hidden="true" class="octicon octicon-mark-github" height="24" version="1.1" viewBox="0 0 16 16" width="24">
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59 0.4 0.07 0.55-0.17 0.55-0.38 0-0.19-0.01-0.82-0.01-1.49-2.01 0.37-2.53-0.49-2.69-0.94-0.09-0.23-0.48-0.94-0.82-1.13-0.28-0.15-0.68-0.52-0.01-0.53 0.63-0.01 1.08 0.58 1.23 0.82 0.72 1.21 1.87 0.87 2.33 0.66 0.07-0.52 0.28-0.87 0.51-1.07-1.78-0.2-3.64-0.89-3.64-3.95 0-0.87 0.31-1.59 0.82-2.15-0.08-0.2-0.36-1.02 0.08-2.12 0 0 0.67-0.21 2.2 0.82 0.64-0.18 1.32-0.27 2-0.27 0.68 0 1.36 0.09 2 0.27 1.53-1.04 2.2-0.82 2.2-0.82 0.44 1.1 0.16 1.92 0.08 2.12 0.51 0.56 0.82 1.27 0.82 2.15 0 3.07-1.87 3.75-3.65 3.95 0.29 0.25 0.54 0.73 0.54 1.48 0 1.07-0.01 1.93-0.01 2.2 0 0.21 0.15 0.46 0.55 0.38C13.71 14.53 16 11.53 16 8 16 3.58 12.42 0 8 0z"></path></svg>
+            <img src="<?php echo (C("__HOME_IMG__")); ?>/ahut.png" class="octicon octicon-mark-github" style="height: 30px;width: 30px;"/>
         </a>
         <ul class="site-footer-links">
             <li>&copy; 2016 <span>安徽工业大学</span>, Inc.</li>
-            <li><a href="http：//www.ahut.edu.cn">工大首页</a></li>
+            <li><a href="http://www.ahut.edu.cn">工大首页</a></li>
             <li><a href="http://gczx.ahut.edu.cn/">工创中心</a></li>
-            <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
-            <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact</a></li>
-            <li><a href="https://help.github.com" data-ga-click="Footer, go to help, text:help">Help</a></li>
+            <li><a href="http://jwcad.ahut.edu.cn/">教务处</a></li>
+            <li><a href="http://library_web.ahut.edu.cn/MainWeb/index.asp">校图书馆</a></li>
+            <li><a href="mailto:hujun123qwe@163.com">Help</a></li>
         </ul>
     </div>
 </div>
-
 </body>
 </html>

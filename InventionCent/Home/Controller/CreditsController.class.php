@@ -33,7 +33,7 @@ class CreditsController extends Controller{
     }
 
     public function verifyItem(){
-        $item_id = I('get.item_id');
+        $item_id = I('get.apply_id');
         $itemDB = D('Application');
         $item_info = $itemDB->getItemInfo($item_id);
         $this->assign('item_info', $item_info[0]);
@@ -43,10 +43,11 @@ class CreditsController extends Controller{
     }
     
     public function verified(){
-        $item_id = I('get.item_id');
+        $item_id = I('get.apply_id');
         $itemDB = D('Application');
         if($itemDB->verified($item_id)){
-            $this->success('审核通过');
+
+            $this->success('审核通过',U('Application/item_list'));
         }else{
             $this->error('系统错误');
         }

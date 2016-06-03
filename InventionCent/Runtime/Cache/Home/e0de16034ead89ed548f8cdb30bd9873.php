@@ -99,7 +99,7 @@
             <h3>编辑项目</h3>
             <div class="boxed-group-inner clearfix">
                 <form accept-charset="UTF-8" action="<?php echo U('Application/edit');?>" class="columns js-uploadable-container js-upload-avatar-image is-default" method="post">
-                    <input type="hidden" name="item_id" value="<?php echo ($item_info["item_id"]); ?>"/>
+                    <input type="hidden" name="item_id" value="<?php echo ($item_info["apply_id"]); ?>"/>
                     <div class="column two-thirds">
                         <dl class="form-group">
                             <dt><label for="user_profile_name">项目名称</label></dt>

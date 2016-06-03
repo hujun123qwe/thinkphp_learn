@@ -1,3 +1,6 @@
+.panel-lite h1 a{
+    text-decoration: none;
+}
  .background {
 	position: absolute;
 	right: 0px;

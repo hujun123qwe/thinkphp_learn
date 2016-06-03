@@ -14,9 +14,8 @@
             max-width: 100%;
         }
         body {
-            background: #30333F;
             font-family: '微软雅黑';
-            color: #fff;
+            color: #30333F;
             font-size: 16px;
         }
         .message-box {

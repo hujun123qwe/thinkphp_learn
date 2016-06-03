@@ -29,7 +29,7 @@
                         <dt><label for="h5">联系手机</label></dt>
                         <dd><input class="form-control" id="h5" name="phone" size="30" type="text" value="{$item_info.phone}" /></dd>
                     </dl>
-                    <p><a href="{:U('Credits/verified',array('item_id'=>$item_info['item_id']),'')}"><button class="btn">审核 通过</button></a>
+                    <p><a href="{:U('Credits/verified',array('apply_id'=>$item_info['apply_id']),'')}"><button class="btn">审核 通过</button></a>
                         <a href=""><button class="btn">返回</button></a>
                         <a href=""><button class="btn">弄虚作假</button></a>
                     </p>
