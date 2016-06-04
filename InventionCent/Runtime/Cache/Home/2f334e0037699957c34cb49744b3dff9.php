@@ -37,7 +37,7 @@
         <div class="page-content container">
             <div class="columns profilecols">
                 <div class="column one-fourth vcard" itemscope itemtype="http://schema.org/Person">
-                    <a href="/account" aria-label="Change your avatar" class="vcard-avatar d-block tooltipped tooltipped-s">
+                    <a href="#" aria-label="Change your avatar" class="vcard-avatar d-block tooltipped tooltipped-s">
                         <img alt="" class="avatar rounded-2" height="230" src="<?php echo (C("__HOME_IMG__")); ?>/avatar_big.png" width="230" />
                     </a>
                     <h1 class="vcard-names my-3">
@@ -89,7 +89,7 @@
             <h3>编辑项目</h3>
 	            <div class="boxed-group-inner clearfix">
 	                <form accept-charset="UTF-8" action="<?php echo U('Application/edit');?>" class="columns js-uploadable-container js-upload-avatar-image is-default" method="post">
-						<input type="hidden" name="item_id" value="<?php echo ($item_info["item_id"]); ?>"/>
+						<input type="hidden" name="apply_id" value="<?php echo ($item_info["apply_id"]); ?>"/>
 	                <div class="column two-thirds">
 	                    <dl class="form-group">
 	                        <dt><label for="user_profile_name">项目名称</label></dt>
@@ -114,7 +114,38 @@
 	                    <dl class="form-group">
 	                        <dt><label for="h5">联系手机</label></dt>
 	                        <dd><input class="form-control"  style="opacity: 0.5;" disabled="disabled" id="h5" name="phone" size="30" type="text" value="<?php echo ($user_info["phone"]); ?>" /></dd>
-	                    </dl>	                    
+	                    </dl>
+	                     <dl class="form-group">
+	                     	<dt><label for="h5">指导老师</label></dt>
+                            <dd><input type="text" name="teacher" required="required" class="form-control" value="<?php echo ($apply_info["teacher"]); ?>"></dd>
+                        </dl>	
+                        <dl class="form-group">
+                            <dt><label>请选择小组人数</label></dt>
+                            <dd><select class="form-control" name="group" style="width: 80px;">
+                                <option value="1" <?php if($apply_info["igroup"] == 1): ?>selected="selected"<?php endif; ?>>1人组</option>
+                                <option value="2" <?php if($apply_info["igroup"] == 2): ?>selected="selected"<?php endif; ?>>2人组</option>
+                                <option value="3" <?php if($apply_info["igroup"] == 3): ?>selected="selected"<?php endif; ?>>3人组</option>
+                                <option value="4" <?php if($apply_info["igroup"] == 4): ?>selected="selected"<?php endif; ?>>4人组</option>
+                                <option value="5" <?php if($apply_info["igroup"] == 5): ?>selected="selected"<?php endif; ?>>5人组</option>
+                            </select></dd>
+                        </dl>
+                        <dl class="form-group">
+                            <dt><label>请选择成绩等级</label></dt>
+                            <dd><select class="form-control" name="grade" style="width: 80px;">
+                                <option value="1" <?php if($apply_info["grade"] == 1): ?>selected="selected"<?php endif; ?>>优秀</option>
+                                <option value="2" <?php if($apply_info["grade"] == 2): ?>selected="selected"<?php endif; ?>>良好</option>
+                                <option value="3" <?php if($apply_info["grade"] == 3): ?>selected="selected"<?php endif; ?>>通过</option>
+                                <option value="4" <?php if($apply_info["grade"] == 4): ?>selected="selected"<?php endif; ?>>不通过</option>
+                            </select></dd>
+                        </dl>
+                        <dl class="form-checkbox">
+                            <input type="checkbox" name="is_important_item" <?php if($apply_info["item_type"] == 1): ?>checked="checked"<?php endif; ?>><label>重点课题项目</label>
+                        </dl>
+                        <dl class="form-group">
+                        	<dt>《安徽工业大学SRTP项目结题验收表》</dt>
+                        	<dd><img src="/uploads/<?php echo ($apply_info["upload_file"]); ?>"/></dd>
+                        	<dd><input type="file" class="form-control" name="srtp_file" id="InputFile"></dd>
+                        </dl>
 	                    <p><button type="submit" class="btn btn-primary">确认 更改</button></p>
 	                </div>
 	            </form>        
@@ -144,10 +175,10 @@
         </a>
         <ul class="site-footer-links">
             <li>&copy; 2016 <span>安徽工业大学</span>, Inc.</li>
-            <li><a href="http：//www.ahut.edu.cn">工大首页</a></li>
+            <li><a href="http://www.ahut.edu.cn">工大首页</a></li>
             <li><a href="http://gczx.ahut.edu.cn/">工创中心</a></li>
-            <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
-            <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact</a></li>
+            <li><a href="http://jwcad.ahut.edu.cn/">教务处</a></li>
+            <li><a href="http://library_web.ahut.edu.cn/MainWeb/index.asp">校图书馆</a></li>
             <li><a href="https://help.github.com" data-ga-click="Footer, go to help, text:help">Help</a></li>
         </ul>
     </div>

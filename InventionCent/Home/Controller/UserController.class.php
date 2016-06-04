@@ -135,7 +135,7 @@ class UserController extends Controller{
             }
             $userDB = D('User');            
             if($userDB->edit_student($map,$user_id)){
-                $this->display();
+                $this->display('个人信息更新成功',U('User/index_student'));
             }else{
                 $this->error('数据传递错误:(');
             }

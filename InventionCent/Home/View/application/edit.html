@@ -6,7 +6,7 @@
             <h3>编辑项目</h3>
 	            <div class="boxed-group-inner clearfix">
 	                <form accept-charset="UTF-8" action="{:U('Application/edit')}" class="columns js-uploadable-container js-upload-avatar-image is-default" method="post">
-						<input type="hidden" name="item_id" value="{$item_info.item_id}"/>
+						<input type="hidden" name="apply_id" value="{$item_info.apply_id}"/>
 	                <div class="column two-thirds">
 	                    <dl class="form-group">
 	                        <dt><label for="user_profile_name">项目名称</label></dt>
@@ -31,7 +31,38 @@
 	                    <dl class="form-group">
 	                        <dt><label for="h5">联系手机</label></dt>
 	                        <dd><input class="form-control"  style="opacity: 0.5;" disabled="disabled" id="h5" name="phone" size="30" type="text" value="{$user_info.phone}" /></dd>
-	                    </dl>	                    
+	                    </dl>
+	                     <dl class="form-group">
+	                     	<dt><label for="h5">指导老师</label></dt>
+                            <dd><input type="text" name="teacher" required="required" class="form-control" value="{$apply_info.teacher}"></dd>
+                        </dl>	
+                        <dl class="form-group">
+                            <dt><label>请选择小组人数</label></dt>
+                            <dd><select class="form-control" name="group" style="width: 80px;">
+                                <option value="1" <if condition='$apply_info.igroup eq 1'>selected="selected"</if>>1人组</option>
+                                <option value="2" <if condition='$apply_info.igroup eq 2'>selected="selected"</if>>2人组</option>
+                                <option value="3" <if condition='$apply_info.igroup eq 3'>selected="selected"</if>>3人组</option>
+                                <option value="4" <if condition='$apply_info.igroup eq 4'>selected="selected"</if>>4人组</option>
+                                <option value="5" <if condition='$apply_info.igroup eq 5'>selected="selected"</if>>5人组</option>
+                            </select></dd>
+                        </dl>
+                        <dl class="form-group">
+                            <dt><label>请选择成绩等级</label></dt>
+                            <dd><select class="form-control" name="grade" style="width: 80px;">
+                                <option value="1" <if condition='$apply_info.grade eq 1'>selected="selected"</if>>优秀</option>
+                                <option value="2" <if condition='$apply_info.grade eq 2'>selected="selected"</if>>良好</option>
+                                <option value="3" <if condition='$apply_info.grade eq 3'>selected="selected"</if>>通过</option>
+                                <option value="4" <if condition='$apply_info.grade eq 4'>selected="selected"</if>>不通过</option>
+                            </select></dd>
+                        </dl>
+                        <dl class="form-checkbox">
+                            <input type="checkbox" name="is_important_item" <if condition='$apply_info.item_type eq 1'>checked="checked"</if>><label>重点课题项目</label>
+                        </dl>
+                        <dl class="form-group">
+                        	<dt>《安徽工业大学SRTP项目结题验收表》</dt>
+                        	<dd><img src="__ROOT__/uploads/{$apply_info.upload_file}"/></dd>
+                        	<dd><input type="file" class="form-control" name="srtp_file" id="InputFile"></dd>
+                        </dl>
 	                    <p><button type="submit" class="btn btn-primary">确认 更改</button></p>
 	                </div>
 	            </form>        

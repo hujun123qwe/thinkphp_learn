@@ -117,7 +117,7 @@
                         <h3>大学生科研训练计划（SRTP）</h3>
                         <ul class="boxed-group-inner mini-repo-list">
                             <?php if(is_array($item_list)): $i = 0; $__LIST__ = $item_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="public source">
-                                   <a href="<?php echo U('application/edit');?>" class="mini-repo-list-item css-truncate">
+                                   <a href="<?php echo U('application/edit',array('apply_id'=>$vo['apply_id']),'');?>" class="mini-repo-list-item css-truncate">
                                         <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12">
                                             <path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path>
                                         </svg>
@@ -129,7 +129,7 @@
                                             审核状态<?php echo ($vo["item_status"]); ?>
                                         </span>
                                         <span class="repo-description css-truncate-target">
-                                            申请时间<?php echo ($vo["item_time"]); ?>
+                                            申请时间<?php echo (date("y-m-d",$vo["apply_time"])); ?>
                                         </span>
                                     </a>
                                 </li><?php endforeach; endif; else: echo "" ;endif; ?>

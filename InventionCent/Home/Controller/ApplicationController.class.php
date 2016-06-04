@@ -121,14 +121,19 @@ class ApplicationController extends Controller{
             $this->assign('user_info',$user_info[0]);
 
             $itemDB = D('Application');
-            $item_info = $itemDB->getItemInfo(1);
+            $apply_id = I('get.apply_id');
+            $item_info = $itemDB->getItemInfo($apply_id);
             $this->assign('item_info', $item_info[0]);
+
+            $map = json_decode($item_info[0]['apply_info'],true);
+            $this->assign('apply_info',$map);
 
             $application_count = $itemDB->getApplicationCount($user_info[0]['user_id']);
             $application_verified = $itemDB->getApplicationVerified($user_info[0]['user_id']);
 
             $creditsDB = D('Credits');
             $credits_value = $creditsDB->getCreditsValue($user_id);
+
 
             $this->assign('application_count',$application_count);
             $this->assign('application_verified',$application_verified);
@@ -228,9 +233,10 @@ class ApplicationController extends Controller{
     public function srtp(){
         if(IS_POST){
             $map = array();
+            $temp = array();
             $file_name = 'srtp_file';
             if($file_path = $this->my_upload($file_name)){
-                $map['upload_file'] = $file_path;
+                $temp['upload_file'] = $file_path;
             }else{
                 $this->error('上传文件错误');
             }
@@ -238,26 +244,27 @@ class ApplicationController extends Controller{
                 $file_name='other_file_'.$i;
                 if($file_path = $this->my_upload($file_name)){
                     $upload_file_path = 'upload_file_'.$i;
-                    $map[$upload_file_path] = $file_path;
+                    $temp[$upload_file_path] = $file_path;
                 }
             }
             $map['user_id']=is_login();
             $map['item_id'] = I('post.item_id');
             $map['item_name'] = I('post.item_name');
-            $map['teacher'] = I('post.teacher');
-            $map['igroup'] = I('post.group');
-            $map['grade'] = I('post.grade');
+            $temp['teacher'] = I('post.teacher');
+            $temp['igroup'] = I('post.group');
+            $temp['grade'] = I('post.grade');
             if(I('post.is_important_item')){
-                $map['item_type'] = 1;
+                $temp['item_type'] = 1; //是否是重点项目
             }else{
-                $map['item_type'] = 0;
+                $temp['item_type'] = 0;
             }
-            $map_encode = json_encode($map);
-            var_dump($map_encode);
-            echo "<br><br><br>";
-            $map_decode = json_decode($map_encode);
-            var_dump($map_decode);
-            exit;
+             $map['apply_info'] = json_encode($temp);
+            // var_dump($map_encode);
+            // echo "<br><br><br>";
+            // $map_decode = json_decode($map_encode);
+            // var_dump($map_decode);
+            // exit;    
+            $map['apply_time']=time();
 
             $applicationDB = D('Application');
             if($applicationDB->srtp($map)){

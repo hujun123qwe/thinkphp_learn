@@ -10,6 +10,30 @@
 	background: #1685d0;
 	overflow: hidden;
 }
+@media(min-height: 600px){
+    .background {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: #1685d0;
+    overflow: hidden;
+    height: 1000px;
+}
+}
+@media(min-height: 610px){
+    .background {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: #1685d0;
+    overflow: hidden;
+    height: 1000px;
+}
+}
 .brand {
             width: 100%;
             text-align: center;
