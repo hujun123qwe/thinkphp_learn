@@ -37,7 +37,7 @@ class ApplicationModel extends Model{
         if(empty($map)){
             return 0;
         }else{
-            return $this->where("apply_id = %d", $item_id)->save($map);
+            return $this->where("apply_id=%d", $item_id)->save($map);
         }
     }
 

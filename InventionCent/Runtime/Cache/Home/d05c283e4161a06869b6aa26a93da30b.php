@@ -9,20 +9,6 @@
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/frameworks.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/github.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/site.css" type="text/css"/>
-    <style>
-        .breadcrumb>li,.pagination{display:inline-block}
-        .breadcrumb{
-            padding:8px 15px;
-            margin-bottom:20px;
-            list-style:none;
-            background-color:#f5f5f5;
-            border-radius:4px;
-            font-size: 12px;
-        }
-        .breadcrumb>li+li:before{content:"/\00a0";padding:0 5px;color:#ccc}
-        .breadcrumb>.active{color:#777}
-
-    </style>
     
     <title><?php echo ($meta_title); ?></title>
 </head>
@@ -184,6 +170,5 @@
         </ul>
     </div>
 </div>
-
 </body>
 </html>

@@ -81,36 +81,56 @@ class ApplicationController extends Controller{
     }
     public function edit(){
         if(IS_POST){
-            $map = array();
-            //必须要一个id来判断
-            $item_id = I('post.item_id');
-            if(I('post.item_name')){
-                $map['item_name'] = I('post.item_name');
+            //先判断是否合法
+            $apply_id = I('post.apply_id');
+            if(empty($apply_id)){
+                $this->error('无法获得项目信息');
             }
-            if(I('post.user_name')){
-                $map['user_name'] = I('post.user_name');
-            }
-            if(I('post.student_id')){
-                $map['student_id'] = I('post.student_id');
-            }
-            if(I('post.phone')){
-                $map['phone'] = I('post.phone');
-            }
-            if(I('post.teacher')){
-                $map['teacher'] = I('post.teacher');
-            }
-            if(I('post.academy')){
-                $map['academy'] = I('post.academy');
-            }
-            if(I('post.group')){
-                $map['group'] = I('post.group');
-            }
-            if(I('post.iclass')){
-                $map['iclass'] = I('post.iclass');
-            }
+            //获得旧的apply_info
             $itemDB = D('Application');
-            if($itemDB->editItem($map,$item_id)){
-                $this->success('编辑成功');
+            $item_info = $itemDB->getItemInfo($apply_id);
+            $temp_old = json_decode($item_info[0]['apply_info'],true);
+
+            //对post的信息处理，如果没改就用旧的
+            $map = array();
+            $temp = array();
+            if(!is_uploaded_file($_FILES["srtp_file"][tmp_name])){
+                $temp['upload_file'] = $temp_old['upload_file'];
+            }else{
+                $file_name = 'srtp_file';
+                if($file_path = $this->my_upload($file_name)){
+                    $temp['upload_file'] = $file_path;
+                }else{
+                    $this->error('上传文件错误1');
+                }
+            }
+
+            for($i=0;$i<5;$i++){
+                $upload_file_path = 'upload_file_'.$i;
+                if(!is_uploaded_file($_FILES[$upload_file_path][tmp_name])){
+                    $temp['upload_file_path'] = $temp_old['upload_file_path'];
+                }else{
+                    $file_name='other_file_'.$i;
+                    if($file_path = $this->my_upload($file_name)){
+                        $temp[$upload_file_path] = $file_path;
+                    }else{
+                        $this->error('上传文件错误i');
+                    }
+                }
+            }
+            $temp['teacher'] = I('post.teacher');
+            $temp['igroup'] = I('post.group');
+            $temp['grade'] = I('post.grade');
+            if(I('post.is_important_item')){
+                $temp['item_type'] = 1;
+            }else{
+                $temp['item_type'] = 0;
+            }
+
+            $map['apply_info'] = json_encode($temp);
+
+            if($itemDB->editItem($map,$apply_id)){
+                $this->success('项目编辑成功',U('User/index_student'));
             }else{
                 $this->error('编辑失败');
             }
@@ -309,7 +329,7 @@ class ApplicationController extends Controller{
     public function my_upload($file_name){
         $upload = new \Think\Upload();// 实例化上传类
         $upload->maxSize   =     3145728 ;// 设置附件上传大小
-        $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+        $upload->exts      =     array('jpg', 'gif','png','jpeg','doc','docx','ppt','pptx','xls','xlsx');// 设置附件上传类型
         $upload->savePath  =      ''; // 设置附件上传目录
         //上传文件
         $file   =   $upload->uploadOne($_FILES[$file_name]);

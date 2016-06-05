@@ -88,7 +88,7 @@
         <div class="boxed-group">
             <h3>编辑项目</h3>
 	            <div class="boxed-group-inner clearfix">
-	                <form accept-charset="UTF-8" action="<?php echo U('Application/edit');?>" class="columns js-uploadable-container js-upload-avatar-image is-default" method="post">
+	                <form enctype="multipart/form-data" accept-charset="UTF-8" action="<?php echo U('Application/edit');?>" class="columns js-uploadable-container js-upload-avatar-image is-default" method="post">
 						<input type="hidden" name="apply_id" value="<?php echo ($item_info["apply_id"]); ?>"/>
 	                <div class="column two-thirds">
 	                    <dl class="form-group">
@@ -138,13 +138,13 @@
                                 <option value="4" <?php if($apply_info["grade"] == 4): ?>selected="selected"<?php endif; ?>>不通过</option>
                             </select></dd>
                         </dl>
-                        <dl class="form-checkbox">
+                        <dl class="form-group">
                             <input type="checkbox" name="is_important_item" <?php if($apply_info["item_type"] == 1): ?>checked="checked"<?php endif; ?>><label>重点课题项目</label>
                         </dl>
                         <dl class="form-group">
                         	<dt>《安徽工业大学SRTP项目结题验收表》</dt>
-                        	<dd><img src="/uploads/<?php echo ($apply_info["upload_file"]); ?>"/></dd>
-                        	<dd><input type="file" class="form-control" name="srtp_file" id="InputFile"></dd>
+                        	<dd><img style="max-width:650px;" src="/uploads/<?php echo ($apply_info["upload_file"]); ?>"/></dd>
+                        	<dd><input type="file" class="form-control" name="srtp_file"></dd>
                         </dl>
 	                    <p><button type="submit" class="btn btn-primary">确认 更改</button></p>
 	                </div>
