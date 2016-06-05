@@ -128,7 +128,7 @@ class PublicController extends Controller {
             $reg_data['last_ip'] = get_client_ip();
             $userDB = D('User');
             if($userDB->checkRegister($reg_data['student_id'])){
-                $this->error('此学号已被注册，请联系管理员15551053527',5);
+                $this->error('此学号已被注册，请联系管理员15551053527');
             }
             $data = $userDB->create($reg_data);
             if($data){
