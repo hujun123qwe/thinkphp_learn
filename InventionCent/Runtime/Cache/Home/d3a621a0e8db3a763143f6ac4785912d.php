@@ -77,33 +77,60 @@
                 </div>
                 <div class="column three-fourths">
                     
-    <div class="boxed-group">
-        <h2>编辑项目</h2>
-        <div class="boxed-group-inner clearfix">
+    <div class="columns">
+        <div class="single-column">
+            <div class="boxed-group flush">
+                <h3>项目审核</h3>
+                <ul class="boxed-group-inner mini-repo-list">
+                    <li class="public source">
+                <div class="boxed-group-inner clearfix">
                 <div class="column">
                     <dl class="form-group">
-                        <dt><label for="user_profile_name">项目名称</label></dt>
-                        <dd><input class="form-control" id="user_profile_name" name="item_name" size="30" type="text" value="<?php echo ($item_info["item_name"]); ?>" /></dd>
+                        <dt><label>项目名称</label></dt>
+                        <dd><?php echo ($item_info["item_name"]); ?></dd>
                     </dl>
                     <dl class="form-group">
-                        <dt><label for="h1">申请人姓名</label></dt>
-                        <dd><input class="form-control" id="h1" name="user_name" size="30" type="text" value="<?php echo ($item_info["user_name"]); ?>" /></dd>
+                        <dt><label>申请人姓名</label></dt>
+                        <dd><?php echo ($user_info["user_name"]); ?></dd>
                     </dl>
                     <dl class="form-group">
-                        <dt><label for="h2">申请人学号</label></dt>
-                        <dd><input class="form-control" id="h2" name="student_id" size="30" type="text" value="<?php echo ($item_info["student_id"]); ?>" /></dd>
+                        <dt><label>申请人学号</label></dt>
+                        <dd><?php echo ($user_info["student_id"]); ?></dd>
                     </dl>
                     <dl class="form-group">
-                        <dt><label for="h2">申请人学院</label></dt>
-                        <dd><input class="form-control" id="h3" name="academy" size="30" type="text" value="<?php echo ($item_info["academy"]); ?>" /></dd>
+                        <dt><label>申请人学院</label></dt>
+                        <dd><?php echo ($user_info["academy"]); ?></dd>
                     </dl>
                     <dl class="form-group">
-                        <dt><label for="h3">申请人班级</label></dt>
-                        <dd><input class="form-control" id="h4" name="iclass" size="30" type="text" value="<?php echo ($item_info["iclass"]); ?>" /></dd>
+                        <dt><label>申请人班级</label></dt>
+                        <dd><?php echo ($user_info["iclass"]); ?></dd>
                     </dl>
                     <dl class="form-group">
-                        <dt><label for="h5">联系手机</label></dt>
-                        <dd><input class="form-control" id="h5" name="phone" size="30" type="text" value="<?php echo ($item_info["phone"]); ?>" /></dd>
+                        <dt><label>联系手机</label></dt>
+                        <dd><?php echo ($user_info["phone"]); ?></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt><label>参与小组人数</label></dt>
+                        <dd><?php echo ($apply_info["igroup"]); ?>人组</dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt><label>项目等级</label></dt>
+                        <dd><?php switch($apply_info["grade"]): case "1": ?>优秀<?php break;?>
+                            <?php case "2": ?>良好<?php break;?>
+                            <?php case "3": ?>通过<?php break;?>
+                            <?php case "4": ?>不通过<?php break;?>
+                            <?php default: ?>未知<?php endswitch;?>
+                        </dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt><label>项目性质</label></dt>
+                        <dd><?php switch($apply_info["item_type"]): case "0": ?>一般课题项目<?php break;?>
+                            <?php case "1": ?>重点课题项目<?php break;?>
+                            <?php default: ?>未知<?php endswitch;?></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt><label>《安徽工业大学SRTP项目结题验收表》</label></dt>
+                        <dd><img style="max-width:650px;" src="/uploads/<?php echo ($apply_info["upload_file"]); ?>"/></dd>
                     </dl>
                     <p><a href="<?php echo U('Credits/verified',array('apply_id'=>$item_info['apply_id']),'');?>"><button class="btn">审核 通过</button></a>
                         <a href=""><button class="btn">返回</button></a>
@@ -115,6 +142,10 @@
                 </div>
 
         </div>
+    </li>
+                    </ul>
+                </div>
+            </div>
     </div>
 
                 </div>

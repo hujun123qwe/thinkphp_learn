@@ -19,9 +19,13 @@ class ApplicationModel extends Model{
         }
     }
 
-    public function getItemInfo($item_id){
-    	$map['apply_id'] = array(eq, $item_id);
-    	return $this->where($map)->select();
+    public function getItemInfo($apply_id){
+        if(empty($apply_id)){
+            return 0;
+        }else{
+            $map['apply_id'] = array(eq, $apply_id);
+            return $this->where($map)->select();
+        }
     }
     
     public function getItemList($user_id){
@@ -41,11 +45,14 @@ class ApplicationModel extends Model{
         }
     }
 
-    public function verified($item_id){
+    public function verified($admin_id,$item_id){
         if(empty($item_id)){
             return 0;
         }else{
+            $map['inspector_id'] = $admin_id;
             $map['item_status'] = 1;
+            $map['verify_time'] = time();
+            $map['is_verified'] = 1;
             return $this->where('apply_id=%d',$item_id)->save($map);
         }
     }
@@ -65,6 +72,14 @@ class ApplicationModel extends Model{
             $map['user_id'] = $user_id;
             $map['item_status'] = 1;
             return $this->where($map)->count();
+        }
+    }
+
+    public function getItemId($apply_id){
+        if(empty($apply_id)){
+            return 0;
+        }else{
+            return $this->where('apply_id=%d',$apply_id)->select('item_id');
         }
     }
 }

@@ -115,6 +115,12 @@ class UserController extends Controller{
         if(IS_POST){
             $map = array();
             $user_id = I('post.user_id');
+            $file_name = 'avatar_pic';
+            if($file_path = $this->my_upload($file_name)){
+                $map['avatar_pic'] = $file_path;
+            }else{
+                $this->error('上传文件错误');
+            }
             if(I('post.email')){
                 $map['email'] = I('post.email');
             }
@@ -135,7 +141,7 @@ class UserController extends Controller{
             }
             $userDB = D('User');            
             if($userDB->edit_student($map,$user_id)){
-                $this->display('个人信息更新成功',U('User/index_student'));
+                $this->success('个人信息更新成功',U('User/index_student'));
             }else{
                 $this->error('数据传递错误:(');
             }
@@ -172,24 +178,12 @@ class UserController extends Controller{
         if(IS_POST){
             $map = array();
             $user_id = I('post.user_id');
-            if(I('post.email')){
-                $map['email'] = I('post.email');
-            }
-            if(I('post.phone')){
-                $map['phone'] = I('post.phone');
-            }
-            if(I('post.academy')){
-                $map['academy'] = I('post.academy');
-            }
-            if(I('post.iclass')){
-                $map['iclass'] = I('post.iclass');
-            }
-            if(I('post.address')){
-                $map['address'] = I('post.address');
-            }
-            if(I('post.password')){
-                $map['password'] = I('post.password');
-            }
+            $map['email'] = I('post.email');
+            $map['phone'] = I('post.phone');
+            $map['academy'] = I('post.academy');
+            $map['iclass'] = I('post.iclass');
+            $map['address'] = I('post.address');
+            $map['password'] = I('post.password');
             $userDB = D('User');
             if($userDB->edit_student($map,$user_id)){
                 $this->success('个人信息更新成功');
@@ -321,6 +315,21 @@ class UserController extends Controller{
             $this->assign('meta_title','编辑学生信息 | 大学生创新学分审核系统');
             $this->assign('layout_admin', C('__LAYOUT_ADMIN__'));  // 页面公共继承模版
             $this->display();
+        }
+    }
+
+    public function my_upload($file_name){
+        $upload = new \Think\Upload();// 实例化上传类
+        $upload->maxSize   =     3145728 ;// 设置附件上传大小
+        $upload->exts      =     array('jpg', 'gif','png','jpeg','doc','docx','ppt','pptx','xls','xlsx');// 设置附件上传类型
+        $upload->savePath  =      ''; // 设置附件上传目录
+        //上传文件
+        $file   =   $upload->uploadOne($_FILES[$file_name]);
+        if(!$file) {// 上传错误提示错误信息
+            return 0;
+            //$this->error($upload->getError());
+        }else{// 上传成功
+            return $file['savepath'].$file['savename'];
         }
     }
 }

@@ -38,7 +38,9 @@
             <div class="columns profilecols">
                 <div class="column one-fourth vcard" itemscope itemtype="http://schema.org/Person">
                     <a href="#" aria-label="Change your avatar" class="vcard-avatar d-block tooltipped tooltipped-s">
-                        <img alt="" class="avatar rounded-2" height="230" src="<?php echo (C("__HOME_IMG__")); ?>/avatar_big.png" width="230" />
+                        <?php if($user_info["avatar_pic"] == ''): ?><img alt="" class="avatar rounded-2" height="230" src="<?php echo (C("__HOME_IMG__")); ?>/avatar_big.png" width="230" />
+                        <?php else: ?>
+                        <img alt="" class="avatar rounded-2" height="230" src="/uploads/<?php echo ($user_info["avatar_pic"]); ?>" width="230" /><?php endif; ?>
                     </a>
                     <h1 class="vcard-names my-3">
                         <div class="vcard-fullname" itemprop="name"><?php echo ($user_info["user_name"]); ?></div>
@@ -77,7 +79,7 @@
                             <span class="text-muted">通过申请</span>
                         </a>
                         <a class="vcard-stat">
-                            <strong class="vcard-stat-count d-block"><?php echo ($credits_value); ?></strong>
+                            <strong class="vcard-stat-count d-block"><?php echo ($credits_value/10); ?></strong>
                             <span class="text-muted">创新学分</span>
                         </a>
                     </div>
@@ -124,12 +126,13 @@
                                         <span class="repo-and-owner css-truncate-target">
                                             <span class="repo" title="点击编辑"><?php echo ($vo["item_name"]); ?></span>
                                         </span>
-
                                         <span class="stars">
-                                            审核状态<?php echo ($vo["item_status"]); ?>
+                                            审核状态：<?php if($vo["item_status"] == 1 ): ?>已通过
+                                            <?php elseif($vo["item_status"] == 0): ?>未审核
+                                            <?php else: ?>未通过<?php endif; ?>
                                         </span>
                                         <span class="repo-description css-truncate-target">
-                                            申请时间<?php echo (date("y-m-d",$vo["apply_time"])); ?>
+                                            申请时间：<?php echo (date("y-m-d",$vo["apply_time"])); ?>
                                         </span>
                                     </a>
                                 </li><?php endforeach; endif; else: echo "" ;endif; ?>
@@ -147,11 +150,13 @@
                                             <span class="repo" title="点击编辑"><?php echo ($vo["item_name"]); ?></span>
                                         </span>
                                         <span class="stars">
-                                            审核状态<?php echo ($vo["item_status"]); ?>
+                                            审核状态：<?php if($vo["item_status"] == 1 ): ?>已通过
+                                            <?php elseif($vo["item_status"] == 0): ?>未审核
+                                            <?php else: ?>未通过<?php endif; ?>
                                         </span>
                                     <span class="repo-description css-truncate-target">
-                                        属于什么类型的<?php echo ($vo["item_type"]); ?>
-                                    </span>
+                                            申请时间：<?php echo (date("y-m-d",$vo["apply_time"])); ?>
+                                        </span>
                                     </a>
                                 </li><?php endforeach; endif; else: echo "" ;endif; ?>
                         </ul>
@@ -168,11 +173,13 @@
                                             <span class="repo" title="点击编辑"><?php echo ($vo["item_name"]); ?></span>
                                         </span>
                                         <span class="stars">
-                                            审核状态<?php echo ($vo["item_status"]); ?>
+                                            审核状态：<?php if($vo["item_status"] == 1 ): ?>已通过
+                                            <?php elseif($vo["item_status"] == 0): ?>未审核
+                                            <?php else: ?>未通过<?php endif; ?>
                                         </span>
-                                    <span class="repo-description css-truncate-target">
-                                        属于什么类型的<?php echo ($vo["item_type"]); ?>
-                                    </span>
+                                   <span class="repo-description css-truncate-target">
+                                            申请时间：<?php echo (date("y-m-d",$vo["apply_time"])); ?>
+                                        </span>
                                     </a>
                                 </li><?php endforeach; endif; else: echo "" ;endif; ?>
                         </ul>
@@ -189,11 +196,13 @@
                                             <span class="repo" title="点击编辑"><?php echo ($vo["item_name"]); ?></span>
                                         </span>
                                         <span class="stars">
-                                            审核状态<?php echo ($vo["item_status"]); ?>
+                                            审核状态：<?php if($vo["item_status"] == 1 ): ?>已通过
+                                            <?php elseif($vo["item_status"] == 0): ?>未审核
+                                            <?php else: ?>未通过<?php endif; ?>
                                         </span>
                                     <span class="repo-description css-truncate-target">
-                                        属于什么类型的<?php echo ($vo["item_type"]); ?>
-                                    </span>
+                                            申请时间：<?php echo (date("y-m-d",$vo["apply_time"])); ?>
+                                        </span>
                                     </a>
                                 </li><?php endforeach; endif; else: echo "" ;endif; ?>
                         </ul>
@@ -209,12 +218,14 @@
                                         <span class="repo-and-owner css-truncate-target">
                                             <span class="repo" title="点击编辑"><?php echo ($vo["item_name"]); ?></span>
                                         </span>
-                                        <span class="stars">
-                                            审核状态<?php echo ($vo["item_status"]); ?>
+                                       <span class="stars">
+                                            审核状态：<?php if($vo["item_status"] == 1 ): ?>已通过
+                                           <?php elseif($vo["item_status"] == 0): ?>未审核
+                                           <?php else: ?>未通过<?php endif; ?>
                                         </span>
-                                    <span class="repo-description css-truncate-target">
-                                        属于什么类型的<?php echo ($vo["item_type"]); ?>
-                                    </span>
+                                   <span class="repo-description css-truncate-target">
+                                            申请时间：<?php echo (date("y-m-d",$vo["apply_time"])); ?>
+                                        </span>
                                     </a>
                                 </li><?php endforeach; endif; else: echo "" ;endif; ?>
                         </ul>
@@ -230,12 +241,14 @@
                                         <span class="repo-and-owner css-truncate-target">
                                             <span class="repo" title="点击编辑"><?php echo ($vo["item_name"]); ?></span>
                                         </span>
-                                        <span class="stars">
-                                            审核状态<?php echo ($vo["item_status"]); ?>
+                                       <span class="stars">
+                                            审核状态：<?php if($vo["item_status"] == 1 ): ?>已通过
+                                           <?php elseif($vo["item_status"] == 0): ?>未审核
+                                           <?php else: ?>未通过<?php endif; ?>
                                         </span>
-                                    <span class="repo-description css-truncate-target">
-                                        属于什么类型的<?php echo ($vo["item_type"]); ?>
-                                    </span>
+                                   <span class="repo-description css-truncate-target">
+                                            申请时间：<?php echo (date("y-m-d",$vo["apply_time"])); ?>
+                                        </span>
                                     </a>
                                 </li><?php endforeach; endif; else: echo "" ;endif; ?>
                         </ul>

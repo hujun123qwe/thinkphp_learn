@@ -170,7 +170,7 @@ class UserModel extends Model{
         if(empty($map)){
             return 0;
         }else{
-            return $this->where("user_id = %d",$user_id)->save($map);
+            return $this->where("user_id=%d",$user_id)->save($map);
         }
     }
 

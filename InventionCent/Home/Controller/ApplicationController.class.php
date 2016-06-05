@@ -63,21 +63,22 @@ class ApplicationController extends Controller{
                 $this->error('编辑失败');
             }
         }else{
-            $user_id = 6;
-            $userDB = D('User');
-            $user_info = $userDB->getUserInfo($user_id);
-            $this->assign('user_info',$user_info[0]);
-
             $item_id = I('get.apply_id');
             $itemDB = D('Application');
             $item_info = $itemDB->getItemInfo($item_id);
+
+            $map = json_decode($item_info[0]['apply_info'],true);
+            $this->assign('apply_info',$map);
+
+            $userDB = D('User');
+            $user_info = $userDB->getUserInfo($item_info[0]['user_id']);
+            $this->assign('user_info',$user_info[0]);
+
             $this->assign('item_info', $item_info[0]);
             $this->assign('meta_title', "编辑项目 | 大学生创新学分审核系统");
             $this->assign('layout_admin', C('__LAYOUT_ADMIN__'));  // 页面公共继承模版
             $this->display();
         }
-
-
     }
     public function edit(){
         if(IS_POST){
@@ -397,7 +398,7 @@ class ApplicationController extends Controller{
         $map['item_status']=1;
         $map['user_id'] = $user_id;
         $list = $itemDB->where($map)->order('apply_id')->limit($limit)->select();
-        $this->assign('lists',$list);// 赋值数据集
+        $this->assign('item_list',$list);// 赋值数据集
         $this->assign('page',$show);// 赋值分页输出
         $this->assign('user_id',$user_id);
 
@@ -430,7 +431,7 @@ class ApplicationController extends Controller{
         $map['item_status']=0;
         $map['user_id'] = $user_id;
         $list = $itemDB->where('item_status=%d AND user_id=%d',0,$user_id)->order('apply_id')->limit($limit)->select();
-        $this->assign('lists',$list);// 赋值数据集
+        $this->assign('item_list',$list);// 赋值数据集
         $this->assign('page',$show);// 赋值分页输出
         $this->assign('user_id',$user_id);
 

@@ -77,40 +77,25 @@
                 </div>
                 <div class="column three-fourths">
                     
-    <div class="columns">
-        <div class="single-column">
 
-            <div class="boxed-group flush">
-                <div class="right" style="margin-right: 10px; margin-top: 6px;"><a href="<?php echo U('Credits/print_view');?>" class="btn btn-sm">导出EXCEL</a></div>
-                <h3>学分列表管理</h3>
-                <ul class="boxed-group-inner mini-repo-list">
-                    <li class="public source">
-                        <table class="capped-list">
-                            <thead><tr><th> # </th><th>编号</th><th>申请编号</th><th>用户编号</th><th>学分值</th><th>生成时间</th><th>是否统计</th><th>统计时间</th><th>操作</th></tr></thead>
-                            <tbody>
-                            <?php if(is_array($lists)): $k = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><tr><td><?php echo ($k); ?></td>
-                                    <td><?php echo ($vo["credits_id"]); ?></td>
-                                    <td><?php echo ($vo["apply_id"]); ?></td>
-                                    <td><?php echo ($vo["user_id"]); ?></td>
-                                    <td><?php echo ($vo["credits_value"]); ?></td>
-                                    <td><?php echo (date("y-m-d",$vo["create_time"])); ?></td>
-                                    <td><?php if($vo["is_add"] == 1 ): ?>已统计
-                                        <?php elseif($vo["is_add"] == 0): ?>未统计
-                                        <?php else: ?>未知参数<?php endif; ?></td>
-                                    <td><?php echo (date("y-m-d",$vo["add_time"])); ?></td>
-                                    <td><a href="edit_admin?user_id=<?php echo ($vo["user_id"]); ?>">编辑</a>&nbsp;
-                                        <a href="delete_admin?user_id=<?php echo ($vo["user_id"]); ?>">删除</a>
-                                    </td>
-                                </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-                            </tbody>
-                        </table>
-
-                        <?php if(!empty($page)): ?><ul class="pagination"><?php echo ($page); ?></ul><?php endif; ?>
-                    </li>
-                </ul>
+<div class="boxed-group">
+    <h3>选择导出信息</h3>
+    <div class="boxed-group-inner mini-repo-list">
+        <form enctype="multipart/form-data" accept-charset="UTF-8" action="<?php echo U('Application/print_view');?>" class="columns js-uploadable-container js-upload-avatar-image is-default" method="post">
+            <div class="column two-thirds">
+                <dl class="form-group">
+                    <dt><label for="user_profile_name">项目名称</label></dt>
+                    <dd><input class="form-control" style="opacity: 0.5;" disabled="disabled" id="user_profile_name" name="item_name" size="30" type="text" value="<?php echo ($item_info["item_name"]); ?>" /></dd>
+                </dl>
+                <p><button type="submit" class="btn btn-primary">确定 导出</button></p>
             </div>
-        </div>
+        </form>
+        <p class="note">
+            We store your personal data in the Anhui University of Technology only.
+        </p>
     </div>
+</div>
+
 
 
                 </div>

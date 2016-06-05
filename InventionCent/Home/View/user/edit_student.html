@@ -5,46 +5,27 @@
         <div class="boxed-group">
             <h3>编辑个人信息</h3>
 	            <div class="boxed-group-inner clearfix">
-	                <form accept-charset="UTF-8" action="{:U('User/edit_student')}" class="columns js-uploadable-container js-upload-avatar-image is-default" method="post">
+	                <form accept-charset="UTF-8" enctype="multipart/form-data" action="{:U('User/edit_student')}" class="columns js-uploadable-container js-upload-avatar-image is-default" method="post">
 						<input type="hidden" name="user_id" value="{$user_info.user_id}"/>
 	                <div class="column two-thirds">
 	                    <dl class="form-group edit-profile-avatar">
 	                        <dt><label for="upload-profile-picture">上传头像 不要太污</label></dt>
 	                        <dd class="avatar-upload-container clearfix">
-	                            <img alt="@hujun123qwe" class="avatar left" height="70" src="https://avatars0.githubusercontent.com/u/8892333?v=3&amp;s=140" width="70" />
+								<if condition="$user_info.avatar_pic eq ''">
+									<img alt="帅" class="avatar left" height="70" src="{$Think.config.__HOME_IMG__}/av.png" width="70" />
+									<else/>
+									<img alt="帅" class="avatar left" height="70" src="__ROOT__/uploads/{$user_info.avatar_pic}" width="70" />
+								</if>
 	                            <div class="avatar-upload">
 	                                <a href="#" class="btn button-change-profile-picture">
 	                                    <label for="upload-profile-picture">
 	                                        选择本地照片
-	                                        <input id="upload-profile-picture" type="file" name="file_name" class="manual-file-chooser js-manual-file-chooser js-avatar-field">
+	                                        <input id="upload-profile-picture" type="file" name="avatar_pic" class="manual-file-chooser js-manual-file-chooser js-avatar-field">
 	                                    </label>
 	                                </a>
 
 	                                <div class="upload-state default">
 	                                    <p>You can also drag and drop a picture from your computer.</p>
-	                                </div>
-	                                <div class="upload-state loading">
-	                                    <button class="btn" disabled>
-	                                        <img alt="" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" /> Uploading...
-	                                    </button>
-	                                </div>
-	                                <div class="upload-state text-danger file-empty">
-	                                    This file is empty.
-	                                </div>
-	                                <div class="upload-state text-danger too-big">
-	                                    Please upload a picture smaller than 1 MB.
-	                                </div>
-
-	                                <div class="upload-state text-danger bad-dimensions">
-	                                    Please upload a picture smaller than 10,000x10,000.
-	                                </div>
-
-	                                <div class="upload-state text-danger bad-file">
-	                                    Unfortunately, we only support PNG, GIF, or JPG pictures.
-	                                </div>
-
-	                                <div class="upload-state text-danger failed-request">
-	                                    Something went really wrong and we can’t process that picture.
 	                                </div>
 	                            </div> <!-- /.avatar-upload -->
 	                        </dd>
@@ -78,6 +59,10 @@
 	                        <dt><label for="user_profile_location">住址</label></dt>
 	                        <dd><input class="form-control" id="user_profile_location" name="address" size="30" type="text" value="{$user_info.address}" /></dd>
 	                    </dl>
+						<dl class="form-group ">
+							<dt><label for="ps">修改密码</label></dt>
+							<dd><input class="form-control" id="ps" type="password" name="password" value="{$user_info.password}"></dd>
+						</dl>
 	                    <p><button type="submit" class="btn btn-primary">确认 更改</button></p>
 	                </div>
 	            </form>        

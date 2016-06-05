@@ -9,22 +9,6 @@
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/frameworks.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/github.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/site.css" type="text/css"/>
-    <!--<link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/table.css" type="text/css"/>-->
-    <!--<link rel="stylesheet" type="text/css" href="/Public/libs/cui/css/cui.min.css">-->
-    <style>
-        .breadcrumb>li,.pagination{display:inline-block}
-        .breadcrumb{
-            padding:8px 15px;
-            margin-bottom:20px;
-            list-style:none;
-            background-color:#f5f5f5;
-            border-radius:4px;
-            font-size: 12px;
-        }
-        .breadcrumb>li+li:before{content:"/\00a0";padding:0 5px;color:#ccc}
-        .breadcrumb>.active{color:#777}
-
-    </style>
     
     <title><?php echo ($meta_title); ?></title>
 </head>
@@ -74,9 +58,7 @@
                             申请管理
                         </h3>
                         <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('Application/item_list');?>" ><i class="fa fa-wrench"></i><span class="nav-label">申请列表</span></a></li>
-                        <!--<li class="js-selected-navigation-item menu-item"><a href="link" ><i class="fa fa-map-signs"></i><span class="nav-label">已通过申请</span></a></li>-->
-                        <!--<li class="js-selected-navigation-item menu-item"><a href="upload" ><i class="fa fa-upload"></i><span class="nav-label">未通过申请</span></a></li>-->
-                        <li class="js-selected-navigation-item menu-item"><a href="news" ><i class="fa fa-wrench"></i><span class="nav-label">无效申请</span></a></li>
+                        <li class="js-selected-navigation-item menu-item"><a href="<?php echo U('Application/item_invalid');?>" ><i class="fa fa-wrench"></i><span class="nav-label">作废申请</span></a></li>
                     </nav>
                     <nav class="menu">
                         <h3 class="menu-heading">
@@ -98,32 +80,63 @@
         <div class="boxed-group">
             <h3>编辑项目</h3>
             <div class="boxed-group-inner clearfix">
-                <form accept-charset="UTF-8" action="<?php echo U('Application/edit');?>" class="columns js-uploadable-container js-upload-avatar-image is-default" method="post">
-                    <input type="hidden" name="item_id" value="<?php echo ($item_info["apply_id"]); ?>"/>
+                <form enctype="multipart/form-data" accept-charset="UTF-8" action="<?php echo U('Application/editItem');?>" class="columns js-uploadable-container js-upload-avatar-image is-default" method="post">
+                    <input type="hidden" name="apply_id" value="<?php echo ($item_info["apply_id"]); ?>"/>
                     <div class="column two-thirds">
                         <dl class="form-group">
                             <dt><label for="user_profile_name">项目名称</label></dt>
-                            <dd><input class="form-control" id="user_profile_name" name="item_name" size="30" type="text" value="<?php echo ($item_info["item_name"]); ?>" /></dd>
+                            <dd><input class="form-control" style="opacity: 0.5;" disabled="disabled" id="user_profile_name" name="item_name" size="30" type="text" value="<?php echo ($item_info["item_name"]); ?>" /></dd>
                         </dl>
                         <dl class="form-group">
                             <dt><label for="h1">申请人姓名</label></dt>
-                            <dd><input class="form-control" id="h1" name="user_name" size="30" type="text" value="<?php echo ($item_info["user_name"]); ?>" /></dd>
+                            <dd><input class="form-control" style="opacity: 0.5;" disabled="disabled" id="h1" name="user_name" size="30" type="text" value="<?php echo ($user_info["user_name"]); ?>" /></dd>
                         </dl>
                         <dl class="form-group">
                             <dt><label for="h2">申请人学号</label></dt>
-                            <dd><input class="form-control" id="h2" name="student_id" size="30" type="text" value="<?php echo ($item_info["student_id"]); ?>" /></dd>
+                            <dd><input class="form-control disabled"  style="opacity: 0.5;" disabled="disabled" id="h2" name="student_id" size="30" type="text" value="<?php echo ($user_info["student_id"]); ?>" /></dd>
                         </dl>
                         <dl class="form-group">
                             <dt><label for="h2">申请人学院</label></dt>
-                            <dd><input class="form-control" id="h2" name="academy" size="30" type="text" value="<?php echo ($item_info["academy"]); ?>" /></dd>
+                            <dd><input class="form-control"  style="opacity: 0.5;" disabled="disabled" id="h2" name="academy" size="30" type="text" value="<?php echo ($user_info["academy"]); ?>" /></dd>
                         </dl>
                         <dl class="form-group">
                             <dt><label for="h3">申请人班级</label></dt>
-                            <dd><input class="form-control" id="h3" name="iclass" size="30" type="text" value="<?php echo ($item_info["iclass"]); ?>" /></dd>
+                            <dd><input class="form-control"  style="opacity: 0.5;" disabled="disabled" id="h3" name="iclass" size="30" type="text" value="<?php echo ($user_info["iclass"]); ?>" /></dd>
                         </dl>
                         <dl class="form-group">
                             <dt><label for="h5">联系手机</label></dt>
-                            <dd><input class="form-control" id="h5" name="phone" size="30" type="text" value="<?php echo ($item_info["phone"]); ?>" /></dd>
+                            <dd><input class="form-control"  style="opacity: 0.5;" disabled="disabled" id="h5" name="phone" size="30" type="text" value="<?php echo ($user_info["phone"]); ?>" /></dd>
+                        </dl>
+                        <dl class="form-group">
+                            <dt><label for="h5">指导老师</label></dt>
+                            <dd><input type="text" name="teacher" required="required" class="form-control" value="<?php echo ($apply_info["teacher"]); ?>"></dd>
+                        </dl>
+                        <dl class="form-group">
+                            <dt><label>请选择小组人数</label></dt>
+                            <dd><select class="form-control" name="group" style="width: 80px;">
+                                <option value="1" <?php if($apply_info["igroup"] == 1): ?>selected="selected"<?php endif; ?>>1人组</option>
+                                <option value="2" <?php if($apply_info["igroup"] == 2): ?>selected="selected"<?php endif; ?>>2人组</option>
+                                <option value="3" <?php if($apply_info["igroup"] == 3): ?>selected="selected"<?php endif; ?>>3人组</option>
+                                <option value="4" <?php if($apply_info["igroup"] == 4): ?>selected="selected"<?php endif; ?>>4人组</option>
+                                <option value="5" <?php if($apply_info["igroup"] == 5): ?>selected="selected"<?php endif; ?>>5人组</option>
+                            </select></dd>
+                        </dl>
+                        <dl class="form-group">
+                            <dt><label>请选择成绩等级</label></dt>
+                            <dd><select class="form-control" name="grade" style="width: 80px;">
+                                <option value="1" <?php if($apply_info["grade"] == 1): ?>selected="selected"<?php endif; ?>>优秀</option>
+                                <option value="2" <?php if($apply_info["grade"] == 2): ?>selected="selected"<?php endif; ?>>良好</option>
+                                <option value="3" <?php if($apply_info["grade"] == 3): ?>selected="selected"<?php endif; ?>>通过</option>
+                                <option value="4" <?php if($apply_info["grade"] == 4): ?>selected="selected"<?php endif; ?>>不通过</option>
+                            </select></dd>
+                        </dl>
+                        <dl class="form-group">
+                            <input type="checkbox" name="is_important_item" <?php if($apply_info["item_type"] == 1): ?>checked="checked"<?php endif; ?>><label>重点课题项目</label>
+                        </dl>
+                        <dl class="form-group">
+                            <dt>《安徽工业大学SRTP项目结题验收表》</dt>
+                            <dd><img style="max-width:650px;" src="/uploads/<?php echo ($apply_info["upload_file"]); ?>"/></dd>
+                            <dd><input type="file" class="form-control" name="srtp_file"></dd>
                         </dl>
                         <p><button type="submit" class="btn btn-primary">确认 更改</button></p>
                     </div>
@@ -148,19 +161,17 @@
             <li>中心地址：安徽省马鞍山市马向路新城东区（东校区）邮编：243032</li>
         </ul>
         <a href="https://github.com" aria-label="Homepage" class="site-footer-mark" title="GitHub">
-            <svg aria-hidden="true" class="octicon octicon-mark-github" height="24" version="1.1" viewBox="0 0 16 16" width="24">
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59 0.4 0.07 0.55-0.17 0.55-0.38 0-0.19-0.01-0.82-0.01-1.49-2.01 0.37-2.53-0.49-2.69-0.94-0.09-0.23-0.48-0.94-0.82-1.13-0.28-0.15-0.68-0.52-0.01-0.53 0.63-0.01 1.08 0.58 1.23 0.82 0.72 1.21 1.87 0.87 2.33 0.66 0.07-0.52 0.28-0.87 0.51-1.07-1.78-0.2-3.64-0.89-3.64-3.95 0-0.87 0.31-1.59 0.82-2.15-0.08-0.2-0.36-1.02 0.08-2.12 0 0 0.67-0.21 2.2 0.82 0.64-0.18 1.32-0.27 2-0.27 0.68 0 1.36 0.09 2 0.27 1.53-1.04 2.2-0.82 2.2-0.82 0.44 1.1 0.16 1.92 0.08 2.12 0.51 0.56 0.82 1.27 0.82 2.15 0 3.07-1.87 3.75-3.65 3.95 0.29 0.25 0.54 0.73 0.54 1.48 0 1.07-0.01 1.93-0.01 2.2 0 0.21 0.15 0.46 0.55 0.38C13.71 14.53 16 11.53 16 8 16 3.58 12.42 0 8 0z"></path></svg>
+            <img src="<?php echo (C("__HOME_IMG__")); ?>/ahut.png" class="octicon octicon-mark-github" style="height: 30px;width: 30px;"/>
         </a>
         <ul class="site-footer-links">
             <li>&copy; 2016 <span>安徽工业大学</span>, Inc.</li>
-            <li><a href="http：//www.ahut.edu.cn">工大首页</a></li>
+            <li><a href="http://www.ahut.edu.cn">工大首页</a></li>
             <li><a href="http://gczx.ahut.edu.cn/">工创中心</a></li>
-            <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
-            <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact</a></li>
-            <li><a href="https://help.github.com" data-ga-click="Footer, go to help, text:help">Help</a></li>
+            <li><a href="http://jwcad.ahut.edu.cn/">教务处</a></li>
+            <li><a href="http://library_web.ahut.edu.cn/MainWeb/index.asp">校图书馆</a></li>
+            <li><a href="mailto:hujun123qwe@163.com">Help</a></li>
         </ul>
     </div>
 </div>
-
 </body>
 </html>

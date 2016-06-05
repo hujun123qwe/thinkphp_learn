@@ -42,12 +42,14 @@
                                         <span class="repo-and-owner css-truncate-target">
                                             <span class="repo" title="点击编辑">{$vo.item_name}</span>
                                         </span>
-
                                         <span class="stars">
-                                            审核状态{$vo.item_status}
+                                            审核状态：<if condition="$vo.item_status eq 1 ">已通过
+                                            <elseif condition="$vo.item_status eq 0"/>未审核
+                                            <else />未通过
+                                        </if>
                                         </span>
                                         <span class="repo-description css-truncate-target">
-                                            申请时间{$vo.apply_time|date="y-m-d",###}
+                                            申请时间：{$vo.apply_time|date="y-m-d",###}
                                         </span>
                                     </a>
                                 </li>
@@ -67,11 +69,14 @@
                                             <span class="repo" title="点击编辑">{$vo.item_name}</span>
                                         </span>
                                         <span class="stars">
-                                            审核状态{$vo.item_status}
+                                            审核状态：<if condition="$vo.item_status eq 1 ">已通过
+                                            <elseif condition="$vo.item_status eq 0"/>未审核
+                                            <else />未通过
+                                        </if>
                                         </span>
                                     <span class="repo-description css-truncate-target">
-                                        属于什么类型的{$vo.item_type}
-                                    </span>
+                                            申请时间：{$vo.apply_time|date="y-m-d",###}
+                                        </span>
                                     </a>
                                 </li>
                             </volist>
@@ -90,11 +95,14 @@
                                             <span class="repo" title="点击编辑">{$vo.item_name}</span>
                                         </span>
                                         <span class="stars">
-                                            审核状态{$vo.item_status}
+                                            审核状态：<if condition="$vo.item_status eq 1 ">已通过
+                                            <elseif condition="$vo.item_status eq 0"/>未审核
+                                            <else />未通过
+                                        </if>
                                         </span>
-                                    <span class="repo-description css-truncate-target">
-                                        属于什么类型的{$vo.item_type}
-                                    </span>
+                                   <span class="repo-description css-truncate-target">
+                                            申请时间：{$vo.apply_time|date="y-m-d",###}
+                                        </span>
                                     </a>
                                 </li>
                             </volist>
@@ -113,11 +121,14 @@
                                             <span class="repo" title="点击编辑">{$vo.item_name}</span>
                                         </span>
                                         <span class="stars">
-                                            审核状态{$vo.item_status}
+                                            审核状态：<if condition="$vo.item_status eq 1 ">已通过
+                                            <elseif condition="$vo.item_status eq 0"/>未审核
+                                            <else />未通过
+                                        </if>
                                         </span>
                                     <span class="repo-description css-truncate-target">
-                                        属于什么类型的{$vo.item_type}
-                                    </span>
+                                            申请时间：{$vo.apply_time|date="y-m-d",###}
+                                        </span>
                                     </a>
                                 </li>
                             </volist>
@@ -135,12 +146,15 @@
                                         <span class="repo-and-owner css-truncate-target">
                                             <span class="repo" title="点击编辑">{$vo.item_name}</span>
                                         </span>
-                                        <span class="stars">
-                                            审核状态{$vo.item_status}
+                                       <span class="stars">
+                                            审核状态：<if condition="$vo.item_status eq 1 ">已通过
+                                           <elseif condition="$vo.item_status eq 0"/>未审核
+                                           <else />未通过
+                                       </if>
                                         </span>
-                                    <span class="repo-description css-truncate-target">
-                                        属于什么类型的{$vo.item_type}
-                                    </span>
+                                   <span class="repo-description css-truncate-target">
+                                            申请时间：{$vo.apply_time|date="y-m-d",###}
+                                        </span>
                                     </a>
                                 </li>
                             </volist>
@@ -158,12 +172,15 @@
                                         <span class="repo-and-owner css-truncate-target">
                                             <span class="repo" title="点击编辑">{$vo.item_name}</span>
                                         </span>
-                                        <span class="stars">
-                                            审核状态{$vo.item_status}
+                                       <span class="stars">
+                                            审核状态：<if condition="$vo.item_status eq 1 ">已通过
+                                           <elseif condition="$vo.item_status eq 0"/>未审核
+                                           <else />未通过
+                                       </if>
                                         </span>
-                                    <span class="repo-description css-truncate-target">
-                                        属于什么类型的{$vo.item_type}
-                                    </span>
+                                   <span class="repo-description css-truncate-target">
+                                            申请时间：{$vo.apply_time|date="y-m-d",###}
+                                        </span>
                                     </a>
                                 </li>
                             </volist>
