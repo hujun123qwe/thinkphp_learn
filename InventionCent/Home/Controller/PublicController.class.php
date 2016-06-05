@@ -114,19 +114,22 @@ class PublicController extends Controller {
             if(I('post.student_id')){
                 $reg_data['student_id'] = I('post.student_id');
             }else{
-                $this->error('注册失败','必须输入学号');
+                $this->error('注册失败，必须输入学号');
             }
             if(I('post.user_name')){
                 $reg_data['user_name'] = I('post.user_name');
             }else{
-                $this->error('注册失败','必须输入姓名');
+                $this->error('注册失败，必须输入姓名');
             }
-            $reg_data['password']  = I('post.password');
+            $reg_data['password'] = I('post.password');
             $reg_data['password'] = md5($reg_data['password']);
             $reg_data['add_time'] = time();
             $reg_data['last_login'] = $reg_data['add_time'];
             $reg_data['last_ip'] = get_client_ip();
             $userDB = D('User');
+            if($userDB->checkRegister($reg_data['student_id'])){
+                $this->error('此学号已被注册，请联系管理员15551053527',5);
+            }
             $data = $userDB->create($reg_data);
             if($data){
                 $id = $userDB->add($data);

@@ -147,6 +147,7 @@ class ApplicationController extends Controller{
             $this->assign('item_info', $item_info[0]);
 
             $map = json_decode($item_info[0]['apply_info'],true);
+            $file_number = sizeof($map)-5;
             $this->assign('apply_info',$map);
 
             $application_count = $itemDB->getApplicationCount($user_info[0]['user_id']);

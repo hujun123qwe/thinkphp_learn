@@ -189,4 +189,12 @@ class UserModel extends Model{
             return $this->where('user_id=%d',$user_id)->delete();
         }
     }
+
+    public function checkRegister($student_id){
+        if(empty($student_id)){
+            return 0;
+        }else{
+            return $this->where('student_id=%d',$student_id)->select();
+        }
+    }
 }
