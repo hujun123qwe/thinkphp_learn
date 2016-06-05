@@ -5,11 +5,31 @@
 <div class="boxed-group">
     <h3>选择导出信息</h3>
     <div class="boxed-group-inner mini-repo-list">
-        <form enctype="multipart/form-data" accept-charset="UTF-8" action="{:U('Application/print_view')}" class="columns js-uploadable-container js-upload-avatar-image is-default" method="post">
+        <form enctype="multipart/form-data" accept-charset="UTF-8" action="{:U('Credits/print_view')}" class="columns js-uploadable-container js-upload-avatar-image is-default" method="post">
             <div class="column two-thirds">
                 <dl class="form-group">
-                    <dt><label for="user_profile_name">项目名称</label></dt>
-                    <dd><input class="form-control" style="opacity: 0.5;" disabled="disabled" id="user_profile_name" name="item_name" size="30" type="text" value="{$item_info.item_name}" /></dd>
+                    <dt><label for="file_name">导出EXCEL文件名</label></dt>
+                    <dd><input class="form-control"id="file_name" name="file_name" required="required" type="text" /></dd>
+                </dl>
+                <dl class="form-group">
+                    <dt><label for="excel_line"></label></dt>
+                    <dd><input type="checkbox" checked="checked" name="item_1"><label>序号</label></dd>
+                    <dd><input type="checkbox" checked="checked" name="item_2"><label>学生姓名</label></dd>
+                    <dd><input type="checkbox" checked="checked" name="item_3"><label>学号</label></dd>
+                    <dd><input type="checkbox" checked="checked" name="item_4"><label>班级</label></dd>
+                    <dd><input type="checkbox" checked="checked" name="item_5"><label>学院</label></dd>
+                    <dd><input type="checkbox" checked="checked" name="item_6"><label>邮箱</label></dd>
+                    <dd><input type="checkbox" checked="checked" name="item_7"><label>手机号</label></dd>
+                    <dd><input type="checkbox" checked="checked" name="item_8"><label>住址</label></dd>
+                    <dd><input type="checkbox" checked="checked" name="item_9"><label>项目类型</label></dd>
+                    <dd><input type="checkbox" checked="checked" name="item_10"><label>项目名称</label></dd>
+                    <dd><input type="checkbox" checked="checked" name="item_11"><label>获得学分</label></dd>
+                    <dd><input type="checkbox" checked="checked" name="item_12"><label>申请时间</label></dd>
+                    <dd><input type="checkbox" checked="checked" name="item_13"><label>审核时间</label></dd>
+                    <dd><input type="checkbox" checked="checked" name="item_14"><label>指导老师</label></dd>
+                    <dd><input type="checkbox" checked="checked" name="item_15"><label>小组人数</label></dd>
+                    <dd><input type="checkbox" checked="checked" name="item_16"><label>项目等级</label></dd>
+                    <dd><input type="checkbox" checked="checked" name="item_17"><label>项目性质</label></dd>
                 </dl>
                 <p><button type="submit" class="btn btn-primary">确定 导出</button></p>
             </div>

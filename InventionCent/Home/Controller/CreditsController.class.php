@@ -99,7 +99,41 @@ class CreditsController extends Controller{
 
     public function print_view(){
         if(IS_POST) {
-            
+            $file_name = I('post.file_name');
+            $title = array('序号','姓名','学号','班级','学院','邮箱','手机号','住址','项目类型','项目名称','获得学分','申请时间','审核时间');
+            $creditsDB = D('Credits');
+            $credits_info = $creditsDB->getAllCreditsInfo();
+
+            $map = array();
+            $item = 0;
+            foreach ($credits_info as $value) {
+                $item++;
+                $map[$item]['id'] = $value['credits_id'];
+                $user_info_a = $this->getUserInfo($value['user_id']);
+                $user_info = $user_info_a[0];
+
+                $map[$item]['user_name'] = $user_info['user_name'];
+                $map[$item]['student_id'] = (string)$user_info['student_id'];
+                $map[$item]['iclass'] = $user_info['iclass'];
+                $map[$item]['academy'] = $user_info['academy'];
+                $map[$item]['email'] = $user_info['email'];
+                $map[$item]['phone'] = (string)$user_info['phone'];
+                $map[$item]['address'] = $user_info['address'];
+
+                $application_info_a = $this->getApplicationInfo($value['apply_id']);
+                $application_info = $application_info_a[0];
+                $item_type_a = $this->getItemType($application_info['item_id']);
+                $item_type = $item_type_a[0];
+                $map[$item]['item_id'] = $item_type['item_name'];
+                $map[$item]['item_name'] = $application_info['item_name'];
+                $map[$item]['credits_value'] = $value['credits_value']/10;
+                $map[$item]['apply_time'] = date("Y-m-d",$application_info['apply_time']);
+                $map[$item]['verify_time'] = date("Y-m-d",$application_info['verify_time']);
+
+            }
+//            var_dump($map);
+//           exit;
+            exportexcel($map,$title,$file_name);
         }else{
             $item_id = I('get.apply_id');
             $itemDB = D('Application');
@@ -117,20 +151,38 @@ class CreditsController extends Controller{
             $this->display();
         }
     }
-    
-    public function del(){
-        
+
+    public function print_now(){
+        $creditsDB = D('Credits');
+        $credits_info = $creditsDB->getAllCreditsInfo();
+        $title = array('credits_id','apply_id','item_id','user_id','credits_value','create_time','is_add','add_time');
+        exportexcel($credits_info,$title,'test');
     }
-    
-    public function edit(){
-        
+
+    public function getUserInfo($user_id){
+        if(empty($user_id)){
+            return 0;
+        }else{
+            $userDB = D('User');
+            return $userDB->getUserInfo($user_id);
+        }
     }
-    
-    public function add(){
-        
+
+    public function getApplicationInfo($apply_id){
+        if(empty($apply_id)){
+            return 0;
+        }else{
+            $applicationDB = D('Application');
+            return $applicationDB->getItemInfo($apply_id);
+        }
     }
-    
-    public function prints(){
-        
+
+    public function getItemType($item_code){
+        if(empty($item_code)){
+            return 0;
+        }else{
+            $itemDB = D('Item');
+            return $itemDB->getItemInfo($item_code);
+        }
     }
 }
