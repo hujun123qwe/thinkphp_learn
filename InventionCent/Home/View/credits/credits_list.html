@@ -17,13 +17,13 @@
                                     <td>{$vo.credits_id}</td>
                                     <td>{$vo.apply_id}</td>
                                     <td>{$vo.user_id}</td>
-                                    <td>{$vo.credits_value}</td>
-                                    <td>{$vo.create_time|date="y-m-d",###}</td>
+                                    <td><?php echo $vo[credits_value]/10; php?></td>
+                                    <td>{$vo.create_time|date="Y-m-d",###}</td>
                                     <td><if condition="$vo.is_add eq 1 ">已统计
                                         <elseif condition="$vo.is_add eq 0"/>未统计
                                         <else />未知参数
                                     </if></td>
-                                    <td>{$vo.add_time|date="y-m-d",###}</td>
+                                    <td>{$vo.add_time|date="Y-m-d",###}</td>
                                     <td><a href="edit_admin?user_id={$vo.user_id}">编辑</a>&nbsp;
                                         <a href="delete_admin?user_id={$vo.user_id}">删除</a>
                                     </td>

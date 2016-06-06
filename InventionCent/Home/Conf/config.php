@@ -15,32 +15,8 @@ return array(
     'css_path' => HOME_VIEW_PATH.'CSS',
     'js_path' => HOME_VIEW_PATH.'js',
 	//'配置项'=>'配置值'
-    'URL_ROUTER_ON'   => true, //开启路由
-    'URL_MAP_RULES' => array(
-        'chooseItem' => 'Register/chooseItem',
-        'item' => 'User/user_item',
-        'info' => 'User/user_info',
-        'add' => 'Item/add_item',
-        'first_login'=>'Index/first_login',
-        'admin'=>'Admin/index',
-        'admin/user_admin'=>'User/user_admin',
-        'admin/user_setting'=>'User/setting',
-        'admin/user_list'=>'User/lists',
-        'admin/news' => 'Public/news',
-        'admin/link'=> 'Public/link',
-        'admin/upload'=>'Public/upload',
-        'admin_login'=>'Public/login',
-        'admin/logs_admin'=>'Logs/admin_lists',
-        'admin/logs_students'=>'Logs/students_lists',
-        'admin/application_list'=>'Application/lists',
-        'admin/credits_lists'=>'Credits/lists',
-        'error' => 'Index/err',
-        'ok' => 'Index/ok',
-        'sql'=>'Index/insert_sql',
-        'bootstrap'=>'Index/bootstrap',
-        'indexs'=>'User/index_student',
-        'edits' => 'User/edit_student',
-    ),
+    'URL_ROUTER_ON'   => false, //开启路由
+
 
     '__HOME_IMG__' => __ROOT__.'/'.APP_PATH.'/Home/View/img',
     '__HOME_JS__' => __ROOT__.'/'.APP_PATH.'/Home/View/js',

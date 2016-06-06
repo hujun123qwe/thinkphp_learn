@@ -11,7 +11,16 @@ class IndexController extends Controller {
   }
 
     public function index(){
-        $this->redirect('User/index_student');
+        $user_id = is_login();
+        $userDB = D('User');
+        $user_info = $userDB->getUserInfo($user_id);
+
+        if($user_info[0]['user_type']==0){
+            $this->redirect('User/index_student');
+        }else{
+            $this->redirect('Admin/index');
+        }
+
     }
     
     public function first_login(){

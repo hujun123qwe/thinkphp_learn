@@ -27,11 +27,11 @@ class UserModel extends Model{
     );
 
     public function getAdminNumber(){
-        return $this->where('user_type=%d',1)->sum();
+        return $this->where('user_type=%d',1)->count();
     }
 
     public function getStudentNumber(){
-        return $this->where('user_type=%d',0)->sum();
+        return $this->where('user_type=%d',0)->count();
     }
 
     public function user(){

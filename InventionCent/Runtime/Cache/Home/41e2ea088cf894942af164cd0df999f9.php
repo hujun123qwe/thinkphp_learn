@@ -92,12 +92,12 @@
                                     <td><?php echo ($vo["credits_id"]); ?></td>
                                     <td><?php echo ($vo["apply_id"]); ?></td>
                                     <td><?php echo ($vo["user_id"]); ?></td>
-                                    <td><?php echo ($vo["credits_value"]); ?></td>
-                                    <td><?php echo (date("y-m-d",$vo["create_time"])); ?></td>
+                                    <td><?php echo $vo[credits_value]/10; php?></td>
+                                    <td><?php echo (date("Y-m-d",$vo["create_time"])); ?></td>
                                     <td><?php if($vo["is_add"] == 1 ): ?>已统计
                                         <?php elseif($vo["is_add"] == 0): ?>未统计
                                         <?php else: ?>未知参数<?php endif; ?></td>
-                                    <td><?php echo (date("y-m-d",$vo["add_time"])); ?></td>
+                                    <td><?php echo (date("Y-m-d",$vo["add_time"])); ?></td>
                                     <td><a href="edit_admin?user_id=<?php echo ($vo["user_id"]); ?>">编辑</a>&nbsp;
                                         <a href="delete_admin?user_id=<?php echo ($vo["user_id"]); ?>">删除</a>
                                     </td>
@@ -135,7 +135,7 @@
             <li><a href="http://gczx.ahut.edu.cn/">工创中心</a></li>
             <li><a href="http://jwcad.ahut.edu.cn/">教务处</a></li>
             <li><a href="http://library_web.ahut.edu.cn/MainWeb/index.asp">校图书馆</a></li>
-            <li><a href="mailto:hujun123qwe@163.com">Help</a></li>
+            <li><a href="http://me.hujun.ren">Help</a></li>
         </ul>
     </div>
 </div>

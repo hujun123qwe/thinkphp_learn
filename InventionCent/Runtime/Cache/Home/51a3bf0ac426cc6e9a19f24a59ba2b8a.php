@@ -156,7 +156,7 @@
             <li><a href="http://gczx.ahut.edu.cn/">工创中心</a></li>
             <li><a href="http://jwcad.ahut.edu.cn/">教务处</a></li>
             <li><a href="http://library_web.ahut.edu.cn/MainWeb/index.asp">校图书馆</a></li>
-            <li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;%68%75%6a%75%6e%31%32%33%71%77%65@%31%36%33.%43%4f%4d">Help</a></li>
+            <li><a href="http://me.hujun.ren">Help</a></li>
         </ul>
     </div>
 </div>
