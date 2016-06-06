@@ -57,12 +57,34 @@
                         </switch></dd>
                     </dl>
                     <dl class="form-group">
-                        <dt><label>《安徽工业大学SRTP项目结题验收表》</label></dt>
+                        <dt>《安徽工业大学SRTP项目结题验收表》</dt>
                         <dd><img style="max-width:650px;" src="__ROOT__/uploads/{$apply_info.upload_file}"/></dd>
+                        <dd><a href="__ROOT__/uploads/{$apply_info.upload_file}">下载（不是图片）</a></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt>其他文件1</dt>
+                        <dd><img style="max-width:650px;" src="__ROOT__/uploads/{$apply_info.upload_file_0}"/></dd>
+                        <dd><a href="__ROOT__/uploads/{$apply_info.upload_file_0}">下载（不是图片）</a></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt>其他文件2</dt>
+                        <dd><img style="max-width:650px;" src="__ROOT__/uploads/{$apply_info.upload_file_1}"/></dd>
+                        <dd><a href="__ROOT__/uploads/{$apply_info.upload_file_1}">下载（不是图片）</a></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt>其他文件3</dt>
+                        <dd><img style="max-width:650px;" src="__ROOT__/uploads/{$apply_info.upload_file_2}"/></dd>
+                        <dd><a href="__ROOT__/uploads/{$apply_info.upload_file_2}">下载（不是图片）</a></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt>其他文件4</dt>
+                        <dd><img style="max-width:650px;" src="__ROOT__/uploads/{$apply_info.upload_file_3}"/></dd>
+                        <dd><a href="__ROOT__/uploads/{$apply_info.upload_file_3}">下载（不是图片）</a></dd>
                     </dl>
                     <p><a href="{:U('Credits/verified',array('apply_id'=>$item_info['apply_id']),'')}"><button class="btn">审核 通过</button></a>
-                        <a href=""><button class="btn">返回</button></a>
+                        <a href=""><button class="btn">不通过</button> </a>
                         <a href=""><button class="btn">弄虚作假</button></a>
+                        <a href=""><button class="btn">返回</button></a>
                     </p>
                     <p class="note">
                         We store your personal data in the Anhui University of Technology only.

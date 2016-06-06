@@ -170,29 +170,30 @@ class ApplicationController extends Controller{
     public function itemRoute(){
         if(IS_GET){
             $application_type = I('get.item_type');
-            switch ($application_type){
-                case 1:
-                    $this->srtp();
-                    break;
-                case 2:
-                    $this->competition();
-                    break;
-                case 3:
-                    $this->course();
-                    break;
-                case 4:
-                    $this->paper();
-                    break;
-                case 5:
-                    $this->patent();
-                    break;
-                case 6:
-                    $this->other();
-                    break;
-                default:
-                    $this->error('该系统暂时不支持此项目申请');
-                    break;
-            }
+            $this->srtp();
+//            switch ($application_type){
+//                case 1:
+//                    $this->srtp();
+//                    break;
+//                case 2:
+//                    $this->competition();
+//                    break;
+//                case 3:
+//                    $this->course();
+//                    break;
+//                case 4:
+//                    $this->paper();
+//                    break;
+//                case 5:
+//                    $this->patent();
+//                    break;
+//                case 6:
+//                    $this->other();
+//                    break;
+//                default:
+//                    $this->error('该系统暂时不支持此项目申请');
+//                    break;
+//            }
         }
     }
 
@@ -490,5 +491,9 @@ class ApplicationController extends Controller{
         $userDB = D('User');
         $user_info = $userDB->getUserInfo($user_id);
         return $user_info[0];
+    }
+
+    public function add_item(){
+        $this->success('审核者暂不支持添加申请');
     }
 }

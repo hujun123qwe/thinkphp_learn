@@ -71,8 +71,8 @@
                         <h3 class="menu-heading">
                             操作记录
                         </h3>
-                        <li class="js-selected-navigation-item menu-item"><a href="news" ><i class="fa fa-wrench"></i><span class="nav-label">管理员记录</span></a></li>
-                        <li class="js-selected-navigation-item menu-item"><a href="link" ><i class="fa fa-map-signs"></i><span class="nav-label">用户记录</span></a></li>
+                        <li class="js-selected-navigation-item menu-item"><a href="#" ><i class="fa fa-wrench"></i><span class="nav-label">管理员记录</span></a></li>
+                        <li class="js-selected-navigation-item menu-item"><a href="#" ><i class="fa fa-map-signs"></i><span class="nav-label">用户记录</span></a></li>
                   </nav>
                 </div>
                 <div class="column three-fourths">
@@ -130,6 +130,10 @@
                             <td>胡军</td>
                         </tr>
                         <tr>
+                            <td>指导老师</td>
+                            <td>徐浩</td>
+                        </tr>
+                        <tr>
                             <td>邮箱</td>
                             <td>
                                 hujun123qwe@163.com
@@ -161,7 +165,7 @@
         <ul class="site-footer-links right">
             <li>中心地址：安徽省马鞍山市马向路新城东区（东校区）邮编：243032</li>
         </ul>
-        <a href="https://github.com" aria-label="Homepage" class="site-footer-mark" title="GitHub">
+        <a href="<?php echo U('Admin/index');?>" aria-label="Homepage" class="site-footer-mark" title="GitHub">
             <img src="<?php echo (C("__HOME_IMG__")); ?>/ahut.png" class="octicon octicon-mark-github" style="height: 30px;width: 30px;"/>
         </a>
         <ul class="site-footer-links">
@@ -170,7 +174,7 @@
             <li><a href="http://gczx.ahut.edu.cn/">工创中心</a></li>
             <li><a href="http://jwcad.ahut.edu.cn/">教务处</a></li>
             <li><a href="http://library_web.ahut.edu.cn/MainWeb/index.asp">校图书馆</a></li>
-            <li><a href="mailto:hujun123qwe@163.com">Help</a></li>
+            <li><a href="http://me.hujun.ren">Help</a></li>
         </ul>
     </div>
 </div>

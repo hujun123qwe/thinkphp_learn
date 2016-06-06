@@ -18,7 +18,7 @@
 
 
     <!-- 登陆框 -->
-    <div class="panel-lite" style="width: 400px;">
+    <div class="panel-lite" style="width: 420px;">
         <h1><a href="<?php echo C('HOME_PAGE');?>">大学生创新学分审核系统</a></h1>
         <form class="login-form" action="<?php echo U('Public/login');?>" method="post">
             <div class="form-group">

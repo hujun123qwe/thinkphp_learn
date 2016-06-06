@@ -71,8 +71,8 @@
                         <h3 class="menu-heading">
                             操作记录
                         </h3>
-                        <li class="js-selected-navigation-item menu-item"><a href="news" ><i class="fa fa-wrench"></i><span class="nav-label">管理员记录</span></a></li>
-                        <li class="js-selected-navigation-item menu-item"><a href="link" ><i class="fa fa-map-signs"></i><span class="nav-label">用户记录</span></a></li>
+                        <li class="js-selected-navigation-item menu-item"><a href="#" ><i class="fa fa-wrench"></i><span class="nav-label">管理员记录</span></a></li>
+                        <li class="js-selected-navigation-item menu-item"><a href="#" ><i class="fa fa-map-signs"></i><span class="nav-label">用户记录</span></a></li>
                   </nav>
                 </div>
                 <div class="column three-fourths">
@@ -129,8 +129,29 @@
                             <?php default: ?>未知<?php endswitch;?></dd>
                     </dl>
                     <dl class="form-group">
-                        <dt><label>《安徽工业大学SRTP项目结题验收表》</label></dt>
+                        <dt>《安徽工业大学SRTP项目结题验收表》</dt>
                         <dd><img style="max-width:650px;" src="/uploads/<?php echo ($apply_info["upload_file"]); ?>"/></dd>
+                        <dd><a href="/uploads/<?php echo ($apply_info["upload_file"]); ?>">下载（不是图片）</a></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt>其他文件1</dt>
+                        <dd><img style="max-width:650px;" src="/uploads/<?php echo ($apply_info["upload_file_0"]); ?>"/></dd>
+                        <dd><a href="/uploads/<?php echo ($apply_info["upload_file_0"]); ?>">下载（不是图片）</a></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt>其他文件2</dt>
+                        <dd><img style="max-width:650px;" src="/uploads/<?php echo ($apply_info["upload_file_1"]); ?>"/></dd>
+                        <dd><a href="/uploads/<?php echo ($apply_info["upload_file_1"]); ?>">下载（不是图片）</a></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt>其他文件3</dt>
+                        <dd><img style="max-width:650px;" src="/uploads/<?php echo ($apply_info["upload_file_2"]); ?>"/></dd>
+                        <dd><a href="/uploads/<?php echo ($apply_info["upload_file_2"]); ?>">下载（不是图片）</a></dd>
+                    </dl>
+                    <dl class="form-group">
+                        <dt>其他文件4</dt>
+                        <dd><img style="max-width:650px;" src="/uploads/<?php echo ($apply_info["upload_file_3"]); ?>"/></dd>
+                        <dd><a href="/uploads/<?php echo ($apply_info["upload_file_3"]); ?>">下载（不是图片）</a></dd>
                     </dl>
                     <p><a href="<?php echo U('Credits/verified',array('apply_id'=>$item_info['apply_id']),'');?>"><button class="btn">审核 通过</button></a>
                         <a href=""><button class="btn">返回</button></a>
@@ -161,7 +182,7 @@
         <ul class="site-footer-links right">
             <li>中心地址：安徽省马鞍山市马向路新城东区（东校区）邮编：243032</li>
         </ul>
-        <a href="https://github.com" aria-label="Homepage" class="site-footer-mark" title="GitHub">
+        <a href="<?php echo U('Admin/index');?>" aria-label="Homepage" class="site-footer-mark" title="GitHub">
             <img src="<?php echo (C("__HOME_IMG__")); ?>/ahut.png" class="octicon octicon-mark-github" style="height: 30px;width: 30px;"/>
         </a>
         <ul class="site-footer-links">
