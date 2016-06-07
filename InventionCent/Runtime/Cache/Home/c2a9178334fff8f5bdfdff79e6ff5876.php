@@ -54,7 +54,7 @@
                             </label>
                             <p class="note mb-3">请认真选择, 一旦确定将不可更改.</p>
                         </div>
-                        <input type="submit" value="确 定" class="btn btn-primary js-choose-plan-submit" style="width: 80px;">
+                        <input type="submit" value="下一步" class="btn btn-primary js-choose-plan-submit" style="width: 80px;">
                     </form>
                 </div> <!-- /.setup-form-container -->
             </div> <!-- /.setup-main -->
