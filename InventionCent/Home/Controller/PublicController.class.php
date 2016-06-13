@@ -26,7 +26,11 @@ class PublicController extends Controller {
             if (!$this->check_verify(I('post.verify'))) {
                 $this->error('验证码输入错误！');
             }
-
+            
+//            if(!preg_match("/^\[0-9]*$/",trim($username))){
+//                $this->error('请认真输入学号');
+//            }
+            
             // 验证用户名密码是否正确
             $user_object = D('Home/User');
             $user_info = $user_object->login($username, $password);
@@ -37,7 +41,7 @@ class PublicController extends Controller {
             // 设置登录状态
             //提交成功后，先生退出登录
             $uid = $user_object->auto_login($user_info);
-
+            
             // 跳转
             if (0 < $user_info['user_id'] && $user_info['user_id'] === $uid) {
                 if($user_info['user_type'] == 1){

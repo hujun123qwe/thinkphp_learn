@@ -116,10 +116,17 @@ class UserController extends Controller{
             $map = array();
             $user_id = I('post.user_id');
             $file_name = 'avatar_pic';
-            if($file_path = $this->my_upload($file_name)){
-                $map['avatar_pic'] = $file_path;
-            }else{
-                $this->error('上传文件错误');
+            $userDB = D('user');
+            $user_info = $userDB->getUserInfo($user_id);
+
+            $temp_old = $user_info[0];
+
+            if(is_uploaded_file($_FILES["srtp_file"][tmp_name])){
+                if($file_path = $this->my_upload($file_name)){
+                    $map['avatar_pic'] = $file_path;
+                }else{
+                    $this->error('上传文件错误');
+                }
             }
             if(I('post.email')){
                 $map['email'] = I('post.email');
@@ -139,7 +146,9 @@ class UserController extends Controller{
             if(I('post.password')){
                 $map['password'] = I('post.password');
             }
-            $userDB = D('User');            
+            if(empty($map)){
+                $this->success('个人信息更新成功',U('User/index_student'));
+            }
             if($userDB->edit_student($map,$user_id)){
                 $this->success('个人信息更新成功',U('User/index_student'));
             }else{

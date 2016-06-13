@@ -9,7 +9,15 @@
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/frameworks.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/github.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/site.css" type="text/css"/>
+    <script type="text/javascript" src="<?php echo (C("__HOME_JS__")); ?>/jquery.min.js"></script>
     <title><?php echo ($meta_title); ?></title>
+    
+	<script type="text/javascript">
+		$("#person_form").change(
+				$("#button_ok").enable()
+		)
+	</script>
+
 </head>
 
 <body>
@@ -90,7 +98,7 @@
         <div class="boxed-group">
             <h3>编辑个人信息</h3>
 	            <div class="boxed-group-inner clearfix">
-	                <form accept-charset="UTF-8" enctype="multipart/form-data" action="<?php echo U('User/edit_student');?>" class="columns js-uploadable-container js-upload-avatar-image is-default" method="post">
+	                <form id="person_form" accept-charset="UTF-8" enctype="multipart/form-data" action="<?php echo U('User/edit_student');?>" class="columns js-uploadable-container js-upload-avatar-image is-default" method="post">
 						<input type="hidden" name="user_id" value="<?php echo ($user_info["user_id"]); ?>"/>
 	                <div class="column two-thirds">
 	                    <dl class="form-group edit-profile-avatar">
@@ -120,7 +128,7 @@
 	                    </dl>
 	                    <dl class="form-group">
 	                        <dt><label for="h1">学号</label></dt>
-	                        <dd><input class="form-control" id="h1" name="student_id" size="30" type="text" value="<?php echo ($user_info["student_id"]); ?>" /></dd>
+	                        <dd><input class="form-control" id="h1" disabled="disabled" name="student_id" size="30" type="text" value="<?php echo ($user_info["student_id"]); ?>" /></dd>
 	                    </dl>
 	                    <dl class="form-group">
 	                        <dt><label for="h2">学院</label></dt>
@@ -146,7 +154,7 @@
 							<dt><label for="ps">修改密码</label></dt>
 							<dd><input class="form-control" id="ps" type="password" name="password" value="<?php echo ($user_info["password"]); ?>"></dd>
 						</dl>
-	                    <p><button type="submit" class="btn btn-primary">确认 更改</button></p>
+	                    <p><button type="submit" disabled="disabled" class="btn btn-primary" id="button_ok">确认 更改</button></p>
 	                </div>
 	            </form>        
 	            <p class="note">

@@ -22,7 +22,7 @@
         <h1><a href="<?php echo C('HOME_PAGE');?>">大学生创新学分审核系统</a></h1>
         <form class="login-form" action="<?php echo U('Public/login');?>" method="post">
             <div class="form-group">
-                <input type="text" required="required" class="form-control" name="username" placeholder="学号">
+                <input type="text" required="required" maxlength="9" class="form-control" name="username" placeholder="学号/工号">
             </div>
             <div class="form-group">
                 <input type="password" required="required" class="form-control" name="password" placeholder="密码">
