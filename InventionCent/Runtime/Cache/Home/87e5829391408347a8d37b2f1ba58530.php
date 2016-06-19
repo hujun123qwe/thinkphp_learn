@@ -18,6 +18,7 @@
 
 
     <div class="panel-lite" style="width: 420px;">
+        <h1 style="text-align: center;"><a  href="<?php echo C('HOME_PAGE');?>">安徽工业大学</a></h1>
         <h1><a href="<?php echo C('HOME_PAGE');?>">大学生创新学分审核系统</a></h1>
         <form class="login-form" action="<?php echo U('Public/register');?>" method="post">
             <div class="form-group">
@@ -30,8 +31,11 @@
                 <input type="password" required="required" class="form-control" name="password" placeholder="密码">
             </div>
             <div class="form-group">
+                <input type="password" required="required" class="form-control" name="password" placeholder="再次输入密码">
+            </div>
+            <div class="form-group">
                 <div class="input-group">
-                    <input type="text" required="required" class="col-sm-4 form-control" name="verify" placeholder="验证码">
+                    <input type="text" style="float:left;" required="required" class="col-sm-4 form-control" name="verify" placeholder="验证码">
                     <span class="input-group-addon verifyimg-box" style="display: table-cell;padding-left:45px;">
                         <img class="verifyimg reload-verify" alt="验证码" src="<?php echo U('Public/verify');?>" title="点击刷新">
                     </span>

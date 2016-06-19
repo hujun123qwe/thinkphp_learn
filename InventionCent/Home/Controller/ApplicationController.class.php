@@ -170,30 +170,30 @@ class ApplicationController extends Controller{
     public function itemRoute(){
         if(IS_GET){
             $application_type = I('get.item_type');
-            $this->srtp();
-//            switch ($application_type){
-//                case 1:
-//                    $this->srtp();
-//                    break;
-//                case 2:
-//                    $this->competition();
-//                    break;
-//                case 3:
-//                    $this->course();
-//                    break;
-//                case 4:
-//                    $this->paper();
-//                    break;
-//                case 5:
-//                    $this->patent();
-//                    break;
-//                case 6:
-//                    $this->other();
-//                    break;
-//                default:
-//                    $this->error('该系统暂时不支持此项目申请');
-//                    break;
-//            }
+//            $this->srtp();
+            switch ($application_type){
+                case 1:
+                    $this->srtp();
+                    break;
+                case 2:
+                    $this->competition();
+                    break;
+                case 3:
+                    $this->course();
+                    break;
+                case 4:
+                    $this->paper();
+                    break;
+                case 5:
+                    $this->patent();
+                    break;
+                case 6:
+                    $this->other();
+                    break;
+                default:
+                    $this->error('该系统暂时不支持此项目申请');
+                    break;
+            }
         }
     }
 

@@ -19,6 +19,7 @@
 
     <!-- 登陆框 -->
     <div class="panel-lite" style="width: 420px;">
+        <h1 style="text-align: center;"><a  href="<?php echo C('HOME_PAGE');?>">安徽工业大学</a></h1>
         <h1><a href="<?php echo C('HOME_PAGE');?>">大学生创新学分审核系统</a></h1>
         <form class="login-form" action="<?php echo U('Public/login');?>" method="post">
             <div class="form-group">
@@ -27,11 +28,12 @@
             <div class="form-group">
                 <input type="password" required="required" class="form-control" name="password" placeholder="密码">
             </div>
+            <a class="label-link" href="<?php echo C('HOME_PAGE');?>">忘记密码 ? </a>
             <div class="form-group">
                 <div class="input-group">
-                    <input type="text" required="required" class="col-sm-4 form-control" name="verify" placeholder="验证码">
-                    <span class="input-group-addon verifyimg-box" style="display: table-cell;padding-left:45px;">
-                        <img class="verifyimg reload-verify" alt="验证码" src="<?php echo U('Public/verify');?>" title="点击刷新">
+                    <input type="text" style="float: left;" required="required" class="col-sm-4 form-control" name="verify" placeholder="验证码">
+                    <span class="input-group-addon verifyimg-box" style="display: table-cell;padding-left:60px;">
+                        <img class="verifyimg ad-verify" alt="验证码" src="<?php echo U('Public/verify');?>" title="点击刷新">
                     </span>
                 </div>
             </div>
@@ -39,11 +41,13 @@
                 <input class="btn btn-primary btn-block" tabindex="3" type="submit" value="登 录" />
             </div>
         </form>
-        <a class="label-link" href="<?php echo C('HOME_PAGE');?>">忘记密码 ? </a>
         <p class="create-account-callout mt-3">
             新来的？
             <a href="register">创建一个账户</a>.
         </p>
+        <div class="label-link" style="padding-top:15px;">
+            <a style="text-align: right;" href="http://down.tech.sina.com.cn/page/40975.html">我们强烈推荐使用Chrome浏览器</a>
+        </div>
     </div>
 
 </body>
