@@ -143,13 +143,9 @@ class UserController extends Controller{
             if(I('post.address')){
                 $map['address'] = I('post.address');
             }
-            if(I('post.password')){
-                $map['password'] = I('post.password');
-            }
-            if(empty($map)){
+            if($map == array_intersect($temp_old, $map)){
                 $this->success('个人信息更新成功',U('User/index_student'));
-            }
-            if($userDB->edit_student($map,$user_id)){
+            }else if($userDB->edit_student($map,$user_id)){
                 $this->success('个人信息更新成功',U('User/index_student'));
             }else{
                 $this->error('数据传递错误:(');
@@ -339,6 +335,38 @@ class UserController extends Controller{
             //$this->error($upload->getError());
         }else{// 上传成功
             return $file['savepath'].$file['savename'];
+        }
+    }
+
+    public function edit_password(){
+        if(IS_POST){
+
+        }else{
+            $user_id = is_login();
+            if($user_id){
+                $userDB = D('user');
+                $user_info = $userDB->getUserInfo($user_id);
+            }else{
+                $this->error('你已经掉线了',U('Public/login'));
+            }
+
+            $userDB = D('user');
+            $user_info = $userDB->getUserInfo($user_id);
+
+            $itemDB = D('Application');
+            $application_count = $itemDB->getApplicationCount($user_info[0]['user_id']);
+            $application_verified = $itemDB->getApplicationVerified($user_info[0]['user_id']);
+
+            $creditsDB = D('Credits');
+            $credits_value = $creditsDB->getCreditsValue($user_id);
+
+            $this->assign('application_count',$application_count);
+            $this->assign('application_verified',$application_verified);
+            $this->assign('credits_value',$credits_value);
+            $this->assign('meta_title','修改密码 | 大学生创新学分审核系统');
+            $this->assign('user_info', $user_info[0]);
+            $this->assign('layout_home', C('__LAYOUT_HOME__'));  // 页面公共继承模版
+            $this->display();
         }
     }
 }

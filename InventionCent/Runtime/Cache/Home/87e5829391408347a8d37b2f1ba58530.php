@@ -6,11 +6,19 @@
     <meta http-equiv="Content-Language" content="en">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/login.css" type="text/css">
+    <!--<script type="text/javascript" src="<?php echo (C("__HOME_JS__")); ?>/"></script>-->
     <script type="text/javascript" src="<?php echo (C("__HOME_JS__")); ?>/jquery.min.js"></script>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/frameworks.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/github.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/site.css" type="text/css"/>
     
+    <script type="text/javascript">
+        $("#studentID").blur(function () {
+            alert("some");
+        });
+        //$('#studentID').popover(hide);
+    </script>
+
     <title><?php echo ($meta_title); ?></title>
 </head>
 <body>
@@ -21,9 +29,11 @@
         <h1 style="text-align: center;"><a  href="<?php echo C('HOME_PAGE');?>">安徽工业大学</a></h1>
         <h1><a href="<?php echo C('HOME_PAGE');?>">大学生创新学分审核系统</a></h1>
         <form class="login-form" action="<?php echo U('Public/register');?>" method="post">
-            <div class="form-group">
-                <input type="text" required="required" class="form-control" name="student_id" placeholder="学号">
+            <div class="form-group" id="studentID">
+                <input type="text" required="required" class="form-control" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+sagittis lacus vel augue laoreet rutrum faucibus." name="student_id" placeholder="学号">
             </div>
+
             <div class="form-group">
                 <input type="text" required="required" class="form-control" name="user_name" placeholder="姓名">
             </div>

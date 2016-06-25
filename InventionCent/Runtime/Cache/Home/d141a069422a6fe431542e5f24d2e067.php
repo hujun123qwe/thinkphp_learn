@@ -23,7 +23,7 @@
 <body>
 <div class="header header-logged-in true" role="banner">
     <div class="container" style="margin-top:12px;">
-        <a class="header-logo-invertocat" href="<?php echo C('HOME_PAGE');?>"><h2>大学生创新学分审核系统</h2></a>
+        <a class="header-logo-invertocat" href="<?php echo C('HOME_PAGE');?>"><h2>安徽工业大学 大学生创新学分审核系统</h2></a>
         <div class="header-search   js-site-search" role="search"></div>
         <ul class="header-nav left" role="navigation"></ul>
         <ul class="header-nav user-nav right" style="padding-right:5px;">
@@ -150,11 +150,7 @@
 	                        <dt><label for="user_profile_location">住址</label></dt>
 	                        <dd><input class="form-control" id="user_profile_location" name="address" size="30" type="text" value="<?php echo ($user_info["address"]); ?>" /></dd>
 	                    </dl>
-						<dl class="form-group ">
-							<dt><label for="ps">修改密码</label></dt>
-							<dd><input class="form-control" id="ps" type="password" name="password" value="<?php echo ($user_info["password"]); ?>"></dd>
-						</dl>
-	                    <p><button type="submit" disabled="disabled" class="btn btn-primary" id="button_ok">确认 更改</button></p>
+	                    <p><button type="submit"  class="btn btn-primary" id="button_ok">确认 更改</button></p>
 	                </div>
 	            </form>        
 	            <p class="note">

@@ -1,13 +1,22 @@
 <extend name="$layout_login"/>
-
+<block name="js">
+    <script type="text/javascript">
+        $("#studentID").blur(function () {
+            alert("some");
+        });
+        //$('#studentID').popover(hide);
+    </script>
+</block>
 <block name="container">
     <div class="panel-lite" style="width: 420px;">
         <h1 style="text-align: center;"><a  href="{:C('HOME_PAGE')}">安徽工业大学</a></h1>
         <h1><a href="{:C('HOME_PAGE')}">大学生创新学分审核系统</a></h1>
         <form class="login-form" action="{:U('Public/register')}" method="post">
-            <div class="form-group">
-                <input type="text" required="required" class="form-control" name="student_id" placeholder="学号">
+            <div class="form-group" id="studentID">
+                <input type="text" required="required" class="form-control" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+sagittis lacus vel augue laoreet rutrum faucibus." name="student_id" placeholder="学号">
             </div>
+
             <div class="form-group">
                 <input type="text" required="required" class="form-control" name="user_name" placeholder="姓名">
             </div>

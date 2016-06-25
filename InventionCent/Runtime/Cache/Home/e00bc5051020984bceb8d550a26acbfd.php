@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/github.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo (C("__HOME_CSS__")); ?>/site.css" type="text/css"/>
     <script type="text/javascript" src="<?php echo (C("__HOME_JS__")); ?>/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo (C("__HOME_JS__")); ?>/bootstrap.min.js"></script>
     <title><?php echo ($meta_title); ?></title>
     
 
@@ -28,6 +29,9 @@
             </li>
             <li class="header-nav-item" style="padding-right:8px;">
                 <a href="<?php echo U('User/edit_student');?>" class="btn btn-sm">个人信息</a>
+            </li>
+            <li class="header-nav-item" style="padding-right:8px;">
+                <a href="<?php echo U('User/edit_password');?>" class="btn btn-sm">修改密码</a>
             </li>
             <li class="header-nav-item" style="padding-right:8px;">
                 <a href="<?php echo U('Public/logout');?>" class="btn btn-sm">退出</a>
